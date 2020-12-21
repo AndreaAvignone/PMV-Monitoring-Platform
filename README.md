@@ -8,3 +8,7 @@ Availabe services are stored into databases and exposed through REST protocol, m
 Create the database format to store information about registred users and include the html page for the registration phase (customized).\
 **Situation:** /\
 **Improvements:** /
+## Profiles catalog:
+The server stores information about the profile of each user in a specific database, exposed by the correlated service running on  a different port.\
+**Situation:** /\
+**Improvements:** /
