@@ -8,11 +8,13 @@ class ServiceCatalog():
 	exposed=True
 
 	def __init__(self,db_filename):
+		#configure the service catalog according to information stored inside database
 		self.db_filename=db_filename
 		self.MyServiceCatalog=json.load(open(self.db_filename,"r")) #store the database as a variable
 		self.serviceCatalogIP=self.MyServiceCatalog['service_catalog'][0].get('IP_address')
 		self.serviceCatalogPort=self.MyServiceCatalog['service_catalog'][0].get('port')
-
+		
+	#a method to retrieve information concerning the requested resource. It returns a valid url, since until now only IP+port address are used
 	def retrieveInfo(self,catalog,service):
 		serviceAddress='http://'+catalog[service][0].get("IP_address")+':'+str(catalog[service][0].get("port"))
 		return serviceAddress
@@ -24,12 +26,9 @@ class ServiceCatalog():
 			except:
 				raise cherrypy.HTTPError(404,"Service: Not found")
 		else:
-			output=self.MyServiceCatalog['description']
+			output=self.MyServiceCatalog['description'] #if no resource is found, it return a general description about database
 
 		return json.dumps(output,indent=4) 
-
-
-
 
 if __name__ == '__main__':
     settings=sys.argv[1]
