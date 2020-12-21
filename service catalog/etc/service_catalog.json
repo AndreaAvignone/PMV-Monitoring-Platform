@@ -1,0 +1,22 @@
+{
+    "description": "Welcome to the monitoring platform catalog service",
+    "service_catalog": [
+        {
+            "IP_address": "127.0.0.1",
+            "port": 8080
+        }
+    ],
+    "broker": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 1883
+        }
+    ],
+    "profiles": [
+        {
+            "IP_address": "127.0.0.1",
+            "port": 8081
+        }
+    ]
+    
+}
