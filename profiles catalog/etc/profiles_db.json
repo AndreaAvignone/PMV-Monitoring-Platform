@@ -1,0 +1,20 @@
+{
+    "profiles": [
+        {
+            "platform_ID":"MP-A00001",
+            "platform_name":"School",
+            "inactiveTime": 300,
+            "preferences":[],
+            "location":"Turin",
+            "last_update":"10/12/2020 14:10"
+        },
+        {
+            "platform_ID":"MP-A00001",
+            "platform_name":"Office",
+            "inactiveTime": 500,
+            "preferences":[],
+            "location":"Milan",
+            "last_update":"11/12/2020 12:32"
+        }
+    ]
+}
