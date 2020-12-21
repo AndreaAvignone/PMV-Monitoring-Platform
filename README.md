@@ -11,4 +11,4 @@ Create the database format to store information about registred users and includ
 ## Profiles catalog:
 The server stores information about the profile of each user in a specific database, exposed by the correlated service running on  a different port.\
 **Situation:** /\
-**Improvements:** /
+**Improvements:** deeper analysis about useful information, preferences and parameters that should be stored in this db to be consistent.
