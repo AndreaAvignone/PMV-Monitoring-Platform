@@ -1,15 +1,22 @@
 {
-    "profiles": [
+    "description":"Welcome to the profiles database",
+    "service_catalog":"http://127.0.0.1:8080/Monitoring-Platform",
+    "profiles_list": [
         {
             "platform_ID":"MP-A00001",
             "platform_name":"School",
             "inactiveTime": 300,
-            "preferences":[],
+            "preferences":[
+                {
+                    "roomID": "room_X1",
+                    "room_name": "room_X1"
+                }
+            ],
             "location":"Turin",
             "last_update":"10/12/2020 14:10"
         },
         {
-            "platform_ID":"MP-A00001",
+            "platform_ID":"MP-A00002",
             "platform_name":"Office",
             "inactiveTime": 500,
             "preferences":[],

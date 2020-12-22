@@ -4,7 +4,7 @@ import requests
 import time
 import sys
 
-class ServiceCatalog():
+class ServiceCatalogREST():
 	exposed=True
 
 	def __init__(self,db_filename):
@@ -22,7 +22,8 @@ class ServiceCatalog():
 	def GET(self,*uri):
 		if len(uri)!=0:
 			try:
-				output= self.retrieveInfo(self.MyServiceCatalog,str(uri[0]))
+				#output= self.retrieveInfo(self.MyServiceCatalog,str(uri[0]))
+				output=self.MyServiceCatalog[str(uri[0])]
 			except:
 				raise cherrypy.HTTPError(404,"Service: Not found")
 		else:
@@ -32,7 +33,7 @@ class ServiceCatalog():
 
 if __name__ == '__main__':
     settings=sys.argv[1]
-    serviceCatalog=ServiceCatalog(settings)
+    serviceCatalog=ServiceCatalogREST(settings)
     conf = {
         '/': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
