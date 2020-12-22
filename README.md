@@ -6,8 +6,8 @@ Availabe services are stored into databases and exposed through REST protocol, m
 **Improvements:** update the list of services according to the necessary ones.
 ## Registration/clients catalog:
 Create the database format to store information about registred users and include the html page for the registration phase (customized).\
-**Situation:** /\
-**Improvements:** /
+**Situation:** The service is working with some adaptions similar to the other services.\
+**Improvements:** It should be completely adapted to the system (see issue). /
 ## Profiles catalog:
 The server stores information about the profile of each user in a specific database, exposed by the correlated service running on  a different port.\
 **Situation:** Basic functionalities clearly implemented for GET requests. Specficic errors depending if a wrong command or a wrong parameter is requested.\
