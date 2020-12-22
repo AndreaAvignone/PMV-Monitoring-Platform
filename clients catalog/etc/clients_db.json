@@ -1,0 +1,21 @@
+{
+    "description":"Welcome to the clients database",
+    "service_catalog":"http://127.0.0.1:8080/Monitoring-Platform",
+    "users": [
+        {
+            "user_ID": "Avi",
+            "catalog_id": "Leaf_001",
+            "password": "Pas"
+        },
+        {
+            "user_ID": "Bro",
+            "catalog_id": "Leaf_002",
+            "password": "b"
+        },
+        {
+            "user_ID": "Tom",
+            "catalog_id": "Leaf_001",
+            "password": "tom"
+        }
+    ]
+}
