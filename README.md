@@ -20,7 +20,7 @@ The server stores information about the profile of each user in a specific datab
 It stores everything about rooms measurments. The structure is complex and it is based on rooms catalog and devices catalog. It is in charge of the main database. For each room, MRT value and list of devices are present.\
 **Situation**: Structure is well organized, with all needed functionalities. See issues for doubts.\
 **Improvements**: More tests are expected to find errors. All useful information to store should be defined (e.g. MRT, thermal comfort, PMV...).\
-**How to run**: python3 resources_server.py etc/db.json\
+**How to run**: python3 resources_server.py etc/db.json
 
 ## Description
 Each back-end service presents a similar structure. The basic path is /Monitoring-Platform + /specific_service (e.g. http://127.0.0.1:8083/Monitoring-Platform/server, http://127.0.0.1:8081/Monitoring-Platform/profiles). The crucial one is the **service catalog**. It is based on a json file storing also its own address (http://127.0.0.1:8080/Monitoring-Platform/services).\
