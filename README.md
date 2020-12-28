@@ -1,7 +1,7 @@
 # Monitoring-Platform
 For each service, a folder called '/etc' exists, containing JSON-like configuration files.
 ## Services catalog: 
-Availabe services are stored into databases and exposed through REST protocol, mainly IP addresses - e.g. broker, profile databases -.\
+Availabe services are stored into databases and exposed through REST protocol - e.g. broker, profile databases, server -. In particular, for each service, IP, port and basic path to start the service are provided (dictionary).\
 **Situation:** basic functionalities implemented (retrieve data + error for bad requests).\
 **Improvements:** update the list of services according to the necessary ones.
 ## Registration/clients catalog:
