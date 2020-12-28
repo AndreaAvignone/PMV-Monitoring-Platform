@@ -9,7 +9,7 @@ class ProfilesCatalogREST():
 	def __init__(self,db_filename):
 		self.profilesCatalog=ProfilesCatalog(db_filename)
 		self.serviceCatalogAddress=self.profilesCatalog.profilesContent['service_catalog']
-		self.requestResult=requests.get(self.serviceCatalogAddress+"/services/profiles_catalog").json()
+		self.requestResult=requests.get(self.serviceCatalogAddress+"/profiles_catalog").json()
 		self.profilesCatalogIP=self.requestResult[0].get("IP_address")
 		self.profilesCatalogPort=self.requestResult[0].get("port")
 		self.service=self.requestResult[0].get("service")
