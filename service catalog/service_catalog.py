@@ -13,6 +13,7 @@ class ServiceCatalogREST():
 		self.MyServiceCatalog=json.load(open(self.db_filename,"r")) #store the database as a variable
 		self.serviceCatalogIP=self.MyServiceCatalog['service_catalog'][0].get('IP_address')
 		self.serviceCatalogPort=self.MyServiceCatalog['service_catalog'][0].get('port')
+		self.service=self.MyServiceCatalog['service_catalog'][0].get('service')
 		
 	#a method to retrieve information concerning the requested resource. It returns a valid url, since until now only IP+port address are used
 	def retrieveInfo(self,catalog,service):
@@ -40,7 +41,7 @@ if __name__ == '__main__':
             'tools.sessions.on': True
         }
     }
-    cherrypy.tree.mount(serviceCatalog, '/Monitoring-Platform/services', conf)
+    cherrypy.tree.mount(serviceCatalog, serviceCatalog.service, conf)
     cherrypy.config.update({'server.socket_host': serviceCatalog.serviceCatalogIP})
     cherrypy.config.update({'server.socket_port': serviceCatalog.serviceCatalogPort})
     cherrypy.engine.start()
