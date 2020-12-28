@@ -5,20 +5,19 @@
         {
             "platform_ID":"MP-A00001",
             "platform_name":"School",
-            "inactiveTime": 300,
-            "preferences":[
+            "inactive_time": 300,
+            "preferences":
                 {
                     "roomID": "room_X1",
                     "room_name": "room_X1"
-                }
-            ],
+                },
             "location":"Turin",
             "last_update":"10/12/2020 14:10"
         },
         {
             "platform_ID":"MP-A00002",
             "platform_name":"Office",
-            "inactiveTime": 500,
+            "inactive_time": 500,
             "preferences":[],
             "location":"Milan",
             "last_update":"11/12/2020 12:32"
