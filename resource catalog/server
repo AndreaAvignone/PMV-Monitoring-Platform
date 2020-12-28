@@ -1,6 +1,0 @@
-#! /bin/bash
-
-xterm -e "python3 database_REST.py etc/db.json" &
-sleep 2
-cd ../freeboard2
-xterm -e "python3 freeboard.py"
