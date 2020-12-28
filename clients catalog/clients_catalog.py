@@ -2,6 +2,7 @@ import cherrypy
 import json
 import sys
 import requests
+import time
 
 class Registration_deployer(object):
     exposed=True
@@ -9,9 +10,10 @@ class Registration_deployer(object):
         self.db_filename=db_filename
         self.MyClientsCatalog=json.load(open(self.db_filename,"r"))
         self.serviceCatalogAddress=self.MyClientsCatalog['service_catalog']
-        self.requestResult=requests.get(self.serviceCatalogAddress+"/services/clients_catalog").json()
+        self.requestResult=requests.get(self.serviceCatalogAddress+"/clients_catalog").json()
         self.clientsCatalogIP=self.requestResult[0].get("IP_address")
         self.clientsCatalogPort=self.requestResult[0].get("port")
+        self.service=self.requestResult[0].get("service")
 
     def GET(self,*uri,**params):
         if (len(uri))>0 and uri[0]=="reg.html":
@@ -46,8 +48,10 @@ if __name__ == '__main__':
         }
     }
     
-    cherrypy.tree.mount(clientsCatalog, '/Monitoring-Platform/clients', conf)
+    cherrypy.tree.mount(clientsCatalog, clientsCatalog.service, conf)
     cherrypy.config.update({'server.socket_host': clientsCatalog.clientsCatalogIP})
     cherrypy.config.update({'server.socket_port': clientsCatalog.clientsCatalogPort}) 
     cherrypy.engine.start()
+    while True:
+        time.sleep(1)
     cherrypy.engine.block()

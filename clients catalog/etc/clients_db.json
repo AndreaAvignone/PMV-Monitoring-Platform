@@ -1,6 +1,6 @@
 {
     "description":"Welcome to the clients database",
-    "service_catalog":"http://127.0.0.1:8080/Monitoring-Platform",
+    "service_catalog":"http://127.0.0.1:8080/Monitoring-Platform/services",
     "users": [
         {
             "user_ID": "Avi",
