@@ -10,7 +10,7 @@ class ResourcesServerREST(object):
 	def __init__(self,db_filename):
 		self.serverCatalog=Server(db_filename)
 		self.serviceCatalogAddress=self.serverCatalog.serverContent['service_catalog']
-		self.requestResult=requests.get(self.serviceCatalogAddress+"/services/server_catalog").json()
+		self.requestResult=requests.get(self.serviceCatalogAddress+"/server_catalog").json()
 		self.serverCatalogIP=self.requestResult[0].get("IP_address")
 		self.serverCatalogPort=self.requestResult[0].get("port")
 		self.service=self.requestResult[0].get("service")
