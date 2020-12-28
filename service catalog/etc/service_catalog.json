@@ -15,7 +15,22 @@
     "profiles_catalog": [
         {
             "IP_address": "127.0.0.1",
-            "port": 8081
+            "port": 8081,
+            "service":"/Monitoring-Platform/profiles"
+        }
+    ],
+    "clients_catalog": [
+        {
+            "IP_address": "127.0.0.1",
+            "port": 8082,
+            "service":"clients"
+        }
+    ],
+    "server_catalog": [
+        {
+            "IP_address": "127.0.0.1",
+            "port": 8083,
+            "service":"/Monitoring-Platform/server"
         }
     ]
     
