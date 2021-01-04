@@ -11,11 +11,11 @@ Create the database format to store information about registred users and includ
 **Situation:** The service is working with some adaptions similar to the other services.\
 **Improvements:** It should be completely adapted to the system (see issue).\
 ### Profiles catalog:
-The server stores information about the profile of each user in a specific database, exposed by the correlated service running on  a different port.\
+The server stores information about the profile of each user (also room configuration) in a specific database, exposed by the correlated service running on  a different port.\
 **Situation:** Basic functionalities clearly implemented for GET requests. Specficic errors depending if a wrong command or a wrong parameter is requested.\
 **Improvements:** 1. deeper analysis about useful information, preferences and parameters that should be stored into profiles db to be consistent. 2. Integrate all necessary POST/PUT functionalities to handle the catalog.\
 **How to run**: python3 profiles_catalog.py etc/profiles_db.json\
-**Update**: The system now includes also PUT for inserting new profile, POST to set the value of a specific parameter, DELETE for removing profiles. Basic errors for bad requests. Integration with server catalog is working according to the microservice approach.\
+**Update**: The system now includes also PUT for inserting new profile, POST to set the value of a specific parameter, DELETE for removing profiles. Basic errors for bad requests. Integration with server catalog is working according to the microservice approach. Also room configuration procedure has been implemented:  \
 ### Server catalog:
 It stores everything about rooms measurments. The structure is complex and it is based on rooms catalog and devices catalog. It is in charge of the main database. For each room, MRT value and list of devices are present.\
 **Situation**: Structure is well organized, with all needed functionalities. See issues for doubts.\
