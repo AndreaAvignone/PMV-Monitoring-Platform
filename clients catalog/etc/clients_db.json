@@ -1,21 +1,31 @@
 {
-    "description":"Welcome to the clients database",
-    "service_catalog":"http://127.0.0.1:8080/Monitoring-Platform/services",
-    "users": [
+    "description": "Welcome to the clients database",
+    "service_catalog": "http://192.168.1.19:8080/Monitoring-Platform/services",
+    "users_list": [
         {
             "user_ID": "Avi",
-            "catalog_id": "Leaf_001",
+            "catalog_ID": "Leaf_001",
             "password": "Pas"
         },
         {
             "user_ID": "Bro",
-            "catalog_id": "Leaf_002",
+            "catalog_ID": "Leaf_002",
             "password": "b"
         },
         {
             "user_ID": "Tom",
-            "catalog_id": "Leaf_001",
+            "catalog_ID": "Leaf_001",
             "password": "tom"
+        },
+        {
+            "user_ID": "Ana",
+            "catalog_list": [
+                {
+                    "catalog_ID": "MP0001",
+                    "connection_flag": false
+                }
+            ],
+            "password": "try"
         }
     ]
 }

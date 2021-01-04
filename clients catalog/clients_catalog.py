@@ -20,20 +20,25 @@ class Registration_deployer(object):
             return open('etc/reg.html')
 
         elif (len(uri)>0 and uri[0]=="reg_results"):
-            users=json.load(open('etc/reg.json'))
-            for user in users.get("users"):
+            users=json.load(open(self.db_filename))
+            for user in users.get("users_list"):
                 if user['user_ID']==params['userID']:
                     return open("etc/fail_reg_user.html") 
             if params['psw']!=params['psw-repeat']:
                 return open("etc/fail_reg_pass.html") 
 
             else:
-                users["users"].append({
+                users["users_list"].append({
                     "user_ID":params['userID'],
-                    "catalog_id":params['catalogID'],
+                    "catalog_list":[],
                     "password":params['psw']
                     })
-                with open('etc/reg.json', 'w') as outfile:
+                for i in range(len(users["users_list"])):
+                    if users["users_list"][i]['user_ID']==params['userID']:
+                        users["users_list"][i]['catalog_list'].append({'catalog_ID':params['catalogID'],'connection_flag':False})
+
+
+                with open(self.db_filename, 'w') as outfile:
                     json.dump(users, outfile, indent=4)
             
                 return open("etc/correct_reg.html")
