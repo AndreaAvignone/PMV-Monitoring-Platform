@@ -1,16 +1,20 @@
 {
     "description":"Welcome to the profiles database",
-    "service_catalog":"http://127.0.0.1:8080/Monitoring-Platform/services",
+    "service_catalog":"http://192.168.1.19:8080/Monitoring-Platform/services",
     "profiles_list": [
         {
             "platform_ID":"MP-A00001",
             "platform_name":"School",
+            "room_cnt":1,
             "inactive_time": 300,
-            "preferences":
+            "preferences":[
                 {
-                    "roomID": "room_X1",
-                    "room_name": "room_X1"
-                },
+                    "room_ID": "room_X1",
+                    "room_name": "room_X1",
+                    "connection_flag":false,
+                    "connection_timestamp":1607607430.684861
+                }
+            ],
             "location":"Turin",
             "last_update":"10/12/2020 14:10"
         },
@@ -18,9 +22,28 @@
             "platform_ID":"MP-A00002",
             "platform_name":"Office",
             "inactive_time": 500,
-            "preferences":[],
+            "room_cnt":1,
+            "preferences":[
+                {
+                    "room_ID":"room_X1",
+                    "room_name":"Bagno",
+                    "connection_flag": false,
+                    "connection_timestamp":null
+                }
+            ],
             "location":"Milan",
             "last_update":"11/12/2020 12:32"
+        },
+        {
+            "platform_ID":"MP-A00003",
+            "platform_name":null,
+            "inactive_time": 80,
+            "room_cnt":0,
+            "preferences":[
+                
+            ],
+            "location":"null",
+            "last_update":null
         }
     ]
 }

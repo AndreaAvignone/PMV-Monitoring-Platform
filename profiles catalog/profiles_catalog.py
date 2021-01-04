@@ -41,6 +41,7 @@ class ProfilesCatalogREST():
 		body=cherrypy.request.body.read()
 		json_body=json.loads(body.decode('utf-8'))
 		command=str(uri[0])
+		ack=False
 		if command=='insertProfile':
 			platform_ID=json_body['platform_ID']
 			platform_name=json_body['platform_name']
@@ -50,11 +51,35 @@ class ProfilesCatalogREST():
 			newProfile=self.profilesCatalog.insertProfile(platform_ID,platform_name,inactiveTime,preferences,location)
 			if newProfile==True:
 				output="Profile '{}' has been added to Profiles Database".format(platform_ID)
+				ack=True
 			else:
 				output="'{}' already exists!".format(platform_ID)
-			print(output)
+		#from app
+		elif command=='insertRoom':
+			platform_ID=uri[1]
+			room_ID=json_body['room_ID']
+			room_name=json_body['room_name']
+			newRoomFlag,newRoom=self.profilesCatalog.insertRoom(platform_ID,room_ID,json_body)
+			if newRoomFlag==True:
+				output="Room '{}' has been added to platform '{}'".format(room_name,platform_ID)
+				ack=newRoom
+			else:
+				output="Room '{}' cannot be added to platform '{}'".format(room_name,platform_ID)
+		elif command=='associateRoom':
+			platform_ID=uri[1]
+			associatedRoomFlag,associatedRoom=self.profilesCatalog.associateRoom(platform_ID,json_body['timestamp'])
+			if associatedRoomFlag==True:
+				output="Room '{}' has been assoicated in platform '{}'".format(associatedRoom['room_name'],platform_ID)
+				ack=associatedRoom
+			else:
+				output="Association failed in platform '{}'".format(platform_ID)
+
+
 		else:
 			raise cherrypy.HTTPError(501, "No operation!")
+
+		print(output)
+		return json.dumps(ack)
 		
 
 	def POST(self, *uri):
@@ -62,7 +87,7 @@ class ProfilesCatalogREST():
 		json_body=json.loads(body.decode('utf-8'))
 		command=str(uri[0])
 		if command=='setParameter':
-			platform_ID=json_body['platform_ID']
+			platform_ID=uri[1]
 			parameter=json_body['parameter']
 			parameter_value=json_body['parameter_value']
 			newSetting=self.profilesCatalog.setParameter(platform_ID,parameter,parameter_value)
