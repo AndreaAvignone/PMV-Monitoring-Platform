@@ -3,7 +3,7 @@ For each service, a folder called '/etc' exists, containing JSON-like configurat
 ## Main services
 ### Service catalog: 
 Availabe services are stored into databases and exposed through REST protocol - e.g. broker, profile databases, server -. In particular, for each service, IP, port and basic path to start the service are provided (dictionary).\
-**Situation:** basic functionalities implemented (retrieve data + error for bad requests).\
+**Situation:** basic functionalities implemented (retrieve data + error for bad requests). server local IP: 192.168.1.19 (pc), broker: 192.168.1.131 (raspberry)\
 **Improvements:** update the list of services according to the necessary ones. Also POST/PUT functionalities can be integrated to modify information rather than manually with the json file.\
 **How to run**: python3 service_catalog.py etc/service_catalog.json
 ### Registration/clients catalog:
