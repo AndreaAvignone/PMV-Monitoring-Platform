@@ -2,37 +2,45 @@
     "description": "Welcome to the monitoring platform catalog service",
     "service_catalog": [
         {
-            "IP_address": "127.0.0.1",
+            "IP_address": "192.168.1.19",
             "port": 8080,
             "service":"/Monitoring-Platform/services"
         }
     ],
     "broker": [
         {
-            "IP_address": "192.168.1.130",
+            "IP_address": "192.168.1.131",
             "port": 1883
         }
     ],
     "profiles_catalog": [
         {
-            "IP_address": "127.0.0.1",
+            "IP_address": "192.168.1.19",
             "port": 8081,
             "service":"/Monitoring-Platform/profiles"
         }
     ],
     "clients_catalog": [
         {
-            "IP_address": "127.0.0.1",
+            "IP_address": "192.168.1.19",
             "port": 8082,
-            "service":"clients"
+            "service":"/Monitoring-Platform/clients"
         }
     ],
     "server_catalog": [
         {
-            "IP_address": "127.0.0.1",
+            "IP_address": "192.168.1.19",
             "port": 8083,
             "service":"/Monitoring-Platform/server"
         }
+    ],
+    "drivers_catalog": [
+        {
+            "IP_address": "192.168.1.19",
+            "port": 8084,
+            "service":"/Monitoring-Platform/drivers"
+        }
+
     ]
     
 }
