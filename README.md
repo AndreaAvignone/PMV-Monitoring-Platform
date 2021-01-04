@@ -19,7 +19,7 @@ The server stores information about the profile of each user (also room configur
 ### Server catalog:
 It stores everything about rooms measurments. The structure is complex and it is based on rooms catalog and devices catalog. It is in charge of the main database. For each room, MRT value and list of devices are present.\
 **Situation**: Structure is well organized, with all needed functionalities. See issues for doubts.\
-**Improvements**: More tests are expected to find errors. All useful information to store should be defined (e.g. MRT, thermal comfort, PMV...).\
+**Improvements**: More tests are expected to find errors. All useful information to store should be defined (e.g. MRT, thermal comfort, PMV...). It is not working properly in case of issues, in particular during platform/rooms/devices configuration.\
 **How to run**: python3 resources_server.py etc/db.json
 
 ## Description
