@@ -98,7 +98,14 @@ class ResourcesServerREST(object):
 				if newDevice==True:
 					output="Platform '{}' - Room '{}' - Device '{}' has been added to Server".format(platform_ID, room_ID,device_ID)
 				else:
-					output="Platform '{}' - Room '{}' - Device '{}' already exists. Updating...".format(platform_ID,room_ID.device_ID)
+					output="Platform '{}' - Room '{}' - Device '{}' already exists. Updating...".format(platform_ID,room_ID,device_ID)
+		elif command=='insertValue':
+			platform_ID=uri[1]
+			room_ID=uri[2]
+			device_ID=uri[3]
+			newValue=self.serverCatalog.insertDeviceValue(platform_ID, room_ID, device_ID,json_body)
+			output=output="Platform '{}' - Room '{}' - Device '{}': parameters updated".format(platform_ID, room_ID, device_ID)
+
 
 		else:
 			raise cherrypy.HTTPError(501, "No operation!")
@@ -119,12 +126,6 @@ class ResourcesServerREST(object):
 				output="Platform '{}' - Room '{}': {} is now {}".format(platform_ID, room_ID, parameter,parameter_value)
 			else:
 				output="Platform '{}' - Room '{}': Can't change {} ".format(platform_ID, room_ID,parameter)
-		elif command=='insertValue':
-			platform_ID=uri[1]
-			room_ID=uri[2]
-			device_ID=uri[3]
-			newValue=self.serverCatalog.insertDeviceValue(platform_ID, room_ID, device_ID,json_body)
-			output=output="Platform '{}' - Room '{}' - Device '{}': parameters updated".format(platform_ID, room_ID, device_ID)
 		else:
 			raise cherrypy.HTTPError(501, "No operation!")
 		print(output)
@@ -176,18 +177,24 @@ if __name__ == '__main__':
 	while True:
 		for platform in server.serverCatalog.serverContent['platforms_list']:
 			try:
-				requestProfiles=requests.get(server.serviceCatalogAddress+"/services/profiles_catalog").json()
+				requestProfiles=requests.get(server.serviceCatalogAddress+"/profiles_catalog").json()
 				IP=requestProfiles[0].get('IP_address')
 				port=requestProfiles[0].get('port')
 				service=requestProfiles[0].get('service')
-				inactiveTime=requests.get(server.buildAddress(IP,port,service)+'/'+platform['platform_ID']+'/inactive_time').json()
-				for room in platform['rooms']:
-					try:
-						result=server.serverCatalog.removeInactive(room['devices'],inactiveTime)
-						if result is not False:
-							server.serverCatalog.dateUpdate(room)
-					except:
-						pass
+				try:
+					inactiveTime=requests.get(server.buildAddress(IP,port,service)+'/'+platform['platform_ID']+'/inactive_time').json()
+					for room in platform['rooms']:
+						try:
+							result=server.serverCatalog.removeInactive(room['devices'],inactiveTime)
+							if result is not False:
+								output="Room {} - Platform {}".format(room['room_ID'],platform['platform_ID'])
+								print(output)
+								server.serverCatalog.dateUpdate(room)
+
+						except:
+							pass
+				except:
+					print(f"Impossible to reach profile for platform {platform['platform_ID']}")
 
 			except:
 				print("Services communication is not working")

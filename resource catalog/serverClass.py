@@ -156,7 +156,10 @@ class Server():
 
     def removeInactive(self,devices,inactiveTime):
         self.devicesCatalog=DevicesCatalog(devices)
-        self.devicesCatalog.removeInactive(inactiveTime)
+        if self.devicesCatalog.removeInactive(inactiveTime):
+            return True
+        else:
+            return False
 
     def dateUpdate(self,element):
         now=datetime.now()

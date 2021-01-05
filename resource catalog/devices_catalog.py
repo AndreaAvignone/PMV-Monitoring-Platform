@@ -72,6 +72,8 @@ class DevicesCatalog():
                 #self.devices['last_update']=self.actualTime
                 print(f'Device {device_ID} removed')
                 return True
+            else:
+                return False
 
 
     def removeDevice(self,device_ID):
