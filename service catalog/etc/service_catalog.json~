@@ -34,14 +34,6 @@
             "service":"/Monitoring-Platform/server"
         }
     ],
-    "influx_db": [
-        {
-            "IP_address": "192.168.1.130",
-            "port": 8086,
-            "service":"influx"
-        }
-    ],
-    
     "drivers_catalog": [
         {
             "IP_address": "192.168.1.130",
