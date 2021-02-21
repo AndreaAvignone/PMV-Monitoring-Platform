@@ -42,6 +42,7 @@ class ProfilesCatalogREST():
 		json_body=json.loads(body.decode('utf-8'))
 		command=str(uri[0])
 		ack=False
+		saveFlag=False
 		if command=='insertProfile':
 			platform_ID=json_body['platform_ID']
 			platform_name=json_body['platform_name']
@@ -51,6 +52,7 @@ class ProfilesCatalogREST():
 			newProfile=self.profilesCatalog.insertProfile(platform_ID,platform_name,inactiveTime,preferences,location)
 			if newProfile==True:
 				output="Profile '{}' has been added to Profiles Database".format(platform_ID)
+				saveFlag=True
 				ack=True
 			else:
 				output="'{}' already exists!".format(platform_ID)
@@ -62,6 +64,7 @@ class ProfilesCatalogREST():
 			newRoomFlag,newRoom=self.profilesCatalog.insertRoom(platform_ID,room_ID,json_body)
 			if newRoomFlag==True:
 				output="Room '{}' has been added to platform '{}'".format(room_name,platform_ID)
+				saveFlag=True
 				ack=newRoom
 			else:
 				output="Room '{}' cannot be added to platform '{}'".format(room_name,platform_ID)
@@ -71,13 +74,15 @@ class ProfilesCatalogREST():
 			if associatedRoomFlag==True:
 				output="Room '{}' has been assoicated in platform '{}'".format(associatedRoom['room_name'],platform_ID)
 				ack=associatedRoom
+				saveFlag=True
 			else:
 				output="Association failed in platform '{}'".format(platform_ID)
 
 
 		else:
 			raise cherrypy.HTTPError(501, "No operation!")
-
+		if saveFlag==True:
+			self.profilesCatalog.save()
 		print(output)
 		return json.dumps(ack)
 		
@@ -93,6 +98,7 @@ class ProfilesCatalogREST():
 			newSetting=self.profilesCatalog.setParameter(platform_ID,parameter,parameter_value)
 			if newSetting==True:
 				output="Platform '{}': {} is now {}".format(platform_ID, parameter,parameter_value)
+				self.profilesCatalog.save()
 			else:
 				output="Platform '{}': Can't change {} ".format(platform_ID, parameter)
 			print(output)
@@ -106,6 +112,7 @@ class ProfilesCatalogREST():
 			removedProfile=self.profilesCatalog.removeProfile(platform_ID) 
 			if removedProfile==True:
 				output="Profile '{}' removed".format(platform_ID)
+				self.profilesCatalog.save()
 			else:
 				output="Profile '{}' not found ".format(platform_ID)
 			print(output)

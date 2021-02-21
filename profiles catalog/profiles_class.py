@@ -120,8 +120,8 @@ class ProfilesCatalog():
 		else:
 			return False
 
-	def save(self,db_filename):
-		with open(db_filename,'w') as file:
+	def save(self):
+		with open(self.db_filename,'w') as file:
 			json.dump(self.profilesContent,file, indent=4)
 
 
