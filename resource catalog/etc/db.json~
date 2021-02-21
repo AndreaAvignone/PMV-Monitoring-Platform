@@ -1,43 +1,52 @@
 {
-    "database_owner": "Leaf",
-    "server": [
+    "description": "Welcome to resources server",
+    "database_owner": "Andrea Avignone",
+    "service_catalog":"http://192.168.1.19:8080/Monitoring-Platform/services",
+    "platforms_list": [
         {
-            "addressIP": "192.168.1.130/leaf",
-            "port": 8080
-        }
-    ],
-    "clients": [
-        {
-            "catalogID": "Leaf_001",
-            "inactiveTime": 80,
-            "clientID": "Tommi",
-            "broker": {
-                "addressIP": "192.168.1.130",
-                "port": 1883
-            },
+            "platform_ID": "MP-A00001",
             "rooms": [
                 {
-                    "roomID": "room_X1",
-                    "room_name": "room_X1",
-                    "thingSpeakURL": "https://api.thingspeak.com/update?api_key=X5YXZ86YDB4I41W3",
+                    "room_ID": "room_X1",
+                    "MRT": null,
                     "devices": [
-                       {
-                            "sensorID": "mq135_X1",
+                        {
+                            "device_ID": "mq135_X1",
                             "end_points": "MQTT/REST",
                             "parameters": [
                                 {
                                     "parameter": "AQI",
-                                    "value": "540",
-                                    "unit": "ppm"
+                                    "value": "322",
+                                    "unit": "ppm",
+                                    "timestamp": 1607607495.6602523
                                 }
                             ],
-                            "timestamp": 1606508987.4653163
+                            "timestamp": 1607607430.684861
+                        },
+                        {
+                            "device_ID": "dht11_X1",
+                            "end_points": "MQTT/REST",
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "value": "22.0",
+                                    "unit": "C",
+                                    "timestamp": 1607607487.0183182
+                                },
+                                {
+                                    "parameter": "humidity",
+                                    "value": "58.0",
+                                    "unit": "%",
+                                    "timestamp": 1607607487.0343244
+                                }
+                            ],
+                            "timestamp": 1607607444.2685964
                         }
                     ],
-                    "last_update": "27/11/2020 21:29"
+                    "last_update": "10/12/2020 14:38"
                 }
             ],
-            "last_update": "12/11/2020 15:37"
+            "creation_date": "10/12/2020 14:10"
         }
     ]
 }

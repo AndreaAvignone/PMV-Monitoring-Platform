@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 import time
 import requests
+from influxdb import InfluxDBClient
 from rooms_catalog import RoomsCatalog
 from devices_catalog import DevicesCatalog
 
@@ -85,6 +86,9 @@ class Server():
             return True
         else:
             return False
+    def createDB(self, influx_IP,influx_port,platform_ID):
+        client=InfluxDBClient(host=influx_IP,port=influx_port)
+        client.create_database(platform_ID)
 
     def insertRoom(self,platform_ID,room_ID,room):
         i=self.findPos(platform_ID)
