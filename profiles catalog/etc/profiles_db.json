@@ -1,6 +1,6 @@
 {
     "description":"Welcome to the profiles database",
-    "service_catalog":"http://192.168.1.19:8080/Monitoring-Platform/services",
+    "service_catalog":"http://192.168.1.130:8080/Monitoring-Platform/services",
     "profiles_list": [
         {
             "platform_ID":"MP-A00001",
