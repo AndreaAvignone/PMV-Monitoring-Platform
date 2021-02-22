@@ -1,0 +1,11 @@
+{
+    "description": "Room settings",
+    "hub_catalog": "http://192.168.1.131:9090/Monitoring-Platform/hub",
+    "room_info": {
+        "room_ID": "room_X1",
+        "room_name": "Bagno",
+        "connection_flag": true,
+        "devices": [],
+        "connection_timestamp": 1609765451.649048
+    }
+}
