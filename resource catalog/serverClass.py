@@ -170,6 +170,6 @@ class Server():
         new_date=now.strftime("%d/%m/%Y %H:%M")
         element['last_update']=new_date
 
-    def save(self,db_filename):
-        with open(db_filename,'w') as file:
+    def save(self):
+        with open(self.db_filename,'w') as file:
             json.dump(self.serverContent,file, indent=4)

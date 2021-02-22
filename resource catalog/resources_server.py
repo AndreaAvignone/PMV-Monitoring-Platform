@@ -70,6 +70,7 @@ class ResourcesServerREST(object):
         body=cherrypy.request.body.read()
         json_body=json.loads(body.decode('utf-8'))
         command=str(uri[0])
+        saveFlag=False
         if command=='insertPlatform':
             platform_ID=json_body['platform_ID']
             rooms=json_body['rooms'] 
@@ -78,6 +79,7 @@ class ResourcesServerREST(object):
                 output="Platform '{}' has been added to Server\n".format(platform_ID)
                 if self.serverCatalog.createDB(self.influx_IP,self.influx_port,platform_ID):
                     output=output+"Influx database created"
+                    saveFlag=True
                     
             else:
                 output="'{}' already exists!".format(platform_ID)
@@ -90,6 +92,7 @@ class ResourcesServerREST(object):
             else:
                 if newRoom==True:
                     output="Platform '{}' - Room '{}' has been added to Server".format(platform_ID, room_ID)
+                    saveFlag=True
                 else:
                     output="Platform '{}' - Room '{}' already exists. Resetting...".format(platform_ID,room_ID)
         elif command=='insertDevice':
@@ -104,6 +107,7 @@ class ResourcesServerREST(object):
             else:
                 if newDevice==True:
                     output="Platform '{}' - Room '{}' - Device '{}' has been added to Server".format(platform_ID, room_ID,device_ID)
+                    saveFlag=True
                 else:
                     output="Platform '{}' - Room '{}' - Device '{}' already exists. Updating...".format(platform_ID,room_ID,device_ID)
         elif command=='insertValue':
@@ -112,10 +116,13 @@ class ResourcesServerREST(object):
             device_ID=uri[3]
             newValue=self.serverCatalog.insertDeviceValue(platform_ID, room_ID, device_ID,json_body)
             output=output="Platform '{}' - Room '{}' - Device '{}': parameters updated".format(platform_ID, room_ID, device_ID)
+            saveFlag=True
 
 
         else:
             raise cherrypy.HTTPError(501, "No operation!")
+        if saveFlag:
+            self.serverCatalog.save()
         print(output)
 
 
@@ -123,6 +130,7 @@ class ResourcesServerREST(object):
         body=cherrypy.request.body.read()
         json_body=json.loads(body.decode('utf-8'))
         command=str(uri[0])
+        saveFlag=False
         if command=='setParameter':
             platform_ID=uri[1]
             room_ID=json_body['room_ID']
@@ -131,14 +139,18 @@ class ResourcesServerREST(object):
             newSetting=self.serverCatalog.setRoomParameter(platform_ID,room_ID,parameter,parameter_value)
             if newSetting==True:
                 output="Platform '{}' - Room '{}': {} is now {}".format(platform_ID, room_ID, parameter,parameter_value)
+                saveFlag=True
             else:
                 output="Platform '{}' - Room '{}': Can't change {} ".format(platform_ID, room_ID,parameter)
         else:
             raise cherrypy.HTTPError(501, "No operation!")
+        if saveFlag:
+            self.serverCatalog.save()
         print(output)
 
 
     def DELETE(self,*uri):
+        saveFlag=False
         uriLen=len(uri)
         if uriLen>0:
             platform_ID=uri[0]
@@ -149,23 +161,29 @@ class ResourcesServerREST(object):
                     removedDevice=self.serverCatalog.removeDevice(platform_ID,room_ID,device_ID)
                     if removedDevice==True:
                         output="Platform '{}' - Room '{}' - Device '{}' removed".format(platform_ID,room_ID,device_ID)
+                        saveFlag=True
                     else:
                         output="Platform '{}'- Room '{}' - Device '{}' not found ".format(platform_ID,room_ID,device_ID)
                 else:
                     removedRoom=self.serverCatalog.removeRoom(platform_ID,room_ID)
                     if removedRoom==True:
                         output="Platform '{}' - Room '{}' removed".format(platform_ID,room_ID)
+                        saveFlag=True
                     else:
                         output="Platform '{}'- Room '{}' not found ".format(platform_ID,room_ID)
             else:
                 removedPlatform=self.serverCatalog.removePlatform(platform_ID) 
                 if removedPlatform==True:
                     output="Platform '{}' removed".format(platform_ID)
+                    saveFlag=True
                 else:
                     output="Platform '{}' not found ".format(platform_ID)
         else:
             raise cherrypy.HTTPError(501, "No operation!")
+        if saveFlag:
+            self.serverCatalog.save()
         print(output)
+
 
 if __name__ == '__main__':
     db=sys.argv[1]
