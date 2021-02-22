@@ -1,0 +1,19 @@
+{
+    "description": "Welcome to central HUB",
+    "hub_ID": "MP-A00003",
+    "inactiveTime": 80,
+    "client_ID": "Tommi",
+    "service_catalog":"http://192.168.1.19:8080/Monitoring-Platform/services",
+    "service":"/Monitoring-Platform/hub",
+    "last_update": null,
+    "broker": [
+        {
+            "addressIP": "192.168.1.131",
+            "port": 1883
+        }
+    ],
+    "rooms": [],
+    "drivers":[
+
+    ]
+}
