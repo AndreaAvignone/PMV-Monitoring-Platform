@@ -12,8 +12,22 @@ class HUB():
         self.serviceCatalogAddress=self.hubContent['service_catalog']
         self.hub_ID=self.hubContent['hub_ID']
         self.rooms=self.hubContent['rooms']
+        self.retrieveBroker()
+        time.sleep(0.5)
         self.setup()
 
+    def retrieveBroker(self):
+        print("Retrieving broker information...")
+        try:
+            requestBroker=requests.get(self.serviceCatalogAddress+'/broker').json()
+            IP=requestBroker[0].get('IP_address')
+            port=requestBroker[0].get('port')
+            msg={"IP_address":IP,"port":int(port)}
+            self.hubContent["broker"].append(msg)
+            print("Broker info obtained.")
+        except:
+            print("Broker info not obtained.")
+            
     def setup(self):
         print("Connecting...")
         try:
