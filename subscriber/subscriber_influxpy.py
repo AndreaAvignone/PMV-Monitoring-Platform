@@ -53,22 +53,24 @@ class DataCollector():
         self.client.mySubscribe(topic)
     def notify(self,topic,msg):
         payload=json.loads(msg)
+        room_ID=payload['room_ID']
         device_ID=payload['device_ID']
+        platform_ID=payload['platform_ID']
         value=payload['value']
         unit=payload['unit']
         parameter=payload['parameter']
         timestamp=payload['timestamp']
         t=payload['time']
-        putBody={'parameter':parameter,'value':str(value),'unit':unit,'timestamp':timestamp}
-        print(f'At {self.room_ID} ({t})\nSensor {device_ID} - {parameter}: {value} {unit}\n')
+        putBody={'platform_ID':platform_ID,'room_ID':room_ID,'parameter':parameter,'value':str(value),'unit':unit,'timestamp':timestamp}
+        print(f'At {room_ID} ({platform_ID}) ({t})\nSensor {device_ID} - {parameter}: {value} {unit}\n')
         try:
-            requests.put(self.server_catalog+'/insertValue/'+self.hub_ID+'/'+self.room_ID+'/'+device_ID, json=putBody)
+            requests.put(self.server_catalog+'/insertValue/'+platform_ID+'/'+room_ID+'/'+device_ID, json=putBody)
         except:
             print("Error detected in server communication.")
         actual_time=time.time()
         if self.newTime-actual_time>=60:
             try:
-                influx_Body={"measurement":parameter,"tags":{"user":self.hub_ID,"roomID":self.room_ID},"time":timestamp,"fileds":{"value":value}}
+                influx_Body={"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":timestamp,"fileds":{"value":value}}
                 self.clientDB.write_points(json_body)
                 self.newTime=actual_time
             except:
@@ -78,7 +80,10 @@ class DataCollector():
         try:
             last_creation=requests.get(server.buildAddress(IP,port,"profiles_catalog")+'/last_creation').json()
             if self.lastCheck is None or last_creation>self.lastCheck:
-                newList=requests.get(server.buildAddress(IP,port,"profiles_catalog")+'/profiles_list').json()
+                profilesList=requests.get(server.buildAddress(IP,port,"profiles_catalog")+'/profiles_list').json()
+                newList=[platform for platform in profilesList if platform not in self.platformList]
+                missingList=[platform for platform in self.platformList if platform not in profilesList]
+                return newList,missingList
         except:
             print("Profiles catalog - connection lost.")
 
@@ -92,10 +97,13 @@ if __name__ == '__main__':
         time.sleep(1)
         collection.run()       
         while True:
-
-            collection.follow(collection.hub_ID+'/#')
-            time.sleep(3)
-            collection.client.unsubscribe()
+            platform_list,unfollowing_list=collection.updateList()
+            for platform in platform_list:
+                collection.follow(platform+'/#')
+                time.sleep(1)
+            for platform in unfollowing_list:
+                collection.client.unsubscribe()
+                time.sleep(0.5)
             time.sleep(1)
         collection.end()
     else:
