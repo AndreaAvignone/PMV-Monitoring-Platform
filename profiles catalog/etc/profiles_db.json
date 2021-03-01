@@ -1,7 +1,9 @@
 {
     "description":"Welcome to the profiles database",
     "service_catalog":"http://192.168.1.130:8080/Monitoring-Platform/services",
-    "profiles_list": [
+    "profiles_list":["MP-A00001","MP-A00002","MP-A00003"],
+    "last_creation":1607607430.684861,
+    "profiles": [
         {
             "platform_ID":"MP-A00001",
             "platform_name":"School",

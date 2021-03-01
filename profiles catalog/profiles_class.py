@@ -24,14 +24,14 @@ class ProfilesCatalog():
 
 	def profilesListCreate(self):
 		self.profilesList=[]
-		for profile in self.profilesContent['profiles_list']:
+		for profile in self.profilesContent['profiles']:
 			self.profilesList.append(profile['platform_ID'])
 		return self.profilesList
 
 	def findPos(self,platform_ID):
 		notFound=1
-		for i in range(len(self.profilesContent['profiles_list'])): 
-			if self.profilesContent['profiles_list'][i]['platform_ID']==platform_ID:
+		for i in range(len(self.profilesContent['profiles'])): 
+			if self.profilesContent['profiles'][i]['platform_ID']==platform_ID:
 				notFound=0
 				return i
 		if notFound==1:
@@ -39,7 +39,7 @@ class ProfilesCatalog():
 
 	def retrieveProfileInfo(self,platform_ID):
 		notFound=1
-		for profile in self.profilesContent['profiles_list']:
+		for profile in self.profilesContent['profiles']:
 			if profile['platform_ID']==platform_ID:
 				notFound=0
 				return profile
@@ -61,7 +61,8 @@ class ProfilesCatalog():
 		profile=self.retrieveProfileInfo(platform_ID)
 		if profile is False:
 			createdProfile=NewProfile(platform_ID,platform_name,inactiveTime,preferences,location,timestamp).jsonify()
-			self.profilesContent['profiles_list'].append(createdProfile)
+			self.profilesContent['profiles'].append(createdProfile)
+			self.profilesContent['profiles_list'].append(platform_ID)
 			return True
 		else:
 			return False
@@ -76,12 +77,12 @@ class ProfilesCatalog():
 			room_info['devices']=[]
 			timestamp=time.time()
 			room_info['connection_timestamp']=timestamp
-			for room in self.profilesContent['profiles_list'][pos]['preferences']:
+			for room in self.profilesContent['profiles'][pos]['preferences']:
 				if room['room_name']==room_info['room_name']:
 					roomNotFound=0
 					break
 			if roomNotFound==1:
-				self.profilesContent['profiles_list'][pos]['preferences'].append(room_info)
+				self.profilesContent['profiles'][pos]['preferences'].append(room_info)
 				self.setParameter(platform_ID,'room_cnt',room_cnt)
 				return True,room_info
 			else:
@@ -93,7 +94,7 @@ class ProfilesCatalog():
 		pos=self.findPos(platform_ID)
 		notFound=1
 		if pos is not False:
-			for pref in self.profilesContent['profiles_list'][pos]['preferences']:
+			for pref in self.profilesContent['profiles'][pos]['preferences']:
 				if pref['connection_flag'] is False and (request_timestamp-pref['connection_timestamp'])<60:
 					pref['connection_flag']=True
 					notFound=0
@@ -107,7 +108,8 @@ class ProfilesCatalog():
 	def removeProfile(self,platform_ID):
 		pos=self.findPos(platform_ID)
 		if pos is not False:
-			self.profilesContent['profiles_list'].pop(i) 
+			self.profilesContent['profiles_list'].remove(platform_ID)
+			self.profilesContent['profiles'].pop(pos) 
 			return True
 		else:
 			return False
@@ -115,7 +117,7 @@ class ProfilesCatalog():
 	def setParameter(self, platform_ID, parameter, parameter_value):
 		pos=self.findPos(platform_ID)
 		if pos is not False:
-			self.profilesContent['profiles_list'][pos][parameter]=parameter_value
+			self.profilesContent['profiles'][pos][parameter]=parameter_value
 			return True
 		else:
 			return False
