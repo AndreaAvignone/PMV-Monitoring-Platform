@@ -10,32 +10,45 @@ import sys
 from influxdb import InfluxDBClient
 
 class DataCollector():
-    def __init__(self,configuration_filename):
+    def __init__(self,configuration_filename,clientID="SubscriberClient"):
+        self.clientID=clientID
         self.subContent=json.load(open(configuration_filename,"r"))
         self.serviceCatalogAddress=self.subContent['service_catalog']
         self.newTime=time.time()
+        self.platformList=[]
+        self.lastCheck=None
 
     def configuration(self):
-        self.retrieveBroker()
-        self.client=MyMQTT(self.hub_ID,self.broker_IP,self.broker_port,self)
-        
-
-    def retrieveBroker(self):
         print("Retrieving broker information...")
         try:
-            requestBroker=requests.get(self.serviceCatalogAddress+'/broker').json()
-            self.broker_IP=requestBroker[0].get('IP_address')
-            self.broker_port=requestBroker[0].get('port')
+            self.broker_IP,self.broker_port=self.retrieveService('broker')
             print("Broker info obtained.")
+            self.client=MyMQTT(self.clientID,self.broker_IP,self.broker_port,self)
+            time.sleep(0.5)
+            self.profiles_IP,self.broker_port=self.retrieveService('profiles_catalog')
+            print("Profiles service info obtained.")
+            return True
         except:
-            print("Broker info not obtained.")
+            print("Configuration info not obtained.")
+            return False
+        
+    def retrieveService(self,service):
+            request=requests.get(self.serviceCatalogAddress+'/'+service).json()
+            IP=request[0].get('IP_address')
+            port=request[0].get('port')
+            return IP,port
+
+    def buildAddress(self,IP,port, service):
+        finalAddress='http://'+IP+':'+str(port)+service
+        return finalAddress
+
             
     def run(self):
         self.client.start()
-        print('{} has started'.format(self.hub_ID))
+        print('{} has started'.format(self.clientID))
     def end(self):
         self.client.stop()
-        print('{} has stopped'.format(self.hub_ID))
+        print('{} has stopped'.format(self.clientID))
     def follow(self,topic):
         self.client.mySubscribe(topic)
     def notify(self,topic,msg):
@@ -54,20 +67,32 @@ class DataCollector():
             print("Error detected in server communication.")
         actual_time=time.time()
         if self.newTime-actual_time>=60:
-            influx_Body={"measurement":parameter,"tags":{"user":self.hub_ID,"roomID":self.room_ID},"time":timestamp,"fileds":{"value":value}}
-            self.clientDB.write_points(json_body)
-            self.newTime=actual_time
+            try:
+                influx_Body={"measurement":parameter,"tags":{"user":self.hub_ID,"roomID":self.room_ID},"time":timestamp,"fileds":{"value":value}}
+                self.clientDB.write_points(json_body)
+                self.newTime=actual_time
+            except:
+                print("InfluxDB connection lost.")
+    
+    def updateList(self):
+        try:
+            last_creation=requests.get(server.buildAddress(IP,port,"profiles_catalog")+'/last_creation').json()
+            if self.lastCheck is None or last_creation>self.lastCheck:
+                newList=requests.get(server.buildAddress(IP,port,"profiles_catalog")+'/profiles_list').json()
+        except:
+            print("Profiles catalog - connection lost.")
+
 
 
 if __name__ == '__main__':
-    room_filename=sys.argv[1]
-    collection=DataCollector(room_filename)
+    filename=sys.argv[1]
+    collection=DataCollector(filename)
     if collection.configuration():
         print("Connection performed.")
         time.sleep(1)
-        collection.run()
-        
+        collection.run()       
         while True:
+
             collection.follow(collection.hub_ID+'/#')
             time.sleep(3)
             collection.client.unsubscribe()
