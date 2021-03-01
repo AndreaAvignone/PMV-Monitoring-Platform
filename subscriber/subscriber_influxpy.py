@@ -27,6 +27,10 @@ class DataCollector():
             time.sleep(0.5)
             self.profiles_IP,self.broker_port=self.retrieveService('profiles_catalog')
             print("Profiles service info obtained.")
+            time.sleep(0.5)
+            self.influx_IP,self.influx_port=self.retrieveService('influx_db')
+            self.clientDB=InfluxDBClient(host=self.influx_IP,port=(influx_port))
+            print("Influx DB connection performed")
             return True
         except:
             print("Configuration info not obtained.")
@@ -94,7 +98,7 @@ if __name__ == '__main__':
     collection=DataCollector(filename)
     if collection.configuration():
         print("Connection performed.")
-        time.sleep(1)
+        time.sleep(0.5)
         collection.run()       
         while True:
             platform_list,unfollowing_list=collection.updateList()
