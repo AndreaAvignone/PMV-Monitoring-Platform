@@ -21,15 +21,18 @@ class DataCollector():
     def configuration(self):
         print("Retrieving broker information...")
         try:
-            self.broker_IP,self.broker_port=self.retrieveService('broker')
+            self.broker_IP,self.broker_port,self.broker_service=self.retrieveService('broker')
             print("Broker info obtained.")
             self.client=MyMQTT(self.clientID,self.broker_IP,self.broker_port,self)
             time.sleep(0.5)
-            self.profiles_IP,self.broker_port=self.retrieveService('profiles_catalog')
+            self.profiles_IP,self.profiles_port,self.profiles_service=self.retrieveService('profiles_catalog')
             print("Profiles service info obtained.")
             time.sleep(0.5)
-            self.influx_IP,self.influx_port=self.retrieveService('influx_db')
-            self.clientDB=InfluxDBClient(host=self.influx_IP,port=(influx_port))
+            self.server_IP,self.server_port,self.server_service=self.retrieveService('server_catalog')
+            print("Resources service info obtained.")
+            time.sleep(0.5)
+            self.influx_IP,self.influx_port,self.influx_service=self.retrieveService('influx_db')
+            self.clientDB=InfluxDBClient(host=self.influx_IP,port=(self.influx_port))
             print("Influx DB connection performed")
             return True
         except:
@@ -40,7 +43,8 @@ class DataCollector():
             request=requests.get(self.serviceCatalogAddress+'/'+service).json()
             IP=request[0].get('IP_address')
             port=request[0].get('port')
-            return IP,port
+            service=request[0].get('service')
+            return IP,port,service
 
     def buildAddress(self,IP,port, service):
         finalAddress='http://'+IP+':'+str(port)+service
@@ -68,7 +72,7 @@ class DataCollector():
         putBody={'platform_ID':platform_ID,'room_ID':room_ID,'parameter':parameter,'value':str(value),'unit':unit,'timestamp':timestamp}
         print(f'At {room_ID} ({platform_ID}) ({t})\nSensor {device_ID} - {parameter}: {value} {unit}\n')
         try:
-            requests.put(self.server_catalog+'/insertValue/'+platform_ID+'/'+room_ID+'/'+device_ID, json=putBody)
+            requests.put(self.buildAddress(self.server_IP,self.server_port,self.server_service)+'/insertValue/'+platform_ID+'/'+room_ID+'/'+device_ID, json=putBody)
         except:
             print("Error detected in server communication.")
         actual_time=time.time()
@@ -81,13 +85,18 @@ class DataCollector():
                 print("InfluxDB connection lost.")
     
     def updateList(self):
+        missingList=[]
         try:
-            last_creation=requests.get(server.buildAddress(IP,port,"profiles_catalog")+'/last_creation').json()
+            last_creation=requests.get(self.buildAddress(self.profiles_IP,self.profiles_port,self.profiles_service)+'/last_creation').json()
             if self.lastCheck is None or last_creation>self.lastCheck:
-                profilesList=requests.get(server.buildAddress(IP,port,"profiles_catalog")+'/profiles_list').json()
+                profilesList=requests.get(self.buildAddress(self.profiles_IP,self.profiles_port,self.profiles_service)+'/profiles_list').json()
                 newList=[platform for platform in profilesList if platform not in self.platformList]
+                self.platformList=profilesList
                 missingList=[platform for platform in self.platformList if platform not in profilesList]
                 return newList,missingList
+            else:
+                return missingList,missingList
+           
         except:
             print("Profiles catalog - connection lost.")
 
@@ -99,7 +108,7 @@ if __name__ == '__main__':
     if collection.configuration():
         print("Connection performed.")
         time.sleep(0.5)
-        collection.run()       
+        collection.run()
         while True:
             platform_list,unfollowing_list=collection.updateList()
             for platform in platform_list:
