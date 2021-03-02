@@ -1,7 +1,7 @@
 {
     "description": "Welcome to resources server",
     "database_owner": "Andrea Avignone",
-    "service_catalog":"http://192.168.1.130:8080/Monitoring-Platform/services",
+    "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
     "platforms_list": [
         {
             "platform_ID": "MP-A00001",
@@ -9,41 +9,8 @@
                 {
                     "room_ID": "room_X1",
                     "MRT": null,
-                    "devices": [
-                        {
-                            "device_ID": "mq135_X1",
-                            "end_points": "MQTT/REST",
-                            "parameters": [
-                                {
-                                    "parameter": "AQI",
-                                    "value": "322",
-                                    "unit": "ppm",
-                                    "timestamp": 1607607495.6602523
-                                }
-                            ],
-                            "timestamp": 1607607430.684861
-                        },
-                        {
-                            "device_ID": "dht11_X1",
-                            "end_points": "MQTT/REST",
-                            "parameters": [
-                                {
-                                    "parameter": "temperature",
-                                    "value": "22.0",
-                                    "unit": "C",
-                                    "timestamp": 1607607487.0183182
-                                },
-                                {
-                                    "parameter": "humidity",
-                                    "value": "58.0",
-                                    "unit": "%",
-                                    "timestamp": 1607607487.0343244
-                                }
-                            ],
-                            "timestamp": 1607607444.2685964
-                        }
-                    ],
-                    "last_update": "10/12/2020 14:38"
+                    "devices": [],
+                    "last_update": "02/03/2021 09:40"
                 }
             ],
             "creation_date": "10/12/2020 14:10"
