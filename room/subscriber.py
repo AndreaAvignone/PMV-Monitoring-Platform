@@ -14,7 +14,7 @@ class DataCollector():
         if r.status_code==200:
             self.hub_ID=requests.get(self.hubAddress+'/hub_ID').json()
             broker=requests.get(self.hubAddress+'/broker').json()
-            self.broker_IP=broker[0].get('addressIP')
+            self.broker_IP=broker[0].get('IP_address')
             self.broker_port=broker[0].get('port')
             self.server_catalog=requests.get(f'{self.hubAddress}/server_catalog').json()
             self.client=MyMQTT(self.hub_ID,self.broker_IP,self.broker_port,self)

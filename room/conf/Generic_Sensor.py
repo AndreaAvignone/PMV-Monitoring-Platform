@@ -18,7 +18,7 @@ class Sensor():
         if r.status_code==200:
             self.hub_ID=requests.get(self.hubAddress+'/hub_ID').json()
             broker=requests.get(self.hubAddress+'/broker').json()
-            self.broker_IP=broker[0].get('addressIP')
+            self.broker_IP=broker[0].get('IP_address')
             self.broker_port=broker[0].get('port')
             self.server_catalog=requests.get(f'{self.hubAddress}/server_catalog').json()
             self.settings=requests.get(f'{self.hubAddress}/drivers/{self.device_ID}').json()
@@ -34,7 +34,7 @@ class SensorPublisher(MyPublisher,Sensor):
         Sensor.__init__(self,configuration_filename,device_ID)
         self.configuration()
         self.topic='/'.join([self.hub_ID,self.room_ID,self.device_ID])
-        MyPublisher.__init__(self,self.hub_ID,self.topic,self.broker_IP,self.broker_port)       
+        MyPublisher.__init__(self,self.hub_ID,self.topic,self.broker_IP,self.broker_port)
             
     def publishData(self,mylist):
         now=datetime.now()
