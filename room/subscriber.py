@@ -39,7 +39,8 @@ class DataCollector():
         putBody={'parameter':parameter,'value':str(value),'unit':unit,'timestamp':timestamp}
         print(f'At {self.room_ID} ({t})\nSensor {device_ID} - {parameter}: {value} {unit}\n')
         try:
-            requests.put(self.server_catalog+'/insertValue/'+self.hub_ID+'/'+self.room_ID+'/'+device_ID, json=putBody)
+            pass
+            #requests.put(self.server_catalog+'/insertValue/'+self.hub_ID+'/'+self.room_ID+'/'+device_ID, json=putBody)
         except:
             print("Error detected in server communication.")
 

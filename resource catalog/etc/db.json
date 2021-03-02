@@ -14,6 +14,41 @@
                 }
             ],
             "creation_date": "10/12/2020 14:10"
+        },
+        {
+            "platform_ID": "MP-A00003",
+            "rooms": [
+                {
+                    "room_ID": "room_X",
+                    "devices": []
+                },
+                {
+                    "room_ID": "room_X2",
+                    "devices": [
+                        {
+                            "device_ID": "dht11",
+                            "end_points": "MQTT/REST",
+                            "time_sleep": 5,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "value": null,
+                                    "unit": "C",
+                                    "timestamp": null
+                                },
+                                {
+                                    "parameter": "humidity",
+                                    "value": null,
+                                    "unit": "%",
+                                    "timestamp": null
+                                }
+                            ]
+                        }
+                    ],
+                    "last_update": "02/03/2021 13:03"
+                }
+            ],
+            "creation_date": "02/03/2021 11:36"
         }
     ]
 }

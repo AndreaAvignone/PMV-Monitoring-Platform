@@ -19,7 +19,7 @@ class MyMQTT:
  
  
     def myOnConnect (self, paho_mqtt, userdata, flags, rc):
-        #print ("Connected to %s with result code: %d" % (self.broker, rc))
+        print ("Connected to %s with result code: %d" % (self.broker, rc))
         pass
     def myOnMessageReceived (self, paho_mqtt , userdata, msg):
         # A new message is received
@@ -46,7 +46,7 @@ class MyMQTT:
  
     def start(self):
         #manage connection to broker
-        self._paho_mqtt.connect(self.broker , self.port)
+        self._paho_mqtt.connect(self.broker, self.port)
         self._paho_mqtt.loop_start()
     def unsubscribe(self):
         if (self._isSubscriber):

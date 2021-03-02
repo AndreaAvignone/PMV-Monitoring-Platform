@@ -48,17 +48,17 @@
             "preferences": [
                 {
                     "room_ID": "room_X1",
-                    "room_name": "Bedroom",
+                    "room_name": "Bagno",
                     "connection_flag": false,
                     "devices": [],
-                    "connection_timestamp": 1614682054.9977033
+                    "connection_timestamp": 1614678726.0400715
                 },
                 {
                     "room_ID": "room_X2",
                     "room_name": "Cucina",
                     "connection_flag": true,
                     "devices": [],
-                    "connection_timestamp": 1614682176.856142
+                    "connection_timestamp": 1614679161.375714
                 }
             ],
             "location": "null",
