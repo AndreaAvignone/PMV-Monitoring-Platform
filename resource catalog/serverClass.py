@@ -74,6 +74,19 @@ class Server():
                 return parameter
         if notFound==1:
             return False
+
+    def findParameter(self,platform_ID,room_ID,parameter_name):
+        notFound=1
+        room=self.retrieveRoomInfo(platform_ID,room_ID)
+        for device in room['devices']:
+           parameter=self.retrieveParameterInfo(self,platform_ID,room_ID,device['device_ID'],parameter_name)
+            if parameter is not False:
+                notFound=0
+                parameter['device_ID']=device['device_ID']
+                return parameter
+        if notFound==1:
+            return False
+
         
     def insertPlatform(self,platform_ID,rooms):
         notExisting=1

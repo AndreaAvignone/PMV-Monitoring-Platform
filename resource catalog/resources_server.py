@@ -50,6 +50,14 @@ class ResourcesServerREST(object):
                             else:
                                 output=roomInfo.get(uri[2])
 
+                        elif len(params)!=0:
+                            parameter=str(params['parameter'])
+                            parameterInfo=self.serverCatalog.findParameter(info,uri[1],parameter)
+                            if parameterInfo is False:
+                                output=None
+                            else:
+                                output=parameterInfo
+
                         else:
                             output=roomInfo
                     else:
