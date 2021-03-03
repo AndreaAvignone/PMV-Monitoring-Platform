@@ -28,4 +28,5 @@ class MyPublisher:
         print(topic)
 
     def myOnConnect (self, paho_mqtt, userdata, flags, rc):
-        print ("Connected to %s with result code: %d" % (self.messageBroker, rc))
+        pass
+        #print ("Connected to %s with result code: %d" % (self.messageBroker, rc))

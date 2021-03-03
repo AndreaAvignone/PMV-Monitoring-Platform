@@ -10,6 +10,7 @@ class dht11(SensorPublisher):
                     
     def retrieveData(self):
         humidity, temperature = Adafruit_DHT.read_retry(self.DHT11, self.DHT11_PIN, retries=2, delay_seconds=3)
-        outputResult=[{'parameter':'humidity','value':humidity},{'parameter':'temperature','value':temperature}]
+        #outputResult=[{'parameter':'humidity','value':humidity},{'parameter':'temperature','value':temperature}]
+        outputResult=[{'parameter':'humidity','value':humidity}]
         return outputResult
             

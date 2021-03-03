@@ -25,7 +25,7 @@ class Sensor():
             self.time_sleep=self.settings['time_sleep']
             self.parameters=self.settings['parameters']
             for parameter in self.parameters:
-                message={'Platform_ID': self.hub_ID, 'room_ID':self.room_ID, 'device_ID': self.device_ID, 'parameter':parameter.get('parameter'), 'value': None,'time':'','timestamp':'','unit':parameter.get('unit')}
+                message={'platform_ID': self.hub_ID, 'room_ID':self.room_ID, 'device_ID': self.device_ID, 'parameter':parameter.get('parameter'), 'value': None,'time':'','timestamp':'','unit':parameter.get('unit')}
                 self.message.append(message)
         
     
