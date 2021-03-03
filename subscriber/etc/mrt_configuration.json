@@ -1,0 +1,6 @@
+{
+    "service_catalog":"http://192.168.1.130:8080/Monitoring-Platform/services",
+    "delta":120,
+    "emissivity":0.9,
+    "diameter":38
+}
