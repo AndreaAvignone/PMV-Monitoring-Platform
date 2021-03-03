@@ -5,6 +5,7 @@
 import json
 import requests
 import time
+import datetime
 from conf.MyMQTT import *
 import sys
 from influxdb import InfluxDBClient
@@ -14,9 +15,9 @@ class DataCollector():
         self.clientID=clientID
         self.subContent=json.load(open(configuration_filename,"r"))
         self.serviceCatalogAddress=self.subContent['service_catalog']
-        self.newTime=time.time()
         self.platformList=[]
         self.lastCheck=None
+        self.delta=self.subContent['delta']
 
     def configuration(self):
         print("Retrieving broker information...")
@@ -32,8 +33,7 @@ class DataCollector():
             print("Resources service info obtained.")
             time.sleep(0.5)
             self.influx_IP,self.influx_port,self.influx_service=self.retrieveService('influx_db')
-            self.clientDB=InfluxDBClient(host=self.influx_IP,port=(self.influx_port))
-            print("Influx DB connection performed")
+            print("Influx DB info obtained")
             return True
         except:
             print("Configuration info not obtained.")
@@ -68,22 +68,43 @@ class DataCollector():
         unit=payload['unit']
         parameter=payload['parameter']
         timestamp=payload['timestamp']
+        rfc=datetime.datetime.fromtimestamp(timestamp)
+        rfc=rfc.strftime("%Y-%m-%dT%H:%M:%SZ")
         t=payload['time']
-        putBody={'platform_ID':platform_ID,'room_ID':room_ID,'parameter':parameter,'value':str(value),'unit':unit,'timestamp':timestamp}
+        putBody={'parameter':parameter,'value':str(value),'unit':unit,'timestamp':timestamp}
         print(f'At {room_ID} ({platform_ID}) ({t})\nSensor {device_ID} - {parameter}: {value} {unit}\n')
         try:
             requests.put(self.buildAddress(self.server_IP,self.server_port,self.server_service)+'/insertValue/'+platform_ID+'/'+room_ID+'/'+device_ID, json=putBody)
         except:
             print("Error detected in server communication.")
-        actual_time=time.time()
-        if self.newTime-actual_time>=60:
+        self.clientDB=InfluxDBClient(self.influx_IP,self.influx_port,'root','root',platform_ID)
+        if self.last_meas(parameter,room_ID,rfc):
             try:
-                influx_Body={"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":timestamp,"fileds":{"value":value}}
+                json_body = [{"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":value}}]
                 self.clientDB.write_points(json_body)
-                self.newTime=actual_time
             except:
                 print("InfluxDB connection lost.")
     
+    def last_meas(self,parameter,room_ID,rfc):
+        q="show measurements;"
+        r=self.clientDB.query(q).get_points()
+        flag=False
+        for point in r:
+            if point['name']==parameter:
+                flag=True
+                break
+        if flag==False:
+            return True
+        query="select last(value), time from {} where roomID='{}';".format(parameter,room_ID)
+        result=self.clientDB.query(query).get_points()
+        for point in result:
+            a = time.strptime(point['time'], '%Y-%m-%dT%H:%M:%SZ')
+            a=(time.mktime(a))
+        b = time.strptime(rfc, '%Y-%m-%dT%H:%M:%SZ')
+        b=(time.mktime(b))
+        if b-a>=self.delta:
+            return True
+        
     def updateList(self):
         missingList=[]
         try:
@@ -99,6 +120,7 @@ class DataCollector():
            
         except:
             print("Profiles catalog - connection lost.")
+            return missingList,missingList
 
 
 

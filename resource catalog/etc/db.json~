@@ -19,7 +19,7 @@
             "platform_ID": "MP-A00003",
             "rooms": [
                 {
-                    "room_ID": "room_X1",
+                    "room_ID": "room_X",
                     "devices": []
                 },
                 {
@@ -31,24 +31,28 @@
                             "time_sleep": 5,
                             "parameters": [
                                 {
+                                    "platform_ID": "MP-A00003",
+                                    "room_ID": "room_X2",
                                     "parameter": "temperature",
-                                    "value": null,
+                                    "value": "21.0",
                                     "unit": "C",
-                                    "timestamp": null
+                                    "timestamp": 1614698497.3950834
                                 },
                                 {
+                                    "platform_ID": "MP-A00003",
+                                    "room_ID": "room_X2",
                                     "parameter": "humidity",
-                                    "value": null,
+                                    "value": "49.0",
                                     "unit": "%",
-                                    "timestamp": null
+                                    "timestamp": 1614698497.3950834
                                 }
                             ]
                         }
                     ],
-                    "last_update": "02/03/2021 11:26"
+                    "last_update": "02/03/2021 13:03"
                 }
             ],
-            "creation_date": "02/03/2021 10:50"
+            "creation_date": "02/03/2021 11:36"
         }
     ]
 }

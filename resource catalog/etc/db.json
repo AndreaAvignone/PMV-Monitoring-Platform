@@ -19,33 +19,24 @@
             "platform_ID": "MP-A00003",
             "rooms": [
                 {
-                    "room_ID": "room_X",
-                    "devices": []
-                },
-                {
                     "room_ID": "room_X2",
                     "devices": [
                         {
-                            "device_ID": "dht11",
+                            "device_ID": "revC",
                             "end_points": "MQTT/REST",
                             "time_sleep": 5,
                             "parameters": [
                                 {
-                                    "parameter": "temperature",
-                                    "value": null,
-                                    "unit": "C",
-                                    "timestamp": null
-                                },
-                                {
-                                    "parameter": "humidity",
-                                    "value": null,
-                                    "unit": "%",
-                                    "timestamp": null
+                                    "parameter": "wind",
+                                    "value": "0.08",
+                                    "unit": "KmH",
+                                    "timestamp": 1614721769.1813457
                                 }
-                            ]
+                            ],
+                            "timestamp": 1614720972.2499697
                         }
                     ],
-                    "last_update": "02/03/2021 13:03"
+                    "last_update": "02/03/2021 22:49"
                 }
             ],
             "creation_date": "02/03/2021 11:36"
