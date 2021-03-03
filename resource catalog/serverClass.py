@@ -79,7 +79,7 @@ class Server():
         notFound=1
         room=self.retrieveRoomInfo(platform_ID,room_ID)
         for device in room['devices']:
-           parameter=self.retrieveParameterInfo(self,platform_ID,room_ID,device['device_ID'],parameter_name)
+            parameter=self.retrieveParameterInfo(platform_ID,room_ID,device['device_ID'],parameter_name)
             if parameter is not False:
                 notFound=0
                 parameter['device_ID']=device['device_ID']
