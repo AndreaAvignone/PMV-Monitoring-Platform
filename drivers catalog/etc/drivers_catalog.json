@@ -7,11 +7,6 @@
             "end_points": "MQTT/REST",
             "time_sleep":5,
             "parameters": [{
-                "parameter": "temperature",
-                "value": null,
-                "unit": "C",
-                "timestamp": null
-            }, {
                 "parameter": "humidity",
                 "value": null,
                 "unit": "%",
