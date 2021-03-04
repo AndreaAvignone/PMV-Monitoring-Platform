@@ -190,7 +190,6 @@ class ResourcesServerREST(object):
         else:
             raise cherrypy.HTTPError(501, "No operation!")
         if saveFlag:
-            self.serverCatalog.dateUpdate()
             self.serverCatalog.save()
         print(output)
 
