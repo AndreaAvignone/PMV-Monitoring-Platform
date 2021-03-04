@@ -169,6 +169,7 @@ class ResourcesServerREST(object):
                     removedDevice=self.serverCatalog.removeDevice(platform_ID,room_ID,device_ID)
                     if removedDevice==True:
                         output="Platform '{}' - Room '{}' - Device '{}' removed".format(platform_ID,room_ID,device_ID)
+                        self.serverCatalog.dateUpdate(room_ID)
                         saveFlag=True
                     else:
                         output="Platform '{}'- Room '{}' - Device '{}' not found ".format(platform_ID,room_ID,device_ID)
@@ -189,6 +190,7 @@ class ResourcesServerREST(object):
         else:
             raise cherrypy.HTTPError(501, "No operation!")
         if saveFlag:
+            self.serverCatalog.dateUpdate()
             self.serverCatalog.save()
         print(output)
 
