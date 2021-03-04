@@ -122,8 +122,11 @@ class ResourcesServerREST(object):
             platform_ID=uri[1]
             room_ID=uri[2]
             device_ID=uri[3]
-            newValue=self.serverCatalog.insertDeviceValue(platform_ID, room_ID, device_ID,json_body)
-            output=output="Platform '{}' - Room '{}' - Device '{}': parameters updated".format(platform_ID, room_ID, device_ID)
+            try:
+                newValue=self.serverCatalog.insertDeviceValue(platform_ID, room_ID, device_ID,json_body)
+                output=output="Platform '{}' - Room '{}' - Device '{}': parameters updated".format(platform_ID, room_ID, device_ID)
+            except:
+                pass
             saveFlag=True
 
 
