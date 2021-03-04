@@ -169,7 +169,7 @@ class ResourcesServerREST(object):
                     removedDevice=self.serverCatalog.removeDevice(platform_ID,room_ID,device_ID)
                     if removedDevice==True:
                         output="Platform '{}' - Room '{}' - Device '{}' removed".format(platform_ID,room_ID,device_ID)
-                        self.serverCatalog.dateUpdate(room_ID)
+                        self.serverCatalog.dateUpdate(self.serverCatalog.retrieveRoomInfo(platform_ID,room_ID)
                         saveFlag=True
                     else:
                         output="Platform '{}'- Room '{}' - Device '{}' not found ".format(platform_ID,room_ID,device_ID)
