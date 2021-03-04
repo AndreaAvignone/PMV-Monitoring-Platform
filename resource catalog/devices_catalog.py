@@ -60,6 +60,7 @@ class DevicesCatalog():
             output=False
         else:
             #otherwise create the device
+            device['timestamp']=self.timestamp
             self.devices.append(device)
             output=True
         return output
