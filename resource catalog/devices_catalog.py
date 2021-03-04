@@ -65,15 +65,17 @@ class DevicesCatalog():
         return output
         
     def removeInactive(self,timeInactive):
+        output=False
         for device in self.devices:
             device_ID=device['device_ID']
+            print(device_ID)
+            print(device)
             if self.timestamp - device['timestamp']>timeInactive:
                 self.devices.remove(device)
                 #self.devices['last_update']=self.actualTime
                 print(f'Device {device_ID} removed')
-                return True
-            else:
-                return False
+                output=True
+        return output
 
 
     def removeDevice(self,device_ID):

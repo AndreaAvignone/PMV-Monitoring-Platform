@@ -29,9 +29,9 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": "20.75",
+                                    "value": "20.875",
                                     "unit": "C",
-                                    "timestamp": 1614811791.6972456
+                                    "timestamp": 1614861168.5672398
                                 }
                             ]
                         },
@@ -48,9 +48,9 @@
                                 },
                                 {
                                     "parameter": "humidity",
-                                    "value": "60.0",
+                                    "value": "59.0",
                                     "unit": "%",
-                                    "timestamp": 1614811791.7457392
+                                    "timestamp": 1614861167.3747172
                                 }
                             ]
                         },
@@ -63,9 +63,10 @@
                                     "parameter": "wind",
                                     "value": "0.04",
                                     "unit": "KmH",
-                                    "timestamp": 1614808945.6736112
+                                    "timestamp": 1614861207.226055
                                 }
-                            ]
+                            ],
+                            "timestamp": 1614814749.8187766
                         },
                         {
                             "device_ID": "max76675",
@@ -74,9 +75,9 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
-                                    "value": "23.25",
+                                    "value": "23.0",
                                     "unit": "C",
-                                    "timestamp": 1614811793.6021507
+                                    "timestamp": 1614814748.14706
                                 }
                             ]
                         }
