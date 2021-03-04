@@ -34,7 +34,8 @@ class DevicesCatalog():
         i=self.findPos(device_ID)
         for j in range(len(self.devices[i])):
             if self.devices[i]['parameters'][j].get('parameter')==device_valueDict['parameter']:
-                self.devices[i]['parameters'][j]=device_valueDict    
+                self.devices[i]['parameters'][j]=device_valueDict
+                self.devices[i]['timestamp']=device_valueDict['timestamp']
                 break
 
     """
@@ -69,8 +70,6 @@ class DevicesCatalog():
         output=False
         for device in self.devices:
             device_ID=device['device_ID']
-            print(device_ID)
-            print(device)
             if self.timestamp - device['timestamp']>timeInactive:
                 self.devices.remove(device)
                 #self.devices['last_update']=self.actualTime

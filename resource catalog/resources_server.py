@@ -134,7 +134,8 @@ class ResourcesServerREST(object):
             raise cherrypy.HTTPError(501, "No operation!")
         if saveFlag:
             self.serverCatalog.save()
-        print(output)
+        if output is not None:
+            print(output)
 
 
     def POST(self, *uri):
