@@ -115,6 +115,7 @@ class ResourcesServerREST(object):
             else:
                 if newDevice==True:
                     output="Platform '{}' - Room '{}' - Device '{}' has been added to Server".format(platform_ID, room_ID,device_ID)
+                    self.serverCatalog.dateUpdate(self.serverCatalog.retrieveRoomInfo(platform_ID,room_ID))
                     saveFlag=True
                 else:
                     output="Platform '{}' - Room '{}' - Device '{}' already exists. Updating...".format(platform_ID,room_ID,device_ID)
