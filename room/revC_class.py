@@ -11,11 +11,17 @@ class revC(SensorPublisher):
        
     def retrieveData(self):
         self.ser.flush()
-        data=self.ser.readline().decode('utf-8').rstrip()
-        if len(data)>0 and data[0]=='{':
-            data=json.loads(data)
-            if data['sensor']==self.device_ID:
-                wind=data['wind']
-                if wind is not None and wind != 1000:
-                    outputResult=[{'parameter':'wind','value':wind}]
-                    return outputResult
+        try:
+            data=self.ser.readline().decode('utf-8').rstrip()
+            if len(data)>0 and data[0]=='{':
+                try:
+                    data=json.loads(data)
+                    if data['sensor']==self.device_ID:
+                        wind=data['wind']
+                        if wind is not None and wind != 1000:
+                            outputResult=[{'parameter':'wind','value':wind}]
+                            return outputResult
+                except:
+                    time.sleep(1)
+        except:
+            time.sleep(1)

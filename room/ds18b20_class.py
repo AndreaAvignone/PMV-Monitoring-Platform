@@ -8,6 +8,9 @@ class ds18b20(SensorPublisher):
         self.DS18B20= W1ThermSensor()                                  
                     
     def retrieveData(self):
-        temperature=self.DS18B20.get_temperature()
-        outputResult=[{'parameter':'temperature','value':temperature}]
-        return outputResult
+        try:
+            temperature=self.DS18B20.get_temperature()
+            outputResult=[{'parameter':'temperature','value':temperature}]
+            return outputResult
+        except:
+            time.sleep(3)
