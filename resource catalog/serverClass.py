@@ -5,6 +5,7 @@ import requests
 from influxdb import InfluxDBClient
 from rooms_catalog import RoomsCatalog
 from devices_catalog import DevicesCatalog
+from computations import *
 
 class NewPlatform():
     def __init__(self,platform_ID,rooms,last_update):
@@ -20,6 +21,7 @@ class Server():
     def __init__(self,db_filename):
         self.db_filename=db_filename
         self.serverContent=json.load(open(self.db_filename,"r"))
+        self.myMRT=MRT_calculator()
         
     def findPos(self,platform_ID):
         notFound=1
@@ -131,7 +133,15 @@ class Server():
             j=self.roomsCatalog.findPos(room_ID)
             self.devicesCatalog=DevicesCatalog(self.serverContent['platforms_list'][i]['rooms'][j]['devices'])
             self.devicesCatalog.insertValue(device_ID,dictionary)
+            mrt=self.compute_MRT(platform_ID,room_ID)
 
+    def compute_MRT(self,platform_ID,room_ID):
+        body={}
+        for p in self.myMRT.parameters:
+            req=self.findParameter(platform_ID,room_ID,p)
+            body[req['parameter']]=req['value']
+        mrt=self.myMRT.MRT_JSON(json.dumps(body))
+        self.setRoomParameter(platform_ID,room_ID,'MRT',mrt)
 
     def setRoomParameter(self,platform_ID,room_ID,parameter,parameter_value):
         i=self.findPos(platform_ID)
