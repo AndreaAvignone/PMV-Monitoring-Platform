@@ -21,7 +21,6 @@ class Server():
     def __init__(self,db_filename):
         self.db_filename=db_filename
         self.serverContent=json.load(open(self.db_filename,"r"))
-        self.myMRT=MRT_calculator()
         
     def findPos(self,platform_ID):
         notFound=1
@@ -133,7 +132,6 @@ class Server():
             j=self.roomsCatalog.findPos(room_ID)
             self.devicesCatalog=DevicesCatalog(self.serverContent['platforms_list'][i]['rooms'][j]['devices'])
             self.devicesCatalog.insertValue(device_ID,dictionary)
-            mrt=self.compute_MRT(platform_ID,room_ID)
 
     def compute_MRT(self,platform_ID,room_ID):
         body={}

@@ -23,43 +23,15 @@
                     "MRT": null,
                     "devices": [
                         {
-                            "device_ID": "dht11",
-                            "end_points": "MQTT/REST",
-                            "time_sleep": 5,
-                            "parameters": [
-                                {
-                                    "parameter": "humidity",
-                                    "value": "60.0",
-                                    "unit": "%",
-                                    "timestamp": 1615302893.4188023
-                                }
-                            ],
-                            "timestamp": 1615302893.4188023
-                        },
-                        {
-                            "device_ID": "ds18b20",
-                            "end_points": "MQTT/REST",
-                            "time_sleep": 5,
-                            "parameters": [
-                                {
-                                    "parameter": "temperature",
-                                    "value": "21.5",
-                                    "unit": "C",
-                                    "timestamp": 1615302888.4874017
-                                }
-                            ],
-                            "timestamp": 1615302888.4874017
-                        },
-                        {
                             "device_ID": "max76675",
                             "end_points": "MQTT/REST",
                             "time_sleep": 5,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
-                                    "value": "24.0",
+                                    "value": "26.5",
                                     "unit": "C",
-                                    "timestamp": 1615302887.5419853
+                                    "timestamp": 1615310059.6979222
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -72,10 +44,52 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1615302887.5419853
+                            "timestamp": 1615310059.6979222
+                        },
+                        {
+                            "device_ID": "revC",
+                            "end_points": "MQTT/REST",
+                            "time_sleep": 5,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "value": "0.02",
+                                    "unit": "KmH",
+                                    "timestamp": 1615310152.8156424
+                                }
+                            ],
+                            "timestamp": 1615310152.8156424
+                        },
+                        {
+                            "device_ID": "ds18b20",
+                            "end_points": "MQTT/REST",
+                            "time_sleep": 5,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "value": "21.3125",
+                                    "unit": "C",
+                                    "timestamp": 1615310152.0874898
+                                }
+                            ],
+                            "timestamp": 1615310152.0874898
+                        },
+                        {
+                            "device_ID": "dht11",
+                            "end_points": "MQTT/REST",
+                            "time_sleep": 5,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "value": "59.0",
+                                    "unit": "%",
+                                    "timestamp": 1615310151.3664756
+                                }
+                            ],
+                            "timestamp": 1615310151.3664756
                         }
                     ],
-                    "last_update": "09/03/2021 16:13"
+                    "last_update": "09/03/2021 18:07"
                 }
             ],
             "creation_date": "02/03/2021 11:36"
