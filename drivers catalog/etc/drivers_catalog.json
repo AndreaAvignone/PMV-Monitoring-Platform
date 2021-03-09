@@ -27,15 +27,24 @@
         {
             "device_ID": "max76675",
             "end_points": "MQTT/REST",
-            "emissivity":0.9,
-            "diameter":38,
             "time_sleep":5,
             "parameters": [{
                 "parameter": "temperature_g",
                 "value": null,
                 "unit": "C",
                 "timestamp": null
-            }]
+            },
+            {
+                "parameter":"emissivity",
+                "value": 0.9,
+                "unit":null
+            },
+            {
+                "parameter":"diameter",
+                "value": 38,
+                "unit":"mm"
+            }
+        ]
         },
         {
             "device_ID": "ds18b20",
