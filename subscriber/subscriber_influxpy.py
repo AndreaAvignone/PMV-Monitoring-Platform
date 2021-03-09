@@ -71,7 +71,7 @@ class DataCollector():
         rfc=datetime.datetime.fromtimestamp(timestamp)
         rfc=rfc.strftime("%Y-%m-%dT%H:%M:%SZ")
         t=payload['time']
-        putBody={'parameter':parameter,'value':str(value),'unit':unit,'timestamp':timestamp}
+        putBody={'parameter':parameter,'value':value,'unit':unit,'timestamp':timestamp}
         print(f'At {room_ID} ({platform_ID}) ({t})\nSensor {device_ID} - {parameter}: {value} {unit}\n')
         try:
             requests.put(self.buildAddress(self.server_IP,self.server_port,self.server_service)+'/insertValue/'+platform_ID+'/'+room_ID+'/'+device_ID, json=putBody)

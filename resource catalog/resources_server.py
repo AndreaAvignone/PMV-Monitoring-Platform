@@ -229,6 +229,7 @@ if __name__ == '__main__':
                                 output="Room {} - Platform {}".format(room['room_ID'],platform['platform_ID'])
                                 print(output)
                                 server.serverCatalog.dateUpdate(room)
+                                server.serverCatalog.save()
 
                         except:
                             pass
