@@ -29,12 +29,12 @@
                             "parameters": [
                                 {
                                     "parameter": "humidity",
-                                    "value": "53.0",
+                                    "value": "60.0",
                                     "unit": "%",
-                                    "timestamp": 1614865976.3056998
+                                    "timestamp": 1615302893.4188023
                                 }
                             ],
-                            "timestamp": 1614865976.3056998
+                            "timestamp": 1615302893.4188023
                         },
                         {
                             "device_ID": "ds18b20",
@@ -43,45 +43,39 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": "20.625",
+                                    "value": "21.5",
                                     "unit": "C",
-                                    "timestamp": 1614865987.6873336
+                                    "timestamp": 1615302888.4874017
                                 }
                             ],
-                            "timestamp": 1614865987.6873336
-                        },
-                        {
-                            "device_ID": "revC",
-                            "end_points": "MQTT/REST",
-                            "time_sleep": 5,
-                            "parameters": [
-                                {
-                                    "parameter": "wind",
-                                    "value": "0.1",
-                                    "unit": "KmH",
-                                    "timestamp": 1614865987.2459111
-                                }
-                            ],
-                            "timestamp": 1614865987.2459111
+                            "timestamp": 1615302888.4874017
                         },
                         {
                             "device_ID": "max76675",
                             "end_points": "MQTT/REST",
-                            "emissivity": 0.9,
-                            "diameter": 38,
                             "time_sleep": 5,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
                                     "value": "24.0",
                                     "unit": "C",
-                                    "timestamp": 1614865986.7786114
+                                    "timestamp": 1615302887.5419853
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "value": 0.9,
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "value": 38,
+                                    "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1614865986.7786114
+                            "timestamp": 1615302887.5419853
                         }
                     ],
-                    "last_update": "04/03/2021 14:51"
+                    "last_update": "09/03/2021 16:13"
                 }
             ],
             "creation_date": "02/03/2021 11:36"

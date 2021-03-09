@@ -1,6 +1,6 @@
 
 class MRT_calculator(object):
-	def __init__(self):
+    def __init__(self):
         parameters=["temperature","temperature_g","emissivity","diameter","wind"]
 
     def MRT_calculation(self,temperature,temp_g, wind,eg,d):
