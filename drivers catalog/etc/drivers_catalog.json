@@ -20,7 +20,7 @@
             "parameters": [{
                 "parameter": "wind",
                 "value": null,
-                "unit": "m/s",
+                "unit": "KmH",
                 "timestamp": null
             }]
         },

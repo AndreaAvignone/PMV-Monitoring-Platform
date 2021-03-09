@@ -19,7 +19,7 @@ class revC(SensorPublisher):
                     if data['sensor']==self.device_ID:
                         wind=data['wind']
                         if wind is not None and wind != 1000:
-                            outputResult=[{'parameter':'wind','value':wind/3.6}]
+                            outputResult=[{'parameter':'wind','value':wind}]
                             return outputResult
                 except:
                     time.sleep(1)

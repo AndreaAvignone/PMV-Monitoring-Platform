@@ -10,7 +10,8 @@ class MRT_calculator(object):
     def MRT_JSON(self,body):
         temperature=body['temperature']
         temp_g=body['temperature_g']
-        wind=body['wind']
+        wind=body['wind']/3.6
+        print(wind)
         emissivity=body['emissivity']
         diameter=body['diameter']
         return self.MRT_calculation(temperature,temperature_g,wind,emissivity,diameter)
