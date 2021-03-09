@@ -125,6 +125,7 @@ class ResourcesServerREST(object):
             device_ID=uri[3]
             try:
                 newValue=self.serverCatalog.insertDeviceValue(platform_ID, room_ID, device_ID,json_body)
+                
                 output="Platform '{}' - Room '{}' - Device '{}': parameters updated".format(platform_ID, room_ID, device_ID)
             except:
                 output=None
