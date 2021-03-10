@@ -21,7 +21,7 @@ class Server():
     def __init__(self,db_filename):
         self.db_filename=db_filename
         self.serverContent=json.load(open(self.db_filename,"r"))
-        self.myMRT=MRT_calculator()
+        self.myCalculator=Calculator()
         
     def findPos(self,platform_ID):
         notFound=1
@@ -137,12 +137,30 @@ class Server():
 
     def compute_MRT(self,platform_ID,room_ID):
         body={}
-        for p in self.myMRT.parameters:
+        for p in self.myCalculator.MRT_parameters:
             req=self.findParameter(platform_ID,room_ID,p)
             body[req['parameter']]=req['value']
         
-        mrt=self.myMRT.MRT_dict(body)
+        mrt=self.myCalculator.MRT_dict(body)
         self.setRoomParameter(platform_ID,room_ID,'MRT',mrt)
+
+    def compute_PMV(self,platform_ID,room_ID):
+        body={}
+        for p in self.myCalculator.PMV_parameters:
+            req=self.findParameter(platform_ID,room_ID,p)
+            body[req['parameter']]=req['value']
+        
+        pmv=self.myCalculator.PMV_dict(body)
+        self.setRoomParameter(platform_ID,room_ID,'PMV',pmv)
+
+    def compute_PPD(self,platform_ID,room_ID):
+        body={}
+        for p in self.myCalculator.PPD_parameters:
+            req=self.findParameter(platform_ID,room_ID,p)
+            body[req['parameter']]=req['value']
+        
+        pmv=self.myCalculator.PPD_dict(body)
+        self.setRoomParameter(platform_ID,room_ID,'PPD',ppd)
 
     def setRoomParameter(self,platform_ID,room_ID,parameter,parameter_value):
         i=self.findPos(platform_ID)
