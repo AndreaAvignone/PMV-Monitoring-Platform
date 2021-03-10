@@ -127,12 +127,10 @@ class ResourcesServerREST(object):
             try:
                 newValue=self.serverCatalog.insertDeviceValue(platform_ID, room_ID, device_ID,json_body)
                 output="Platform '{}' - Room '{}' - Device '{}': parameters updated".format(platform_ID, room_ID, device_ID)
-                try:
-                    for index in self.serverCatalog.comfort_values:
-                        p=self.serverCatalog.findParameter(platform,room_ID,index)
-                        res.append({"parameter":p['parameter_name'],"value":p['parameter_value']})
-                except:
-                    res=[]
+                
+                for index in self.serverCatalog.comfort_values:
+                    p=self.serverCatalog.findParameter(platform_ID,room_ID,index)
+                    res.append({"parameter":p['parameter'],"value":p['value']})
             except:
                 output=None
             saveFlag=True
@@ -144,7 +142,7 @@ class ResourcesServerREST(object):
             self.serverCatalog.save()
         if output is not None:
             print(output)
-        return res
+        return json.dumps(res)
 
 
 
