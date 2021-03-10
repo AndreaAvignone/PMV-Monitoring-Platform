@@ -100,6 +100,9 @@ class PPD_calculator(object):
         
 class Calculator(MRT_calculator,PMV_calculator,PPD_calculator):
     def __init__(self):
-        pass
+        MRT_calculator.__init__(self)
+        PMV_calculator.__init__(self)
+        PPD_calculator.__init__(self)
+        
 
         

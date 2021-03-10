@@ -80,14 +80,19 @@ class Server():
     def findParameter(self,platform_ID,room_ID,parameter_name):
         notFound=1
         room=self.retrieveRoomInfo(platform_ID,room_ID)
-        for device in room['devices']:
-            parameter=self.retrieveParameterInfo(platform_ID,room_ID,device['device_ID'],parameter_name)
-            if parameter is not False:
-                notFound=0
-                parameter['device_ID']=device['device_ID']
-                return parameter
-        if notFound==1:
-            return False
+        try:
+            p=room[parameter_name]
+            parameter={"parameter":parameter_name,"value":p}
+            return parameter
+        except:
+            for device in room['devices']:
+                parameter=self.retrieveParameterInfo(platform_ID,room_ID,device['device_ID'],parameter_name)
+                if parameter is not False:
+                    notFound=0
+                    parameter['device_ID']=device['device_ID']
+                    return parameter
+            if notFound==1:
+                return False
 
         
     def insertPlatform(self,platform_ID,rooms):
@@ -142,7 +147,6 @@ class Server():
         for p in self.myCalculator.MRT_parameters:
             req=self.findParameter(platform_ID,room_ID,p)
             body[req['parameter']]=req['value']
-        
         mrt=self.myCalculator.MRT_dict(body)
         self.setRoomParameter(platform_ID,room_ID,'MRT',mrt)
 
@@ -161,7 +165,7 @@ class Server():
             req=self.findParameter(platform_ID,room_ID,p)
             body[req['parameter']]=req['value']
         
-        pmv=self.myCalculator.PPD_dict(body)
+        ppd=self.myCalculator.PPD_dict(body)
         self.setRoomParameter(platform_ID,room_ID,'PPD',ppd)
 
     def setRoomParameter(self,platform_ID,room_ID,parameter,parameter_value):
