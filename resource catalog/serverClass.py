@@ -137,7 +137,7 @@ class Server():
 
     def compute_MRT(self,platform_ID,room_ID):
         body={}
-        for p in self.myMRT.parameters:
+        for p in self.myMRT.MRT_parameters:
             req=self.findParameter(platform_ID,room_ID,p)
             body[req['parameter']]=req['value']
         
