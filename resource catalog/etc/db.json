@@ -21,6 +21,11 @@
                 {
                     "room_ID": "room_X2",
                     "MRT": 22.7667,
+                    "Icl_clo":null,
+                    "M_met":null,
+                    "W_met":null,
+                    "PMV":null,
+                    "PPD":null,
                     "devices": [
                         {
                             "device_ID": "dht11",

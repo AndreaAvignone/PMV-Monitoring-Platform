@@ -20,11 +20,84 @@
             "rooms": [
                 {
                     "room_ID": "room_X2",
-                    "MRT": null,
+                    "MRT": 22.7667,
+                    "Icl_clo":null,
+                    "M_met":null,
+                    "W_met":null,
                     "devices": [
-                        
+                        {
+                            "device_ID": "dht11",
+                            "end_points": "MQTT/REST",
+                            "time_sleep": 5,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "value": 57.0,
+                                    "unit": "%",
+                                    "timestamp": 1615380124.6889305
+                                }
+                            ],
+                            "timestamp": 1615380124.6889305
+                        },
+                        {
+                            "device_ID": "revC",
+                            "end_points": "MQTT/REST",
+                            "time_sleep": 5,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "value": 0.03,
+                                    "unit": "KmH",
+                                    "timestamp": 1615380128.3669255,
+                                    "device_ID": "revC"
+                                }
+                            ],
+                            "timestamp": 1615380128.3669255
+                        },
+                        {
+                            "device_ID": "ds18b20",
+                            "end_points": "MQTT/REST",
+                            "time_sleep": 5,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "value": 21.25,
+                                    "unit": "C",
+                                    "timestamp": 1615380124.7276587,
+                                    "device_ID": "ds18b20"
+                                }
+                            ],
+                            "timestamp": 1615380124.7276587
+                        },
+                        {
+                            "device_ID": "max76675",
+                            "end_points": "MQTT/REST",
+                            "time_sleep": 5,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "value": 22.75,
+                                    "unit": "C",
+                                    "timestamp": 1615380127.5034864,
+                                    "device_ID": "max76675"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "value": 0.9,
+                                    "unit": null,
+                                    "device_ID": "max76675"
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "value": 38,
+                                    "unit": "mm",
+                                    "device_ID": "max76675"
+                                }
+                            ],
+                            "timestamp": 1615380127.5034864
+                        }
                     ],
-                    "last_update": "09/03/2021 16:13"
+                    "last_update": "09/03/2021 19:40"
                 }
             ],
             "creation_date": "02/03/2021 11:36"
