@@ -89,7 +89,8 @@ class Server():
                 parameter=self.retrieveParameterInfo(platform_ID,room_ID,device['device_ID'],parameter_name)
                 if parameter is not False:
                     notFound=0
-                    parameter['device_ID']=device['device_ID']
+                    new_parameter=parameter.copy()
+                    new_parameter['device_ID']=device['device_ID']
                     return parameter
             if notFound==1:
                 return False
