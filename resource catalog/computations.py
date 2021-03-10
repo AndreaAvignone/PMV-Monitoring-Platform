@@ -1,6 +1,6 @@
 import numpy as np
 
-class Calculator(MRT_calculator,PMV_calculator):
+class Calculator(MRT_calculator,PMV_calculator,PPD_calculator):
     def __init__(self):
         pass
 
@@ -87,5 +87,18 @@ class PMV_calculator(object):
         Icl_clo=body['Icl_clo']
         if temperature is not None and wind is not None and humidity is not None and MRT is not None and M_met is not None and W_met is not None and Icl_clo is not None:
             return self.PMV_calculation(M_met,W_met,Icl_clo,temperature,MRT,wind,humidity)
+
+class PPD_calculator(object):
+    def __init__(self):
+        self.PPD_parameters=["PMV"]
+
+    def PPD_calculation(self, PMV):
+        PPD=100-95*np.exp(-(0.03353*(PMV**4)+0.2179*(PMV**2)))
+        return round(PPD,2)
+
+    def PPD_dict(self, body):
+        PMV=body['PMV']
+        if PMV is not None:
+            return self.PPD_calculation(PMV)
 
         
