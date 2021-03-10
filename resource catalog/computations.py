@@ -24,6 +24,7 @@ class MRT_calculator(object):
 class PMV_calculator(object):
     def __init__(self):
         self.PMV_parameters=[]
+        self.stocazzo=STOCAZZO
 
     def PMV_calculation(self,temperature,temp_g, wind,eg,d):
         
