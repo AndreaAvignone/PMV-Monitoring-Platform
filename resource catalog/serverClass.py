@@ -134,6 +134,8 @@ class Server():
             self.devicesCatalog=DevicesCatalog(self.serverContent['platforms_list'][i]['rooms'][j]['devices'])
             self.devicesCatalog.insertValue(device_ID,dictionary)
             self.compute_MRT(platform_ID,room_ID)
+            self.compute_PMV(platform_ID,room_ID)
+            self.compute_PPD(platform_ID,room_ID)
 
     def compute_MRT(self,platform_ID,room_ID):
         body={}
