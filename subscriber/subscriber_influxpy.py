@@ -74,7 +74,7 @@ class DataCollector():
         putBody={'parameter':parameter,'value':value,'unit':unit,'timestamp':timestamp}
         print(f'At {room_ID} ({platform_ID}) ({t})\nSensor {device_ID} - {parameter}: {value} {unit}\n')
         try:
-            requests.put(self.buildAddress(self.server_IP,self.server_port,self.server_service)+'/insertValue/'+platform_ID+'/'+room_ID+'/'+device_ID, json=putBody)
+            myResult=requests.put(self.buildAddress(self.server_IP,self.server_port,self.server_service)+'/insertValue/'+platform_ID+'/'+room_ID+'/'+device_ID, json=putBody)
         except:
             print("Error detected in server communication.")
         self.clientDB=InfluxDBClient(self.influx_IP,self.influx_port,'root','root',platform_ID)
@@ -82,6 +82,10 @@ class DataCollector():
             try:
                 json_body = [{"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":value}}]
                 self.clientDB.write_points(json_body)
+                for p in myResult:
+                    new_json_body = [{"measurement":p['parameter'],"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":p['value']}}]
+                    self.clientDB.write_points(new_json_body)
+
             except:
                 print("InfluxDB connection lost.")
     
