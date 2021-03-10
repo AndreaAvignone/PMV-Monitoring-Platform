@@ -83,7 +83,9 @@ class PMV_calculator(object):
         W_met=body['W_met']
         Icl_clo=body['Icl_clo']
         if temperature is not None and wind is not None and humidity is not None and MRT is not None and M_met is not None and W_met is not None and Icl_clo is not None:
-            return self.PMV_calculation(M_met,W_met,Icl_clo,temperature,MRT,wind,humidity)
+            pmv=self.PMV_calculation(M_met,W_met,Icl_clo,temperature,MRT,wind,humidity)
+            return pmv
+                
 
 class PPD_calculator(object):
     def __init__(self):
@@ -100,6 +102,9 @@ class PPD_calculator(object):
         
 class Calculator(MRT_calculator,PMV_calculator,PPD_calculator):
     def __init__(self):
-        pass
+        MRT_calculator.__init__(self)
+        PMV_calculator.__init__(self)
+        PPD_calculator.__init__(self)
+        
 
         
