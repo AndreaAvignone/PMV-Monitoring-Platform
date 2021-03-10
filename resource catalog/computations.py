@@ -51,7 +51,7 @@ class PMV_calculator(object):
         while diff>0.0001:
             tcl_new=tsk-Icl*3.96*10**(-8)*fcl*((tcl+273)**4-(MRT+273)**4)-Icl*fcl*hc*(tcl-temperature)
             diff=abs(tcl-tcl_new)
-            tcl=tcl_new
+            tcl=(tcl_new+tcl)/2
         #evaluate again hc with optimal value found for tcl
         B=2.38*abs(tcl-temperature)**0.25
         if B>np.sqrt(wind)*12.1:
