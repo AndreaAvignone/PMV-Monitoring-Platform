@@ -19,7 +19,7 @@
 // touching the desktop surface however.
 // adjust the zeroWindAdjustment until your sensor reads about zero with the glass over it. 
 
-const float zeroWindAdjustment =  .38; // negative numbers yield smaller wind speeds and vice versa.
+const float zeroWindAdjustment =  .4; // negative numbers yield smaller wind speeds and vice versa.
 
 int TMP_Therm_ADunits;  //temp termistor value from wind sensor
 float RV_Wind_ADunits;    //RV output from wind sensor 
