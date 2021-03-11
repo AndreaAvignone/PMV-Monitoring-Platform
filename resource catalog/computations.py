@@ -30,7 +30,7 @@ class PMV_calculator(object):
         #SATURATED VAPOUR PRESSURE OF WATER #ta in °C and P_sat in Pa
         P_sat=np.exp(20.386-(5132/(temperature+273)))*133.322
         # WATER VAPOUR PARTIAL PRESSURE [0 Pa, 2700 Pa]
-        pa= humidity/100*P_sat
+        pa= (humidity/100)*P_sat
         tsk=35.7-0.028*(M-W) #SKIN EXTERNAL TEMPRATURE
         #fcl is CLOTHING SURFACE AREA FACTOR ~[1.05, 1.31]
         if Icl<=0.0775: #in mK/W (it's the same number!) =0.5clo

@@ -87,7 +87,6 @@ class DataCollector():
                 print("InfluxDB connection lost.")
         for p in myResult:
             if self.last_meas(p['parameter'],room_ID,rfc):
-                print(p['parameter'])
                 new_json_body = [{"measurement":p['parameter'],"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":p['value']}}]
                 self.clientDB.write_points(new_json_body)
 
@@ -150,6 +149,7 @@ if __name__ == '__main__':
         collection.end()
     else:
         print("Connection failed.")
+
 
 
 
