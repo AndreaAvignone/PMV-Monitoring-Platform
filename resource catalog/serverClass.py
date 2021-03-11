@@ -22,7 +22,7 @@ class Server():
         self.db_filename=db_filename
         self.serverContent=json.load(open(self.db_filename,"r"))
         self.myCalculator=Calculator()
-        self.comfort_values=["PMV","MRT","PPD"]
+        self.comfort_values=["PMV","MRT","PPD","Icl_clo"]
         
     def findPos(self,platform_ID):
         notFound=1
