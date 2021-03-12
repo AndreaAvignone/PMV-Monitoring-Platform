@@ -4,7 +4,7 @@ import time
 class MyPublisher:
     def __init__(self, clientID,topic,broker,port):
         self.clientID = clientID
-
+        print(self.clientID + " is running...")
         # create an instance of paho.mqtt.client
         self._paho_mqtt = PahoMQTT.Client(self.clientID, False) 
         # register the callback
