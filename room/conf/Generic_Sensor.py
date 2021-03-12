@@ -34,7 +34,7 @@ class SensorPublisher(MyPublisher,Sensor):
         Sensor.__init__(self,configuration_filename,device_ID)
         self.configuration()
         self.topic='/'.join([self.hub_ID,self.room_ID,self.device_ID])
-        MyPublisher.__init__(self,self.hub_ID,self.topic,self.broker_IP,self.broker_port)
+        MyPublisher.__init__(self,device_ID+"_publisher",self.topic,self.broker_IP,self.broker_port)
             
     def publishData(self,mylist):
         now=datetime.now()
