@@ -4,12 +4,16 @@ import time
 class MyPublisher:
     def __init__(self, clientID,topic,broker,port):
         self.clientID = clientID
+<<<<<<< HEAD
         print(self.clientID + " is running...")
+=======
+        print(self.clientID+" is running")
+
+>>>>>>> f4cc070340a5bc22f5144e1b27d6d5d164382811
         # create an instance of paho.mqtt.client
         self._paho_mqtt = PahoMQTT.Client(self.clientID, False) 
         # register the callback
         self._paho_mqtt.on_connect = self.myOnConnect
-        #self.messageBroker = 'iot.eclipse.org'
         self.messageBroker = broker
         self.port=port
 
@@ -28,5 +32,4 @@ class MyPublisher:
         print(topic)
 
     def myOnConnect (self, paho_mqtt, userdata, flags, rc):
-        pass
-        #print ("Connected to %s with result code: %d" % (self.messageBroker, rc))
+        print ("Connected to %s with result code: %d" % (self.messageBroker, rc))
