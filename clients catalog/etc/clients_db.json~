@@ -1,0 +1,21 @@
+{
+    "description": "Welcome to the clients database",
+    "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "users_list": [
+        {
+            "user_ID": "superuser",
+            "catalog_list":[],
+            "password": "soComplicated"
+        },
+        {
+            "user_ID": "Ana",
+            "catalog_list": [
+                {
+                    "catalog_ID": "MP0001",
+                    "connection_flag": false
+                }
+            ],
+            "password": "try"
+        }
+    ]
+}
