@@ -3,12 +3,13 @@ import json
 import sys
 import requests
 import time
+from clients_class import *
 
 class Registration_deployer(object):
     exposed=True
     def __init__(self,db_filename):
         self.db_filename=db_filename
-        self.MyClientsCatalog=json.load(open(self.db_filename,"r"))
+        self.MyClientsCatalog=ClientsCatalog(self.db_filename)
         self.serviceCatalogAddress=self.MyClientsCatalog['service_catalog']
         self.requestResult=requests.get(self.serviceCatalogAddress+"/clients_catalog").json()
         self.clientsCatalogIP=self.requestResult[0].get("IP_address")
@@ -38,24 +39,40 @@ class Registration_deployer(object):
                         users["users_list"][i]['catalog_list'].append({'catalog_ID':params['catalogID'],'connection_flag':False})
 
 
-                with open(self.db_filename, 'w') as outfile:
-                    json.dump(users, outfile, indent=4)
-            
+                self.MyClientsCatalog.save()
                 return open("etc/correct_reg.html")
+        elif(len(uri))>0 and uri[0]=="login":
+            return("weee")
+
+            
+
+
 
 if __name__ == '__main__':
     clients_db=sys.argv[1]
     clientsCatalog=Registration_deployer(clients_db)
+    get_ha1 = cherrypy.lib.auth_digest.get_ha1_dict_plain(clientsCatalog.userpassdict)
+    checkpassword = cherrypy.lib.auth_basic.checkpassword_dict(clientsCatalog.userpassdict)
     conf = {
-        '/': {
-            'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
-            'tools.sessions.on': True
-        }
+      'global' : {
+        'server.socket_host' : self.clientsCatalogIP,
+        'server.socket_port' : self.clientsCatalogPort
+        #'server.thread_pool' : 8
+      },
+      '/' : {
+        # HTTP verb dispatcher
+        'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
+        # JSON response
+        'tools.json_out.on' : True,
+        # Digest Auth
+        'tools.auth_digest.on'      : True,
+        'tools.auth_digest.realm'   : 'Francis Drake',
+        'tools.auth_digest.get_ha1' : get_ha1,
+        'tools.auth_digest.key'     : 'f565c27146793cfb',
+      }
     }
     
     cherrypy.tree.mount(clientsCatalog, clientsCatalog.service, conf)
-    cherrypy.config.update({'server.socket_host': clientsCatalog.clientsCatalogIP})
-    cherrypy.config.update({'server.socket_port': clientsCatalog.clientsCatalogPort}) 
     cherrypy.engine.start()
     while True:
         time.sleep(1)
