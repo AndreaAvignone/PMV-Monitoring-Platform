@@ -5,8 +5,11 @@ class MyPublisher:
     def __init__(self, clientID,topic,broker,port):
         self.clientID = clientID
 <<<<<<< HEAD
+<<<<<<< HEAD
         print(self.clientID + " is running...")
 =======
+=======
+>>>>>>> f4cc070340a5bc22f5144e1b27d6d5d164382811
         print(self.clientID+" is running")
 
 >>>>>>> f4cc070340a5bc22f5144e1b27d6d5d164382811
