@@ -12,8 +12,8 @@ class ResourcesServerREST(object):
         self.serviceCatalogAddress=self.serverCatalog.serverContent['service_catalog']
         self.requestResult=requests.get(self.serviceCatalogAddress+"/server_catalog").json()
         self.serverCatalogIP=self.requestResult.get("IP_address")
-        self.serverCatalogPort=self.requestResult[0].get("port")
-        self.service=self.requestResult[0].get("service")
+        self.serverCatalogPort=self.requestResult.get("port")
+        self.service=self.requestResult.get("service")
 
         self.requestInflux=requests.get(self.serviceCatalogAddress+"/influx_db").json()
         self.influx_IP=self.requestInflux.get('IP_address')
