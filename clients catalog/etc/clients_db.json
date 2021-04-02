@@ -3,19 +3,9 @@
     "service_catalog": "http://192.168.1.19:8080/Monitoring-Platform/services",
     "users_list": [
         {
-            "user_ID": "Avi",
-            "catalog_ID": "Leaf_001",
-            "password": "Pas"
-        },
-        {
-            "user_ID": "Bro",
-            "catalog_ID": "Leaf_002",
-            "password": "b"
-        },
-        {
-            "user_ID": "Tom",
-            "catalog_ID": "Leaf_001",
-            "password": "tom"
+            "user_ID": "superuser",
+            "catalog_list":[],
+            "password": "soComplicated"
         },
         {
             "user_ID": "Ana",
