@@ -10,7 +10,7 @@ class Registration_deployer(object):
     def __init__(self,db_filename):
         self.db_filename=db_filename
         self.MyClientsCatalog=ClientsCatalog(self.db_filename)
-        self.serviceCatalogAddress=self.MyClientsCatalog['service_catalog']
+        self.serviceCatalogAddress=self.MyClientsCatalog.clientsContent['service_catalog']
         self.requestResult=requests.get(self.serviceCatalogAddress+"/clients_catalog").json()
         self.clientsCatalogIP=self.requestResult[0].get("IP_address")
         self.clientsCatalogPort=self.requestResult[0].get("port")
@@ -42,21 +42,21 @@ class Registration_deployer(object):
                 self.MyClientsCatalog.save()
                 return open("etc/correct_reg.html")
         elif(len(uri))>0 and uri[0]=="login":
-            return("weee")
+            
+            data=self.MyClientsCatalog.find(str(cherrypy.request.login))
+            del data['password']
+            return data
 
             
-
-
-
 if __name__ == '__main__':
     clients_db=sys.argv[1]
     clientsCatalog=Registration_deployer(clients_db)
-    get_ha1 = cherrypy.lib.auth_digest.get_ha1_dict_plain(clientsCatalog.userpassdict)
-    checkpassword = cherrypy.lib.auth_basic.checkpassword_dict(clientsCatalog.userpassdict)
+    get_ha1 = cherrypy.lib.auth_digest.get_ha1_dict_plain(clientsCatalog.MyClientsCatalog.userpassdict)
+    checkpassword = cherrypy.lib.auth_basic.checkpassword_dict(clientsCatalog.MyClientsCatalog.userpassdict)
     conf = {
       'global' : {
-        'server.socket_host' : self.clientsCatalogIP,
-        'server.socket_port' : self.clientsCatalogPort
+        'server.socket_host' : clientsCatalog.clientsCatalogIP,
+        'server.socket_port' : clientsCatalog.clientsCatalogPort
         #'server.thread_pool' : 8
       },
       '/' : {
@@ -73,6 +73,8 @@ if __name__ == '__main__':
     }
     
     cherrypy.tree.mount(clientsCatalog, clientsCatalog.service, conf)
+    cherrypy.config.update({'server.socket_host':clientsCatalog.clientsCatalogIP})
+    cherrypy.config.update({'server.socket_port':clientsCatalog.clientsCatalogPort})
     cherrypy.engine.start()
     while True:
         time.sleep(1)

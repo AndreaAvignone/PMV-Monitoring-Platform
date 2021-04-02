@@ -8,15 +8,6 @@
             "password": "soComplicated"
         },
         {
-            "user_ID": "Avi",
-            "catalog_list":[
-            	{
-                    "catalog_ID": "MP0003",
-                    "connection_flag": true
-                }],
-            "password": "prova11"
-        },
-        {
             "user_ID": "Ana",
             "catalog_list": [
                 {
