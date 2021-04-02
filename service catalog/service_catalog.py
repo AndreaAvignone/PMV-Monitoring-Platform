@@ -23,8 +23,7 @@ class ServiceCatalogREST():
 	def GET(self,*uri):
 		if len(uri)!=0:
 			try:
-				#output= self.retrieveInfo(self.MyServiceCatalog,str(uri[0]))
-				output=self.MyServiceCatalog[str(uri[0])]
+				output=self.MyServiceCatalog[str(uri[0])][0]
 			except:
 				raise cherrypy.HTTPError(404,"Service: Not found")
 		else:

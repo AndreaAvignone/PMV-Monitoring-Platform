@@ -12,9 +12,9 @@ class Registration_deployer(object):
         self.MyClientsCatalog=ClientsCatalog(self.db_filename)
         self.serviceCatalogAddress=self.MyClientsCatalog['service_catalog']
         self.requestResult=requests.get(self.serviceCatalogAddress+"/clients_catalog").json()
-        self.clientsCatalogIP=self.requestResult[0].get("IP_address")
-        self.clientsCatalogPort=self.requestResult[0].get("port")
-        self.service=self.requestResult[0].get("service")
+        self.clientsCatalogIP=self.requestResult.get("IP_address")
+        self.clientsCatalogPort=self.requestResult.get("port")
+        self.service=self.requestResult.get("service")
 
     def GET(self,*uri,**params):
         if (len(uri))>0 and uri[0]=="reg.html":

@@ -13,9 +13,9 @@ class DriversCatalogREST():
 		self.driversCatalog=json.load(open(self.db_filename,"r")) #store the database as a variable
 		self.serviceCatalogAddress=self.driversCatalog['service_catalog']
 		self.requestResult=requests.get(self.serviceCatalogAddress+"/drivers_catalog").json()
-		self.driversCatalogIP=self.requestResult[0].get('IP_address')
-		self.driversCatalogPort=self.requestResult[0].get('port')
-		self.service=self.requestResult[0].get('service')
+		self.driversCatalogIP=self.requestResult.get('IP_address')
+		self.driversCatalogPort=self.requestResult.get('port')
+		self.service=self.requestResult.get('service')
 		
 	def GET(self,*uri):
 		if len(uri)==1:

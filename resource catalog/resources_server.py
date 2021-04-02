@@ -11,13 +11,13 @@ class ResourcesServerREST(object):
         self.serverCatalog=Server(db_filename)
         self.serviceCatalogAddress=self.serverCatalog.serverContent['service_catalog']
         self.requestResult=requests.get(self.serviceCatalogAddress+"/server_catalog").json()
-        self.serverCatalogIP=self.requestResult[0].get("IP_address")
+        self.serverCatalogIP=self.requestResult.get("IP_address")
         self.serverCatalogPort=self.requestResult[0].get("port")
         self.service=self.requestResult[0].get("service")
 
         self.requestInflux=requests.get(self.serviceCatalogAddress+"/influx_db").json()
-        self.influx_IP=self.requestInflux[0].get('IP_address')
-        self.influx_port=self.requestInflux[0].get('port')
+        self.influx_IP=self.requestInflux.get('IP_address')
+        self.influx_port=self.requestInflux.get('port')
 
     def buildAddress(self,IP,port, service):
         finalAddress='http://'+IP+':'+str(port)+service
@@ -223,9 +223,9 @@ if __name__ == '__main__':
         for platform in server.serverCatalog.serverContent['platforms_list']:
             try:
                 requestProfiles=requests.get(server.serviceCatalogAddress+"/profiles_catalog").json()
-                IP=requestProfiles[0].get('IP_address')
-                port=requestProfiles[0].get('port')
-                service=requestProfiles[0].get('service')
+                IP=requestProfiles.get('IP_address')
+                port=requestProfiles.get('port')
+                service=requestProfiles.get('service')
                 try:
                     inactiveTime=requests.get(server.buildAddress(IP,port,service)+'/'+platform['platform_ID']+'/inactive_time').json()
                     for room in platform['rooms']:

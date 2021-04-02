@@ -20,8 +20,8 @@ class HUB():
         print("Retrieving broker information...")
         try:
             requestBroker=requests.get(self.serviceCatalogAddress+'/broker').json()
-            IP=requestBroker[0].get('IP_address')
-            port=requestBroker[0].get('port')
+            IP=requestBroker.get('IP_address')
+            port=requestBroker.get('port')
             msg={"IP_address":IP,"port":int(port)}
             self.hubContent["broker"].append(msg)
             print("Broker info obtained.")
@@ -32,9 +32,9 @@ class HUB():
         print("Connecting...")
         try:
             requestResourcesCatalog=requests.get(self.serviceCatalogAddress+'/server_catalog').json()
-            IP=requestResourcesCatalog[0].get('IP_address')
-            port=requestResourcesCatalog[0].get('port')
-            service=requestResourcesCatalog[0].get('service')
+            IP=requestResourcesCatalog.get('IP_address')
+            port=requestResourcesCatalog.get('port')
+            service=requestResourcesCatalog.get('service')
             self.hubContent['server_catalog']=self.buildAddress(IP,port,service)
             json_body={'platform_ID':self.hub_ID,'rooms':self.rooms}
             requests.put(self.hubContent['server_catalog']+'/insertPlatform',json=json_body)
@@ -71,9 +71,9 @@ class HUB():
     def downloadDrivers(self,device_ID):
         try:
             requestDriversCatalog=requests.get(self.serviceCatalogAddress+'/drivers_catalog').json()
-            IP=requestDriversCatalog[0].get('IP_address')
-            port=requestDriversCatalog[0].get('port')
-            service=requestDriversCatalog[0].get('service')
+            IP=requestDriversCatalog.get('IP_address')
+            port=requestDriversCatalog.get('port')
+            service=requestDriversCatalog.get('service')
             drivers=requests.get(self.buildAddress(IP,port,service)+'/drivers_list/'+device_ID).json()
             return drivers
         except:

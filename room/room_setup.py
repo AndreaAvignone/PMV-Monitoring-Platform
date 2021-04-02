@@ -29,7 +29,7 @@ class RoomConfiguration(object):
         
     def findService(self,service):
         r=requests.get(self.serviceCatalogAddress+'/'+service).json()
-        return self.buildAddress(r[0].get('IP_address'),r[0].get('port'),r[0].get('service'))
+        return self.buildAddress(r.get('IP_address'),r.get('port'),r.get('service'))
 
 
     def buildAddress(self,IP,port,service):
