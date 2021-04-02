@@ -15,8 +15,12 @@ if __name__ == '__main__':
         print("Server connection failed.")
     else:
         print("Server connection performed.")
+        last_time=time.time()
     time.sleep(1)
     while True:
+        acutal_time=time.time()
+        if (actual_time-last_time)>900:
+            sensor.setup()
         output=sensor.retrieveData()
         try:
             sensor.publishData(output)
