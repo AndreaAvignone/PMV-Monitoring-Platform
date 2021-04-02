@@ -18,7 +18,7 @@ if __name__ == '__main__':
         last_time=time.time()
     time.sleep(1)
     while True:
-        acutal_time=time.time()
+        actual_time=time.time()
         if (actual_time-last_time)>900:
             sensor.setup()
         output=sensor.retrieveData()
