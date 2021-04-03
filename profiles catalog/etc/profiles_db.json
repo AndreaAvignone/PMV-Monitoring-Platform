@@ -42,7 +42,7 @@
         },
         {
             "platform_ID": "MP-A00003",
-            "platform_name": null,
+            "platform_name": "MP-A00003",
             "inactive_time": 800,
             "room_cnt": 2,
             "preferences": [

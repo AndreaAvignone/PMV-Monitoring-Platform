@@ -43,9 +43,10 @@ class Registration_deployer(object):
                 return open("etc/correct_reg.html")
         elif(len(uri))>0 and uri[0]=="login":
             
-            data=self.MyClientsCatalog.find(str(cherrypy.request.login))
+            data=self.MyClientsCatalog.find(str(cherrypy.request.login)).copy()
+            print(data)
             del data['password']
-            return data
+            return (data)
 
             
 if __name__ == '__main__':
@@ -64,11 +65,15 @@ if __name__ == '__main__':
         'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
         # JSON response
         'tools.json_out.on' : True,
+        # Basic Auth
+        'tools.auth_basic.on'      : True,
+        'tools.auth_basic.realm'   : 'Francis Drake',
+        'tools.auth_basic.checkpassword' : checkpassword,
         # Digest Auth
-        'tools.auth_digest.on'      : True,
-        'tools.auth_digest.realm'   : 'Francis Drake',
-        'tools.auth_digest.get_ha1' : get_ha1,
-        'tools.auth_digest.key'     : 'f565c27146793cfb',
+        #'tools.auth_digest.on'      : True,
+        #'tools.auth_digest.realm'   : 'Francis Drake',
+        #'tools.auth_digest.get_ha1' : get_ha1,
+        #'tools.auth_digest.key'     : 'f565c27146793cfb',
       }
     }
     
