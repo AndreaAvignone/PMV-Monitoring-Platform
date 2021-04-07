@@ -150,10 +150,10 @@ class ResourcesServerREST(object):
         body=cherrypy.request.body.read()
         json_body=json.loads(body.decode('utf-8'))
         command=str(uri[0])
+        room_ID=str(uri[1])
         saveFlag=False
         if command=='setParameter':
             platform_ID=uri[1]
-            room_ID=json_body['room_ID']
             parameter=json_body['parameter']
             parameter_value=json_body['parameter_value']
             newSetting=self.serverCatalog.setRoomParameter(platform_ID,room_ID,parameter,parameter_value)
