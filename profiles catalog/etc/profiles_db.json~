@@ -42,8 +42,8 @@
         },
         {
             "platform_ID": "MP-A00003",
-            "platform_name": null,
-            "inactive_time": 800,
+            "platform_name": "Casa via del pascolo",
+            "inactive_time": 1800,
             "room_cnt": 2,
             "preferences": [
                 {
@@ -55,14 +55,65 @@
                 },
                 {
                     "room_ID": "room_X2",
-                    "room_name": "Cucina",
+                    "room_name": "Cameretta",
                     "connection_flag": true,
-                    "devices": [],
+                    "devices": [
+                        {
+                            "device_ID": "max76675",
+                            "last_update": "08/04/2021 12:39",
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "unit": "C"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "unit": "mm"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "dht11",
+                            "last_update": "08/04/2021 12:38",
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": "08/04/2021 12:39",
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "revC",
+                            "last_update": "08/04/2021 12:39",
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "unit": "KmH"
+                                }
+                            ]
+                        }
+                    ],
                     "connection_timestamp": 1614682176.856142
                 }
             ],
-            "location": "null",
-            "last_update": null
+            "location": "Turin",
+            "last_update": null,
+            "name": "Andrea",
+            "reply": "reply"
         }
     ]
 }

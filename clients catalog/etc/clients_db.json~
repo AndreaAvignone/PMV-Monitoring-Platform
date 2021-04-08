@@ -11,7 +11,7 @@
             "user_ID": "Avi",
             "catalog_list":[
             	{
-                    "catalog_ID": "MP0003",
+                    "catalog_ID": "MP00003",
                     "connection_flag": true
                 }],
             "password": "prova11"
@@ -20,7 +20,7 @@
             "user_ID": "Ana",
             "catalog_list": [
                 {
-                    "catalog_ID": "MP0001",
+                    "catalog_ID": "MP00001",
                     "connection_flag": false
                 }
             ],
