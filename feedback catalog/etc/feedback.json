@@ -1,0 +1,5 @@
+{
+    "description":"Welcome to the feedback service",
+    "service_catalog":"http://192.168.1.130:8080/Monitoring-Platform/services",
+    "profiles": []
+}
