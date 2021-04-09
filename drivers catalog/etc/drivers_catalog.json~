@@ -5,7 +5,7 @@
         {
             "device_ID": "dht11",
             "end_points": "MQTT/REST",
-            "time_sleep":30,
+            "time_sleep":5,
             "parameters": [{
                 "parameter": "humidity",
                 "value": null,
@@ -16,7 +16,7 @@
         {
             "device_ID": "revC",
             "end_points": "MQTT/REST",
-            "time_sleep":30,
+            "time_sleep":5,
             "parameters": [{
                 "parameter": "wind",
                 "value": null,
@@ -27,7 +27,7 @@
         {
             "device_ID": "max76675",
             "end_points": "MQTT/REST",
-            "time_sleep":30,
+            "time_sleep":5,
             "parameters": [{
                 "parameter": "temperature_g",
                 "value": null,
@@ -49,7 +49,7 @@
         {
             "device_ID": "ds18b20",
             "end_points": "MQTT/REST",
-            "time_sleep":30,
+            "time_sleep":5,
             "parameters": [{
                 "parameter": "temperature",
                 "value": null,
