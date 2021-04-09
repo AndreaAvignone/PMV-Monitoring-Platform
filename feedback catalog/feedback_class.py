@@ -20,6 +20,7 @@ class FeedbackCatalog():
         self.db_filename=db_filename
         self.feedbackContent=json.load(open(self.db_filename,"r")) #store the database as a variable
         self.serviceCatalogAddress=self.feedbackContent['service_catalog']
+        self.delta=self.feedbackContent['delta']
 
 
     def findPos(self,platform_ID):
@@ -136,11 +137,32 @@ class FeedbackCatalog():
         rfc=datetime.datetime.fromtimestamp(timestamp)
         rfc=rfc.strftime("%Y-%m-%dT%H:%M:%SZ")
         self.clientDB=InfluxDBClient(self.influx_IP,self.influx_port,'root','root',platform_ID)
-        try:
-            json_body = [{"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":value}}]
-            self.clientDB.write_points(json_body)
-        except:
-            print("InfluxDB connection lost.")
+        if last_meas(parameter,room_ID,rfc):
+            try:
+                json_body = [{"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":value}}]
+                self.clientDB.write_points(json_body)
+            except:
+                print("InfluxDB connection lost.")
+
+    def last_meas(self,parameter,room_ID,rfc):
+        q="show measurements;"
+        r=self.clientDB.query(q).get_points()
+        flag=False
+        for point in r:
+            if point['name']==parameter:
+                flag=True
+                break
+        if flag==False:
+            return True
+        query="select last(value), time from {} where roomID='{}';".format(parameter,room_ID)
+        result=self.clientDB.query(query).get_points()
+        for point in result:
+            a = time.strptime(point['time'], '%Y-%m-%dT%H:%M:%SZ')
+            a=(time.mktime(a))
+        b = time.strptime(rfc, '%Y-%m-%dT%H:%M:%SZ')
+        b=(time.mktime(b))
+        if b-a>=self.delta:
+            return True
         
     def save(self):
         with open(self.db_filename,'w') as file:
