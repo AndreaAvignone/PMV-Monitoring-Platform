@@ -74,7 +74,7 @@ class FeedbackCatalog():
                     break
             if roomNotFound==1:
                 timestamp=time.time()
-                room_new={'room_ID':self.room_ID,'feedback':'','last_update':timestamp}
+                room_new={'room_ID':room_ID,'feedback':'','last_update':timestamp}
                 self.feedbackContent['profiles'][pos]['rooms'].append(room_new)
                 return True
         else:
@@ -112,13 +112,14 @@ class FeedbackCatalog():
             self.insertRoom(platform_ID,room_ID)
             room=self.findRoomPos(self.feedbackContent['profiles'][pos]["rooms"],room_ID)
         room[parameter]=parameter_value
+        return True
 
 
         
         
     def save(self):
         with open(self.db_filename,'w') as file:
-            json.dump(self.profilesContent,file, indent=4)
+            json.dump(self.feedbackContent,file, indent=4)
 
 
 

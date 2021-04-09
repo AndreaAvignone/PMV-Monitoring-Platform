@@ -9,7 +9,7 @@
     ],
     "broker": [
         {
-            "IP_address": "192.168.1.131",
+            "IP_address": "192.168.1.130",
             "port": 1883,
             "service":"/broker"
         }
@@ -40,6 +40,13 @@
             "IP_address": "192.168.1.130",
             "port": 8086,
             "service":"influx"
+        }
+    ],
+    "feedback_catalog": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 8087,
+            "service":"/Monitoring-Platform/feedback"
         }
     ],
     

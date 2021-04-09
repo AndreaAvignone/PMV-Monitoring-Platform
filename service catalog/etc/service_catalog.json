@@ -42,11 +42,11 @@
             "service":"influx"
         }
     ],
-    "feedback": [
+    "feedback_catalog": [
         {
             "IP_address": "192.168.1.130",
-            "port": 8087,
-            "service":"feedback"
+            "port": 8090,
+            "service":"/Monitoring-Platform/feedback"
         }
     ],
     
