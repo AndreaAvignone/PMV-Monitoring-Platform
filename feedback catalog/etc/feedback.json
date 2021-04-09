@@ -12,6 +12,17 @@
                 }
             ],
             "last_update": "09/04/2021 17:11"
+        },
+        {
+            "platform_ID": "MP-A00003",
+            "rooms": [
+                {
+                    "room_ID": "Cameretta",
+                    "feedback": "ok",
+                    "last_update": 1617986617.7898269
+                }
+            ],
+            "last_update": "09/04/2021 18:43"
         }
     ]
 }

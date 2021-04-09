@@ -1,7 +1,9 @@
 import json
 import time
-from datetime import datetime
+from datetime import datetime as dt
+import datetime
 from influxdb import InfluxDBClient
+import requests
 
 class NewProfile():
     def __init__(self,platform_ID, lastUpdate):
@@ -17,7 +19,7 @@ class FeedbackCatalog():
     def __init__(self, db_filename):
         self.db_filename=db_filename
         self.feedbackContent=json.load(open(self.db_filename,"r")) #store the database as a variable
-        self.serviceCatalogAddress=self.feedbackCatalog.feedbackContent['service_catalog']
+        self.serviceCatalogAddress=self.feedbackContent['service_catalog']
 
 
     def findPos(self,platform_ID):
@@ -56,7 +58,7 @@ class FeedbackCatalog():
 
     def insertProfile(self,platform_ID):
         notExisting=1
-        now=datetime.now()
+        now=dt.now()
         timestamp=now.strftime("%d/%m/%Y %H:%M")
         profile=self.retrieveProfileInfo(platform_ID)
         if profile is False:
@@ -117,11 +119,11 @@ class FeedbackCatalog():
         return True
 
     def retrieveService(self,service):
-            request=requests.get(self.serviceCatalogAddress+'/'+service).json()
-            IP=request[0].get('IP_address')
-            port=request[0].get('port')
-            service=request[0].get('service')
-            return IP,port,service
+        request=requests.get(self.serviceCatalogAddress+'/'+service).json()
+        IP=request.get('IP_address')
+        port=request.get('port')
+        service=request.get('service')
+        return IP,port,service
     def buildAddress(self,IP,port, service):
         finalAddress='http://'+IP+':'+str(port)+service
         return finalAddress
@@ -139,11 +141,6 @@ class FeedbackCatalog():
             self.clientDB.write_points(json_body)
         except:
             print("InfluxDB connection lost.")
-
-
-
-
-        
         
     def save(self):
         with open(self.db_filename,'w') as file:
