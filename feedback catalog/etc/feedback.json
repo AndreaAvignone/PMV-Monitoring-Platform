@@ -1,6 +1,7 @@
 {
     "description": "Welcome to the feedback service",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "delta":7200,
     "profiles": [
         {
             "platform_ID": "MP-A00004",
