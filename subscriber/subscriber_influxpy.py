@@ -1,6 +1,4 @@
 #PROBLEMS: - transform the two putbody in one single, so adapt the server to deal with it.
-          #- Consider if create one database for room or it is not necessary. Change this client since now the broker is
-          #  is located inside the server (self.roomID is not correct)
 
 import json
 import requests

@@ -50,10 +50,12 @@ class feedbackREST():
             platform_ID=uri[1]
             room_ID=uri[2]
             value=json_body['feedback']
-            newSetting=self.feedbackCatalog.setRoomParameter(platform_ID,room_ID,"feedback",value)
+            parameter="feedback"
+            newSetting=self.feedbackCatalog.setRoomParameter(platform_ID,room_ID,parameter,value)
             if newSetting==True:
                 output="Platform '{}' - Room '{}': feedback updated".format(platform_ID,room_ID)
                 self.feedbackCatalog.save()
+                self.feedbackCatalog.updateDB(platform_ID,room_ID,parameter,value)
             else:
                 output="Something wrong..."
             print(output)

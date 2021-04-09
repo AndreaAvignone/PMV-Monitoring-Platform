@@ -1,6 +1,7 @@
 import json
 import time
 from datetime import datetime
+from influxdb import InfluxDBClient
 
 class NewProfile():
     def __init__(self,platform_ID, lastUpdate):
@@ -16,6 +17,7 @@ class FeedbackCatalog():
     def __init__(self, db_filename):
         self.db_filename=db_filename
         self.feedbackContent=json.load(open(self.db_filename,"r")) #store the database as a variable
+        self.serviceCatalogAddress=self.feedbackCatalog.feedbackContent['service_catalog']
 
 
     def findPos(self,platform_ID):
@@ -113,6 +115,32 @@ class FeedbackCatalog():
             room=self.findRoomPos(self.feedbackContent['profiles'][pos]["rooms"],room_ID)
         room[parameter]=parameter_value
         return True
+
+    def retrieveService(self,service):
+            request=requests.get(self.serviceCatalogAddress+'/'+service).json()
+            IP=request[0].get('IP_address')
+            port=request[0].get('port')
+            service=request[0].get('service')
+            return IP,port,service
+    def buildAddress(self,IP,port, service):
+        finalAddress='http://'+IP+':'+str(port)+service
+        return finalAddress
+
+
+    def updateDB(self,platform_ID,room_ID,parameter,value):
+        self.influx_IP,self.influx_port,self.influx_service=self.retrieveService('influx_db')
+        print("Influx DB info obtained")
+        timestamp=time.time()
+        rfc=datetime.datetime.fromtimestamp(timestamp)
+        rfc=rfc.strftime("%Y-%m-%dT%H:%M:%SZ")
+        self.clientDB=InfluxDBClient(self.influx_IP,self.influx_port,'root','root',platform_ID)
+        try:
+            json_body = [{"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":value}}]
+            self.clientDB.write_points(json_body)
+        except:
+            print("InfluxDB connection lost.")
+
+
 
 
         
