@@ -12,10 +12,18 @@ class feedbackREST():
         #configure the service catalog according to information stored inside database
         self.feedbackCatalog=FeedbackCatalog(db_filename)
         self.serviceCatalogAddress=self.feedbackCatalog.feedbackContent['service_catalog']
-        self.requestResult=requests.get(self.serviceCatalogAddress+"/feedback_catalog").json()
-        self.feedbackCatalogIP=self.requestResult.get("IP_address")
-        self.feedbackCatalogPort=self.requestResult.get("port")
-        self.service=self.requestResult.get("service")
+        self.feedbackCatalogIP=self.feedbackCatalog.feedbackContent['IP_address']
+        self.feedbackCatalogPort=self.feedbackCatalog.feedbackContent['port']
+        self.service=self.registerRequest()
+
+    def registerRequest(self):
+        msg={"service":"feedback_catalog","IP_address":self.feedbackCatalogIP,"port":self.feedbackCatalogPort}
+        try:
+            service=requests.put(f'{self.serviceCatalogAddress}/register',json=msg).json()
+            return service
+        except:
+            print("Failure in registration.")
+            return False
         
     def GET(self,*uri):
         uriLen=len(uri)

@@ -2,6 +2,8 @@
     "description": "Welcome to resources server",
     "database_owner": "Andrea Avignone",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "IP_address":"192.168.1.130",
+    "port":8083,
     "platforms_list": [
         {
             "platform_ID": "MP-A00001",

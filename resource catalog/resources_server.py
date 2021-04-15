@@ -10,14 +10,22 @@ class ResourcesServerREST(object):
     def __init__(self,db_filename):
         self.serverCatalog=Server(db_filename)
         self.serviceCatalogAddress=self.serverCatalog.serverContent['service_catalog']
-        self.requestResult=requests.get(self.serviceCatalogAddress+"/server_catalog").json()
-        self.serverCatalogIP=self.requestResult.get("IP_address")
-        self.serverCatalogPort=self.requestResult.get("port")
-        self.service=self.requestResult.get("service")
+        self.serverCatalogIP=self.serverCatalog.serverContent['IP_address']
+        self.serverCatalogPort=self.serverCatalog.serverContent['port']
+        self.service=self.registerRequest()
 
         self.requestInflux=requests.get(self.serviceCatalogAddress+"/influx_db").json()
         self.influx_IP=self.requestInflux.get('IP_address')
         self.influx_port=self.requestInflux.get('port')
+
+    def registerRequest(self):
+        msg={"service":"server_catalog","IP_address":self.serverCatalogIP,"port":self.serverCatalogPort}
+        try:
+            service=requests.put(f'{self.serviceCatalogAddress}/register',json=msg).json()
+            return service
+        except:
+            print("Failure in registration.")
+            return False
 
     def buildAddress(self,IP,port, service):
         finalAddress='http://'+IP+':'+str(port)+service

@@ -9,10 +9,18 @@ class ProfilesCatalogREST():
     def __init__(self,db_filename):
         self.profilesCatalog=ProfilesCatalog(db_filename)
         self.serviceCatalogAddress=self.profilesCatalog.profilesContent['service_catalog']
-        self.requestResult=requests.get(self.serviceCatalogAddress+"/profiles_catalog").json()
-        self.profilesCatalogIP=self.requestResult.get("IP_address")
-        self.profilesCatalogPort=self.requestResult.get("port")
-        self.service=self.requestResult.get("service")
+        self.profilesCatalogIP=self.profilesCatalog.profilesContent['IP_address']
+        self.profilesCatalogPort=self.profilesCatalog.profilesContent['port']
+        self.service=self.registerRequest()
+
+    def registerRequest(self):
+        msg={"service":"profiles_catalog","IP_address":self.profilesCatalogIP,"port":self.profilesCatalogPort}
+        try:
+            service=requests.put(f'{self.serviceCatalogAddress}/register',json=msg).json()
+            return service
+        except:
+            print("Failure in registration.")
+            return False
     def getServer(self):
         requestResult=requests.get(self.serviceCatalogAddress+"/server_catalog").json()
         self.serverCatalogIP=requestResult.get("IP_address")

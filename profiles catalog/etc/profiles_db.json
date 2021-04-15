@@ -1,6 +1,8 @@
 {
     "description": "Welcome to the profiles database",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "IP_address":"192.168.1.130",
+    "port":8081,
     "profiles_list": [
         "MP-A00001",
         "MP-A00002",

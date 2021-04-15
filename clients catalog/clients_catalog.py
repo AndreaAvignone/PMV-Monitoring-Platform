@@ -11,10 +11,18 @@ class Registration_deployer(object):
         self.db_filename=db_filename
         self.MyClientsCatalog=ClientsCatalog(self.db_filename)
         self.serviceCatalogAddress=self.MyClientsCatalog.clientsContent['service_catalog']
-        self.requestResult=requests.get(self.serviceCatalogAddress+"/clients_catalog").json()
-        self.clientsCatalogIP=self.requestResult.get("IP_address")
-        self.clientsCatalogPort=self.requestResult.get("port")
-        self.service=self.requestResult.get("service")
+        self.clientsCatalogIP=self.MyClientsCatalog.clientsContent['IP_address']
+        self.clientsCatalogPort=self.MyClientsCatalog.clientsContent['port']
+        self.service=self.registerRequest()
+
+    def registerRequest(self):
+        msg={"service":"clients_catalog","IP_address":self.clientsCatalogIP,"port":self.clientsCatalogPort}
+        try:
+            service=requests.put(f'{self.serviceCatalogAddress}/register',json=msg).json()
+            return service
+        except:
+            print("Failure in registration.")
+            return False
 
     def GET(self,*uri,**params):
         if (len(uri))>0 and uri[0]=="reg.html":
