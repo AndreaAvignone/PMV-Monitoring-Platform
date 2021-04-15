@@ -90,7 +90,7 @@ class DataCollector():
 
     
     def last_meas(self,parameter,room_ID,rfc):
-        q="show measurements;"
+        q="show measurements where room_ID='{}';".format(room_ID)
         r=self.clientDB.query(q).get_points()
         flag=False
         for point in r:
