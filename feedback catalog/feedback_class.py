@@ -137,7 +137,7 @@ class FeedbackCatalog():
         rfc=datetime.datetime.fromtimestamp(timestamp)
         rfc=rfc.strftime("%Y-%m-%dT%H:%M:%SZ")
         self.clientDB=InfluxDBClient(self.influx_IP,self.influx_port,'root','root',platform_ID)
-        if last_meas(parameter,room_ID,rfc):
+        if self.last_meas(parameter,room_ID,rfc):
             try:
                 json_body = [{"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":value}}]
                 self.clientDB.write_points(json_body)

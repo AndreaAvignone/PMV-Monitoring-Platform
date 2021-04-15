@@ -39,9 +39,9 @@ class DataCollector():
         
     def retrieveService(self,service):
             request=requests.get(self.serviceCatalogAddress+'/'+service).json()
-            IP=request[0].get('IP_address')
-            port=request[0].get('port')
-            service=request[0].get('service')
+            IP=request.get('IP_address')
+            port=request.get('port')
+            service=request.get('service')
             return IP,port,service
 
     def buildAddress(self,IP,port, service):

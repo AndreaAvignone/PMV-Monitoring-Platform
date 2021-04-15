@@ -1,7 +1,7 @@
 {
     "description": "Welcome to the feedback service",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
-    "delta":7200,
+    "delta": 7200,
     "profiles": [
         {
             "platform_ID": "MP-A00004",
@@ -19,7 +19,7 @@
             "rooms": [
                 {
                     "room_ID": "Cameretta",
-                    "feedback": "ok",
+                    "feedback": "too cold",
                     "last_update": 1617986617.7898269
                 }
             ],

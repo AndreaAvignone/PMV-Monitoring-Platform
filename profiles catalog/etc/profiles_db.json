@@ -59,8 +59,28 @@
                     "connection_flag": true,
                     "devices": [
                         {
+                            "device_ID": "dht11",
+                            "last_update": 1618479205.087456,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1618479181.7301762,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
                             "device_ID": "max76675",
-                            "last_update": "04/08/2021, 22:52:55",
+                            "last_update": 1618479181.5604377,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -77,28 +97,8 @@
                             ]
                         },
                         {
-                            "device_ID": "dht11",
-                            "last_update": "04/08/2021, 22:52:48",
-                            "parameters": [
-                                {
-                                    "parameter": "humidity",
-                                    "unit": "%"
-                                }
-                            ]
-                        },
-                        {
-                            "device_ID": "ds18b20",
-                            "last_update": "04/08/2021, 22:52:53",
-                            "parameters": [
-                                {
-                                    "parameter": "temperature",
-                                    "unit": "C"
-                                }
-                            ]
-                        },
-                        {
                             "device_ID": "revC",
-                            "last_update": "04/08/2021, 22:52:55",
+                            "last_update": 1618479198.4719493,
                             "parameters": [
                                 {
                                     "parameter": "wind",
