@@ -115,7 +115,8 @@ class FeedbackCatalog():
         room=self.retrieveRoomInfo(rooms,room_ID)
         if room is False:
             self.insertRoom(platform_ID,room_ID)
-            room=self.findRoomPos(self.feedbackContent['profiles'][pos]["rooms"],room_ID)
+            i=self.findRoomPos(self.feedbackContent['profiles'][pos]["rooms"],room_ID)
+            room=self.feedbackContent['profiles'][pos]["rooms"][i]
         room[parameter]=parameter_value
         return True
 
@@ -145,7 +146,7 @@ class FeedbackCatalog():
                 print("InfluxDB connection lost.")
 
     def last_meas(self,parameter,room_ID,rfc):
-        q="show measurements;"
+        q="show measurements where room_ID='{}';".format(room_ID)
         r=self.clientDB.query(q).get_points()
         flag=False
         for point in r:

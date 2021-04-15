@@ -20,9 +20,9 @@
             "platform_ID": "MP-A00003",
             "rooms": [
                 {
-                    "room_ID": "Cameretta",
-                    "feedback": "cold",
-                    "last_update": 1617986617.7898269
+                    "room_ID": "room_X2",
+                    "feedback": "ok",
+                    "last_update": 1618518091.872301
                 }
             ],
             "last_update": "09/04/2021 18:43"
