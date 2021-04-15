@@ -19,6 +19,22 @@ class ServiceCatalogREST():
 	def retrieveInfo(self,catalog,service):
 		serviceAddress='http://'+catalog[service][0].get("IP_address")+':'+str(catalog[service][0].get("port"))
 		return serviceAddress
+	def findService(self,name):
+		if name in self.MyServiceCatalog:
+			return True
+		else:
+			return False
+	def register(self,name,IP,port):
+		try:
+			self.MyServiceCatalog['name'][0]["IP_address"]=IP
+			self.MyServiceCatalog['name'][0]["port"]=port
+			return self.MyServiceCatalog['name'][0]["service"]
+		except:
+			return False
+	def save(self):
+        with open(self.db_filename,'w') as file:
+            json.dump(self.serverContent,file, indent=4)
+
 
 	def GET(self,*uri):
 		if len(uri)!=0:
@@ -30,6 +46,29 @@ class ServiceCatalogREST():
 			output=self.MyServiceCatalog['description'] #if no resource is found, it return a general description about database
 
 		return json.dumps(output,indent=4) 
+
+	def PUT(self,*uri):
+		if len(uri)!=0:
+			if uri[0]=="register":
+				try:
+					body=cherrypy.request.body.read()
+	        		json_body=json.loads(body.decode('utf-8'))
+	        		if self.findService(json_body['service']):
+	        			new_service=self.register(json_body['service'],json_body['IP_address'],json_body['port'])
+	        			if new_service is not False:
+	        				output="Service'{}' registered at {}:{}".format(json_body['service'],json_body['IP_address'],json_body['port'])
+	        				self.save()
+	        				return new_service
+	        			else:
+	        				output="Service'{}'- Registration failed".format(json_body['service'])
+	        		else:
+	        			raise cherrypy.HTTPError(404,"Service: Not found")
+	        	except:
+	        		output="Error request."
+	        else:
+	        	raise cherrypy.HTTPError(501, "No operation!")
+	    print(output)
+
 
 if __name__ == '__main__':
     settings=sys.argv[1]

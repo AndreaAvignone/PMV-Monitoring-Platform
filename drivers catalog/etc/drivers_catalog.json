@@ -1,5 +1,7 @@
 {
     "description":"Welcome to the drivers database",
+    "IP_address":"192.168.1.130",
+    "port":8084,
     "service_catalog":"http://192.168.1.130:8080/Monitoring-Platform/services",
     "drivers_list": [
         {
