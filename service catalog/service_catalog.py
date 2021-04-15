@@ -33,7 +33,7 @@ class ServiceCatalogREST():
             return False
     def save(self):
         with open(self.db_filename,'w') as file:
-            json.dump(self.serverContent,file, indent=4)
+            json.dump(self.MyServiceCatalog,file, indent=4)
 
 
     def GET(self,*uri):
@@ -57,7 +57,7 @@ class ServiceCatalogREST():
                     if self.findService(json_body['service']):
                         new_service=self.register(json_body['service'],json_body['IP_address'],json_body['port'])
                         if new_service is not False:
-                            output="Service '{}' registered - {}:{}".format(json_body['service'],json_body['IP_address'],json_body['port'])
+                            output="Service '{}' registered".format(new_service)
                             self.save()
                             myflag=1
                         else:

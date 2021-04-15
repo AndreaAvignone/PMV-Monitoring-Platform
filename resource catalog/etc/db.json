@@ -2,8 +2,8 @@
     "description": "Welcome to resources server",
     "database_owner": "Andrea Avignone",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
-    "IP_address":"192.168.1.130",
-    "port":8083,
+    "IP_address": "192.168.1.130",
+    "port": 8083,
     "platforms_list": [
         {
             "platform_ID": "MP-A00001",
@@ -22,12 +22,12 @@
             "rooms": [
                 {
                     "room_ID": "room_X2",
-                    "MRT": 21.442,
+                    "MRT": 21.5297,
                     "Icl_clo": 0.8,
                     "M_met": 1.2,
                     "W_met": 0,
-                    "PMV": -0.8319,
-                    "PPD": 19.6,
+                    "PMV": -1.0905,
+                    "PPD": 30.08,
                     "devices": [
                         {
                             "device_ID": "dht11",
@@ -36,12 +36,12 @@
                             "parameters": [
                                 {
                                     "parameter": "humidity",
-                                    "value": 56.0,
+                                    "value": 55.0,
                                     "unit": "%",
-                                    "timestamp": 1618506544.6754942
+                                    "timestamp": 1618508623.5633104
                                 }
                             ],
-                            "timestamp": 1618506544.6754942
+                            "timestamp": 1618508623.5633104
                         },
                         {
                             "device_ID": "ds18b20",
@@ -50,12 +50,12 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": 19.4375,
+                                    "value": 19.5,
                                     "unit": "C",
-                                    "timestamp": 1618506540.2105374
+                                    "timestamp": 1618508648.1306384
                                 }
                             ],
-                            "timestamp": 1618506540.2105374
+                            "timestamp": 1618508648.1306384
                         },
                         {
                             "device_ID": "max76675",
@@ -66,7 +66,7 @@
                                     "parameter": "temperature_g",
                                     "value": 21.25,
                                     "unit": "C",
-                                    "timestamp": 1618506552.5717359
+                                    "timestamp": 1618508633.2759237
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -79,7 +79,7 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1618506552.5717359
+                            "timestamp": 1618508633.2759237
                         },
                         {
                             "device_ID": "revC",
@@ -88,12 +88,12 @@
                             "parameters": [
                                 {
                                     "parameter": "wind",
-                                    "value": 0.7,
+                                    "value": 1.25,
                                     "unit": "KmH",
-                                    "timestamp": 1618506545.2381866
+                                    "timestamp": 1618508624.7058399
                                 }
                             ],
-                            "timestamp": 1618506545.2381866
+                            "timestamp": 1618508624.7058399
                         }
                     ],
                     "last_update": "12/04/2021 17:15"

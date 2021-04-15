@@ -1,8 +1,8 @@
 {
     "description": "Welcome to the feedback service",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
-    "IP_address":"192.168.1.130",
-    "port":8090,
+    "IP_address": "192.168.1.130",
+    "port": 8090,
     "delta": 7200,
     "profiles": [
         {
@@ -21,7 +21,7 @@
             "rooms": [
                 {
                     "room_ID": "Cameretta",
-                    "feedback": "too cold",
+                    "feedback": "cold",
                     "last_update": 1617986617.7898269
                 }
             ],
