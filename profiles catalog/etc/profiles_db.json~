@@ -1,6 +1,8 @@
 {
     "description": "Welcome to the profiles database",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "IP_address": "192.168.1.130",
+    "port": 8081,
     "profiles_list": [
         "MP-A00001",
         "MP-A00002",
@@ -42,7 +44,7 @@
         },
         {
             "platform_ID": "MP-A00003",
-            "platform_name": "Casa via del pascolo",
+            "platform_name": "Casa mia",
             "inactive_time": 1800,
             "room_cnt": 2,
             "preferences": [
@@ -55,12 +57,32 @@
                 },
                 {
                     "room_ID": "room_X2",
-                    "room_name": "Cameretta",
+                    "room_name": "Cameretta mia",
                     "connection_flag": true,
                     "devices": [
                         {
+                            "device_ID": "dht11",
+                            "last_update": 1619080895.107614,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1619080879.570548,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
                             "device_ID": "max76675",
-                            "last_update": "08/04/2021 12:39",
+                            "last_update": 1619080890.443407,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -77,28 +99,8 @@
                             ]
                         },
                         {
-                            "device_ID": "dht11",
-                            "last_update": "08/04/2021 12:38",
-                            "parameters": [
-                                {
-                                    "parameter": "humidity",
-                                    "unit": "%"
-                                }
-                            ]
-                        },
-                        {
-                            "device_ID": "ds18b20",
-                            "last_update": "08/04/2021 12:39",
-                            "parameters": [
-                                {
-                                    "parameter": "temperature",
-                                    "unit": "C"
-                                }
-                            ]
-                        },
-                        {
                             "device_ID": "revC",
-                            "last_update": "08/04/2021 12:39",
+                            "last_update": 1619080897.0035455,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -111,9 +113,7 @@
                 }
             ],
             "location": "Turin",
-            "last_update": null,
-            "name": "Andrea",
-            "reply": "reply"
+            "name": "Andrea"
         }
     ]
 }

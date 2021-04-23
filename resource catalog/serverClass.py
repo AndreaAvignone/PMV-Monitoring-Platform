@@ -179,7 +179,6 @@ class Server():
         else:
             return False
 
-
     def removePlatform(self,platform_ID):
         i=self.findPos(platform_ID)
         if i is not False:

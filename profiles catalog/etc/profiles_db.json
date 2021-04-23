@@ -1,8 +1,8 @@
 {
     "description": "Welcome to the profiles database",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
-    "IP_address":"192.168.1.130",
-    "port":8081,
+    "IP_address": "192.168.1.130",
+    "port": 8081,
     "profiles_list": [
         "MP-A00001",
         "MP-A00002",
@@ -44,7 +44,7 @@
         },
         {
             "platform_ID": "MP-A00003",
-            "platform_name": "Casa via del pascolo",
+            "platform_name": "Casa mia",
             "inactive_time": 1800,
             "room_cnt": 2,
             "preferences": [
@@ -57,12 +57,12 @@
                 },
                 {
                     "room_ID": "room_X2",
-                    "room_name": "Cameretta",
+                    "room_name": "Camera",
                     "connection_flag": true,
                     "devices": [
                         {
                             "device_ID": "dht11",
-                            "last_update": 1618479205.087456,
+                            "last_update": 1619088397.230628,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -72,7 +72,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1618479181.7301762,
+                            "last_update": 1619088407.6501317,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -82,7 +82,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1618479181.5604377,
+                            "last_update": 1619088419.7182689,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -100,7 +100,7 @@
                         },
                         {
                             "device_ID": "revC",
-                            "last_update": 1618479198.4719493,
+                            "last_update": 1619088408.1083403,
                             "parameters": [
                                 {
                                     "parameter": "wind",

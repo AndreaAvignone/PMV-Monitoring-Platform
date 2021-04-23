@@ -22,51 +22,48 @@
             "rooms": [
                 {
                     "room_ID": "room_X2",
-                    "MRT": 21.5297,
-                    "Icl_clo": 0.8,
-                    "M_met": 1.2,
+                    "MRT": 22.1172,
+                    "Icl_clo": 0.5,
+                    "M_met": 1.5,
                     "W_met": 0,
-                    "PMV": -1.0905,
-                    "PPD": 30.08,
+                    "PMV": -0.503,
+                    "PPD": 10.29,
                     "devices": [
                         {
                             "device_ID": "dht11",
-                            "end_points": "MQTT/REST",
                             "time_sleep": 30,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
-                                    "value": 55.0,
+                                    "value": 56.0,
                                     "unit": "%",
-                                    "timestamp": 1618508623.5633104
+                                    "timestamp": 1619164603.6401064
                                 }
                             ],
-                            "timestamp": 1618508623.5633104
+                            "timestamp": 1619164603.6401064
                         },
                         {
                             "device_ID": "ds18b20",
-                            "end_points": "MQTT/REST",
                             "time_sleep": 30,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": 19.5,
+                                    "value": 20.8125,
                                     "unit": "C",
-                                    "timestamp": 1618508648.1306384
+                                    "timestamp": 1619164604.690541
                                 }
                             ],
-                            "timestamp": 1618508648.1306384
+                            "timestamp": 1619164604.690541
                         },
                         {
                             "device_ID": "max76675",
-                            "end_points": "MQTT/REST",
                             "time_sleep": 30,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
-                                    "value": 21.25,
+                                    "value": 22.0,
                                     "unit": "C",
-                                    "timestamp": 1618508633.2759237
+                                    "timestamp": 1619164584.8175764
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -79,24 +76,23 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1618508633.2759237
+                            "timestamp": 1619164584.8175764
                         },
                         {
                             "device_ID": "revC",
-                            "end_points": "MQTT/REST",
                             "time_sleep": 30,
                             "parameters": [
                                 {
                                     "parameter": "wind",
-                                    "value": 1.25,
+                                    "value": 0.64,
                                     "unit": "KmH",
-                                    "timestamp": 1618508624.7058399
+                                    "timestamp": 1619164589.6603022
                                 }
                             ],
-                            "timestamp": 1618508624.7058399
+                            "timestamp": 1619164589.6603022
                         }
                     ],
-                    "last_update": "12/04/2021 17:15"
+                    "last_update": "12/04/2021/17/36"
                 }
             ],
             "creation_date": "02/03/2021 11:36"

@@ -167,6 +167,8 @@ class ResourcesServerREST(object):
             newSetting=self.serverCatalog.setRoomParameter(platform_ID,room_ID,parameter,parameter_value)
             if newSetting==True:
                 output="Platform '{}' - Room '{}': {} is now {}".format(platform_ID, room_ID, parameter,parameter_value)
+                self.serverCatalog.compute_PMV(platform_ID,room_ID)
+                self.serverCatalog.compute_PPD(platform_ID,room_ID)
                 saveFlag=True
             else:
                 output="Platform '{}' - Room '{}': Can't change {} ".format(platform_ID, room_ID,parameter)
