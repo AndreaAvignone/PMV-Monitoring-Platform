@@ -1,0 +1,63 @@
+{
+    "description": "Welcome to the organizations database",
+    "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "IP_address": "192.168.1.130",
+    "port": 8091,
+    "organizations_list": [
+        "Main Org.",
+        "MP-A00003",
+        "MP-A00005",
+        "MP-00006"
+    ],
+    "organizations": [
+        {
+            "org_name": "Main Org.",
+            "orgId": "1",
+            "key_name": "Grafana_api_key",
+            "keyId": 3,
+            "key": "eyJrIjoiNjQ2Q2F2cHltUkdyaHozcEFZNHJRVFI5THhzakZSdEkiLCJuIjoiR3JhZmFuYV9hcGlfa2V5IiwiaWQiOjF9",
+            "dashboards": [
+                {
+                    "room_ID": "room_X3",
+                    "uid": "Main Org.room_X3",
+                    "title": "Cameretta"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00003",
+            "orgId": "25",
+            "key_name": "MP-A00003_key",
+            "keyId": 18,
+            "key": "eyJrIjoiSXdKNDRLeHpaTWJ1Nnc0bVdTam5xOUo0WWdjOThWb3IiLCJuIjoiTVAtQTAwMDAzX2tleSIsImlkIjoyNX0=",
+            "dashboards": []
+        },
+        {
+            "org_name": "MP-A00005",
+            "orgId": "26",
+            "key_name": "MP-A00005_key",
+            "keyId": 19,
+            "key": "eyJrIjoiNHM3SDhZaWR2TU82NVhUQVJMRmFEbnZaQmkycEd3eWQiLCJuIjoiTVAtQTAwMDA1X2tleSIsImlkIjoyNn0=",
+            "dashboards": []
+        },
+        {
+            "org_name": "MP-00006",
+            "orgId": "34",
+            "key_name": "MP-00006_key",
+            "keyId": 26,
+            "key": "eyJrIjoidVdVOTRBYlB1TUFlOXV0SFhPdnR0QjRvYm82NTU2NWIiLCJuIjoiTVAtMDAwMDZfa2V5IiwiaWQiOjM0fQ==",
+            "dashboards": [
+                {
+                    "room_ID": "room_X6",
+                    "uid": "MP-00006room_X6",
+                    "title": "Cameretta"
+                },
+                {
+                    "room_ID": "room_X7",
+                    "uid": "MP-00006room_X7",
+                    "title": "Cucina"
+                }
+            ]
+        }
+    ]
+}

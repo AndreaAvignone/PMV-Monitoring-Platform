@@ -1,0 +1,29 @@
+{
+    "description": "Welcome to the users database",
+    "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "users_list": [
+        "MP-A00003",
+        "MP-A00005",
+        "MP-00006"
+    ],
+    "users": [
+        {
+            "name": "MP-A00003",
+            "login": "MP-A00003",
+            "password": "MP-A00003",
+            "OrgId": 25
+        },
+        {
+            "name": "MP-A00005",
+            "login": "MP-A00005",
+            "password": "MP-A00005",
+            "OrgId": 26
+        },
+        {
+            "name": "MP-00006",
+            "login": "MP-00006",
+            "password": "MP-00006",
+            "OrgId": 34
+        }
+    ]
+}
