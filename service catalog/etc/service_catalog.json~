@@ -1,0 +1,59 @@
+{
+    "description": "Welcome to the monitoring platform catalog service",
+    "service_catalog": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 8080,
+            "service": "/Monitoring-Platform/services"
+        }
+    ],
+    "broker": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 1883,
+            "service": "/broker"
+        }
+    ],
+    "profiles_catalog": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 8081,
+            "service": "/Monitoring-Platform/profiles"
+        }
+    ],
+    "clients_catalog": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 8082,
+            "service": "/Monitoring-Platform/clients"
+        }
+    ],
+    "server_catalog": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 8083,
+            "service": "/Monitoring-Platform/server"
+        }
+    ],
+    "influx_db": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 8086,
+            "service": "influx"
+        }
+    ],
+    "feedback_catalog": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 8090,
+            "service": "/Monitoring-Platform/feedback"
+        }
+    ],
+    "drivers_catalog": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 8084,
+            "service": "/Monitoring-Platform/drivers"
+        }
+    ]
+}
