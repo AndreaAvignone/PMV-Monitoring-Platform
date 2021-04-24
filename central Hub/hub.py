@@ -120,7 +120,7 @@ class HUB_REST():
 
 if __name__ == '__main__':
     db=sys.argv[1]
-    hub=HUB_REST(db,'192.168.1.131',9090)
+    hub=HUB_REST(db,self.hubContent['IP_address'],self.hubContent['port'])
     conf = {
         '/': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
