@@ -61,8 +61,11 @@ class ProfilesCatalogREST():
                 else:
                     output=profile
             else:
-                if uri[0]=="check":
-                    output=self.profilesCatalog.checkExisting(uri[1])
+                if uri[0]=="checkExisting":
+                    output=self.profilesCatalog.checkExisting(uri[1],'produced_list')
+                elif uri[0]=="checkRegistered":
+                    output=self.profilesCatalog.checkExisting(uri[1],'profiles_list')
+                    
                 else:
                     output=self.profilesCatalog.profilesContent.get(uri[0])
             if output==None:
@@ -84,8 +87,9 @@ class ProfilesCatalogREST():
             platform_name=json_body['platform_name']
             inactiveTime=json_body['inactiveTime']
             preferences=json_body['preferences']
+            name=json_body['name']
             location=json_body['location'] 
-            newProfile=self.profilesCatalog.insertProfile(platform_ID,platform_name,inactiveTime,preferences,location)
+            newProfile=self.profilesCatalog.insertProfile(platform_ID,platform_name,inactiveTime,preferences,location,name)
             if newProfile==True:
                 output="Profile '{}' has been added to Profiles Database".format(platform_ID)
                 saveFlag=True

@@ -3,17 +3,18 @@ import time
 from datetime import datetime
 
 class NewProfile():
-    def __init__(self,platform_ID,platform_name,inactiveTime,preferences, location, lastUpdate):
+    def __init__(self,platform_ID,platform_name,inactiveTime,preferences, location,name, lastUpdate):
         self.platform_ID=platform_ID
         self.platform_name=platform_name
         self.inactiveTime=inactiveTime
         self.preferences=preferences
         self.location=location
+        self.name=name
         self.lastUpdate=lastUpdate
         self.room_cnt=1
         
     def jsonify(self):
-        profile={'platform_ID':self.platform_ID,'platform_name':self.platform_name,'room_cnt':self.room_cnt,'inactiveTime':self.inactiveTime,'preferences':self.preferences,'location':self.location,'last_update':self.lastUpdate}
+        profile={'platform_ID':self.platform_ID,'platform_name':self.platform_name,'name':self.name,room_cnt':self.room_cnt,'inactiveTime':self.inactiveTime,'preferences':self.preferences,'location':self.location,'last_update':self.lastUpdate}
         return profile
 
 class ProfilesCatalog():
@@ -27,9 +28,9 @@ class ProfilesCatalog():
         for profile in self.profilesContent['profiles']:
             self.profilesList.append(profile['platform_ID'])
         return self.profilesList
-    def checkExisting(self,plat_ID):
+    def checkExisting(self,plat_ID,name_list):
         output=False
-        for plat in self.profilesContent['produced_list']:
+        for plat in self.profilesContent[name_list]:
             if plat==plat_ID:
                 output=True
                 break
@@ -69,13 +70,13 @@ class ProfilesCatalog():
             result=False
         return result
 
-    def insertProfile(self,platform_ID,platform_name,inactiveTime,preferences, location):
+    def insertProfile(self,platform_ID,platform_name,inactiveTime,preferences,location,name):
         notExisting=1
         now=datetime.now()
         timestamp=now.strftime("%d/%m/%Y %H:%M")
         profile=self.retrieveProfileInfo(platform_ID)
         if profile is False:
-            createdProfile=NewProfile(platform_ID,platform_name,inactiveTime,preferences,location,timestamp).jsonify()
+            createdProfile=NewProfile(platform_ID,platform_name,inactiveTime,preferences,location,name,timestamp).jsonify()
             self.profilesContent['profiles'].append(createdProfile)
             self.profilesContent['profiles_list'].append(platform_ID)
             return True
