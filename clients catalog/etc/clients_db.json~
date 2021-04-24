@@ -1,6 +1,8 @@
 {
     "description": "Welcome to the clients database",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "IP_address":"192.168.1.130",
+    "port":8082,
     "users_list": [
         {
             "user_ID": "superuser",
@@ -11,7 +13,7 @@
             "user_ID": "Avi",
             "catalog_list":[
             	{
-                    "catalog_ID": "MP00003",
+                    "catalog_ID": "MP-A00003",
                     "connection_flag": true
                 }],
             "password": "prova11"
@@ -20,7 +22,7 @@
             "user_ID": "Ana",
             "catalog_list": [
                 {
-                    "catalog_ID": "MP00001",
+                    "catalog_ID": "MP-A00001",
                     "connection_flag": false
                 }
             ],
