@@ -61,7 +61,10 @@ class ProfilesCatalogREST():
                 else:
                     output=profile
             else:
-                output=self.profilesCatalog.profilesContent.get(uri[0])
+                if uri[0]=="check":
+                    output=self.profilesCatalog.checkExisting(uri[1])
+                else:
+                    output=self.profilesCatalog.profilesContent.get(uri[0])
             if output==None:
                 raise cherrypy.HTTPError(404,"Information Not found")
 

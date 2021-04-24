@@ -27,6 +27,13 @@ class ProfilesCatalog():
         for profile in self.profilesContent['profiles']:
             self.profilesList.append(profile['platform_ID'])
         return self.profilesList
+    def checkExisting(self,plat_ID):
+        output=False
+        for plat in self.profilesContent['produced_list']:
+            if plat==plat_ID:
+                output=True
+                break
+        return output
 
     def findPos(self,platform_ID):
         notFound=1
