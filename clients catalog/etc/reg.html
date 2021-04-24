@@ -70,20 +70,20 @@ a {
 </head>
 <body>
 
-<form action="http://127.0.0.1:8082/reg_results", method="get">
+<form action="http://192.168.1.130:8082/reg_results", method="get">
   <div class="container">
-    <h1>Register to Leaf</h1>
-    <h2>Create an account for your house to start using Leaf</h2>
+    <h1>Register to your Monitoring Platform</h1>
+    <h3>Create an account to access the app</h3>
     <hr>
+    
+    <label for="platformID"><b>Platform ID</b></label>
+    <input type="text" placeholder="Enter the ID of your platform" name="platformID" id="platformID" required>
 
     <label for="userID"><b>User ID</b></label>
-    <input type="text" placeholder="Enter userID" name="userID" id="userID" required>
-
-    <label for="catalogID"><b>Catalog ID</b></label>
-    <input type="text" placeholder="Enter your catalog ID" name="catalogID" id="catalogID" required>
+    <input type="text" placeholder="Create a new userID" name="userID" id="userID" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    <input type="password" placeholder="Create a new Password" name="psw" id="psw" required>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
@@ -93,11 +93,12 @@ a {
   </div>
 
   <div class="container signin">
-    <p>Already have an account? <a href="https://t.me/leaf1_bot">Sign in using the Telegram Bot</a>.</p>
+    <p>Already have an account? <a href="https://t.me/leaf1_bot">Sign in in the App</a>.</p>
   </div>
 
 </form>
 </body>
 </html>
+
 
 
