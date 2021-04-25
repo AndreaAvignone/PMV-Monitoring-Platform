@@ -6,7 +6,16 @@
     "profiles_list": [
         "MP-A00001",
         "MP-A00002",
-        "MP-A00003"
+        "MP-A00003",
+        "MP-A00005"
+    ],
+    "produced_list": [
+        "MP-A00001",
+        "MP-A00002",
+        "MP-A00003",
+        "MP-A00005",
+        "MP-A00006",
+        "MP-A00007"
     ],
     "last_creation": 1607607430.684861,
     "profiles": [
@@ -62,7 +71,7 @@
                     "devices": [
                         {
                             "device_ID": "dht11",
-                            "last_update": 1619088397.230628,
+                            "last_update": 1619343719.052526,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -72,7 +81,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1619088407.6501317,
+                            "last_update": 1619343700.8504949,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -82,7 +91,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1619088419.7182689,
+                            "last_update": 1619343700.327835,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -100,7 +109,7 @@
                         },
                         {
                             "device_ID": "revC",
-                            "last_update": 1619088408.1083403,
+                            "last_update": 1619343708.6968281,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -112,8 +121,16 @@
                     "connection_timestamp": 1614682176.856142
                 }
             ],
-            "location": "Turin",
-            "name": "Andrea"
+            "location": "Turin"
+        },
+        {
+            "platform_ID": "MP-A00005",
+            "platform_name": "Ufficio",
+            "room_cnt": 1,
+            "inactiveTime": 1800,
+            "preferences": "[]",
+            "location": "Nichelino",
+            "last_update": "25/04/2021 11:31"
         }
     ]
 }

@@ -257,6 +257,6 @@ if __name__ == '__main__':
 
             
 
-        time.sleep(5)
+        time.sleep(30)
     cherrypy.engine.block()
 

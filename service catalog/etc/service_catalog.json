@@ -42,13 +42,6 @@
             "service": "influx"
         }
     ],
-    "grafana": [
-        {
-            "IP_address": "192.168.1.130",
-            "port": 3000,
-            "service": "grafana"
-        }
-    ],
     "feedback_catalog": [
         {
             "IP_address": "192.168.1.130",

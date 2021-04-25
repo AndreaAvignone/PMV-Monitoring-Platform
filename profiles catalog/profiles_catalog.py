@@ -85,11 +85,10 @@ class ProfilesCatalogREST():
         if command=='insertProfile':
             platform_ID=json_body['platform_ID']
             platform_name=json_body['platform_name']
-            inactiveTime=json_body['inactiveTime']
+            inactiveTime=json_body['inactive_time']
             preferences=json_body['preferences']
-            name=json_body['name']
             location=json_body['location'] 
-            newProfile=self.profilesCatalog.insertProfile(platform_ID,platform_name,inactiveTime,preferences,location,name)
+            newProfile=self.profilesCatalog.insertProfile(platform_ID,platform_name,inactiveTime,preferences,location)
             if newProfile==True:
                 output="Profile '{}' has been added to Profiles Database".format(platform_ID)
                 saveFlag=True
@@ -124,7 +123,7 @@ class ProfilesCatalogREST():
         if saveFlag==True:
             self.profilesCatalog.save()
         print(output)
-        return json.dumps(ack)
+        return json.dumps({"result":ack})
 		
 
     def POST(self, *uri):
@@ -167,11 +166,15 @@ class ProfilesCatalogREST():
             if removedProfile==True:
                 output="Profile '{}' removed".format(platform_ID)
                 self.profilesCatalog.save()
+                result={"result":True}
             else:
                 output="Profile '{}' not found ".format(platform_ID)
+                result={"result":False}
             print(output)
+            return json.dumps(result)
         else:
             raise cherrypy.HTTPError(501, "No operation!")
+        
 
         
 if __name__ == '__main__':

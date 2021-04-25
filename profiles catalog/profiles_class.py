@@ -3,18 +3,17 @@ import time
 from datetime import datetime
 
 class NewProfile():
-    def __init__(self,platform_ID,platform_name,inactiveTime,preferences, location,name, lastUpdate):
+    def __init__(self,platform_ID,platform_name,inactiveTime,preferences, location, lastUpdate):
         self.platform_ID=platform_ID
         self.platform_name=platform_name
         self.inactiveTime=inactiveTime
         self.preferences=preferences
         self.location=location
-        self.name=name
         self.lastUpdate=lastUpdate
         self.room_cnt=1
         
     def jsonify(self):
-        profile={'platform_ID':self.platform_ID,'platform_name':self.platform_name,'name':self.name,room_cnt':self.room_cnt,'inactiveTime':self.inactiveTime,'preferences':self.preferences,'location':self.location,'last_update':self.lastUpdate}
+        profile={'platform_ID':self.platform_ID,'platform_name':self.platform_name,'room_cnt':self.room_cnt,'inactive_time':self.inactiveTime,'preferences':self.preferences,'location':self.location,'last_update':self.lastUpdate}
         return profile
 
 class ProfilesCatalog():
@@ -70,13 +69,13 @@ class ProfilesCatalog():
             result=False
         return result
 
-    def insertProfile(self,platform_ID,platform_name,inactiveTime,preferences,location,name):
+    def insertProfile(self,platform_ID,platform_name,inactiveTime,preferences,location):
         notExisting=1
         now=datetime.now()
         timestamp=now.strftime("%d/%m/%Y %H:%M")
         profile=self.retrieveProfileInfo(platform_ID)
         if profile is False:
-            createdProfile=NewProfile(platform_ID,platform_name,inactiveTime,preferences,location,name,timestamp).jsonify()
+            createdProfile=NewProfile(platform_ID,platform_name,inactiveTime,preferences,location,timestamp).jsonify()
             self.profilesContent['profiles'].append(createdProfile)
             self.profilesContent['profiles_list'].append(platform_ID)
             return True

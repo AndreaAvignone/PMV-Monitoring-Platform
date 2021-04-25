@@ -70,7 +70,7 @@
                     "devices": [
                         {
                             "device_ID": "dht11",
-                            "last_update": 1619271641.792099,
+                            "last_update": 1619351922.1013288,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -80,7 +80,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1619271639.090629,
+                            "last_update": 1619351942.4506834,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -90,7 +90,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1619271642.6068482,
+                            "last_update": 1619351934.0699382,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -108,7 +108,7 @@
                         },
                         {
                             "device_ID": "revC",
-                            "last_update": 1619271643.0548875,
+                            "last_update": 1619351934.8142898,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -120,8 +120,7 @@
                     "connection_timestamp": 1614682176.856142
                 }
             ],
-            "location": "Turin",
-            "name": "Andrea"
+            "location": "Turin"
         }
     ]
 }

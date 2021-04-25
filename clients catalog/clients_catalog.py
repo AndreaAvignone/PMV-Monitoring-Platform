@@ -55,6 +55,45 @@ class Registration_deployer(object):
             print(data)
             del data['password']
             return (data)
+    def PUT(self,*uri):
+        body=cherrypy.request.body.read()
+        json_body=json.loads(body.decode('utf-8'))
+        command=str(uri[0])
+        if command=='insertProfile':
+            user=str(cherrypy.request.login)
+            outputFlag=self.MyClientsCatalog.addPlatform(user,json_body['platform_ID'])
+            if outputFlag:
+                output="'{}' added to user '{}'".format(json_body['platform_ID'],user)
+                self.MyClientsCatalog.save()
+                
+            else:
+                output="'{}' cannot be added to user '{}'".format(json_body['platform_ID'],user)
+        else:
+            raise cherrypy.HTTPError(501,"No operation!")
+        print(output)
+        result={"result":outputFlag}
+        return result
+    def DELETE(self,*uri):
+        command=str(uri[0])
+        if command=='removePlatform':
+            platform_ID=uri[1]
+            user=str(cherrypy.request.login)
+            outputFlag=self.MyClientsCatalog.removePlatform(user,platform_ID)
+            if outputFlag==True:
+                output="Platform '{}' removed".format(platform_ID)
+                self.MyClientsCatalog.save()
+            else:
+                output="Platform '{}' not found ".format(platform_ID)
+        
+        else:
+            raise cherrypy.HTTPError(501, "No operation!")
+        print(output)
+        result={"result":outputFlag}
+        return result
+        
+            
+                
+            
 
             
 if __name__ == '__main__':
