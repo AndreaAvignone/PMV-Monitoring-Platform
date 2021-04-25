@@ -34,6 +34,9 @@ class ProfilesCatalogREST():
         self.getServer()
         result=requests.get(self.serverURL+'/'+platform_ID+'/'+room_ID+'/'+info).json()
         return result
+    def serverDelete(self,uri):
+        self.getServer()
+        result=requests.delete(self.serverURL+'/'+uri).json()
     def GET(self,*uri):
         uriLen=len(uri)
         if uriLen!=0:
@@ -164,6 +167,10 @@ class ProfilesCatalogREST():
             platform_ID=uri[1]
             removedProfile=self.profilesCatalog.removeProfile(platform_ID) 
             if removedProfile==True:
+                try:
+                    self.serverDelete(platform_ID)
+                except:
+                    pass
                 output="Profile '{}' removed".format(platform_ID)
                 self.profilesCatalog.save()
                 result={"result":True}
