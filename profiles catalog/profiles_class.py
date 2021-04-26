@@ -20,6 +20,7 @@ class ProfilesCatalog():
     def __init__(self, db_filename):
         self.db_filename=db_filename
         self.profilesContent=json.load(open(self.db_filename,"r")) #store the database as a variable
+        self.delta=self.profilesContent['delta']
         #self.profilesListCreate()
 
     def profilesListCreate(self):
@@ -60,6 +61,28 @@ class ProfilesCatalog():
                 return profile
         if notFound==1:
             return False
+    def buildWeatherURL(self,city):
+        basic_url=self.profilesContent["weather_api"]
+        api_key=self.profilesContent['weather_key']
+        url=basic_url+"?q="+city+"&appid="+api_key+"&units=metric"
+        return url
+    def createBody(self,platform_ID,city,input_body):
+        lat=input_body['coord'].get('lat')
+        long=input_body['coord'].get('lon')
+        condition=input_body['weather'][0].get('main')
+        temp=float(input_body['main'].get('temp'))
+        temp_feel=float(input_body['main'].get('feels_like'))
+        hum=int(input_body['main'].get('humidity'))
+        wind_speed=float(input_body['wind'].get('speed'))
+        wind_deg=int(input_body['wind'].get('deg'))
+        
+        final_dict={"lat":lat,"lon":long,"condition":condition,"temp_ext":temp,"temp_ext_feel":temp_feel,"hum_ext":hum,"wind_speed":wind_speed,"wind_deg":wind_deg,"city":city}
+        
+        rfc=datetime.fromtimestamp(time.time())
+        rfc=rfc.strftime("%Y-%m-%dT%H:%M:%SZ")
+        
+        json_body = [{"measurement":"external","tags":{"user":platform_ID},"time":rfc,"fields":final_dict}]
+        return json_body
 
     def retrieveProfileParameter(self,platform_ID,parameter):
         profile=self.retrieveProfileInfo(platform_ID)
@@ -128,6 +151,19 @@ class ProfilesCatalog():
             return True
         else:
             return False
+    def removeRoom(self,platform_ID,room_ID):
+        pos=self.findPos(platform_ID)
+        if pos is not False:
+            posRoom=self.findRoomPos(self.profilesContent['profiles'][pos]['preferences'],room_ID)
+            if posRoom is not False:
+                self.profilesContent['profiles'][pos]['preferences'].pop(posRoom)
+                return True
+            else:
+                return False
+        else:
+            return False
+        
+        
 
     def setParameter(self, platform_ID, parameter, parameter_value):
         pos=self.findPos(platform_ID)
