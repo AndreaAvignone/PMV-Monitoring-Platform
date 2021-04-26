@@ -70,13 +70,13 @@ if __name__ == '__main__':
     room.run()
     if room.association():
         print(f"Association performed - {room.room_ID}: {room.room_name}")
+        if room.connection():
+        print("Server connection performed. Saving...")
+        room.save()
+        else:
+            print("Error connection.")
     else:
         print("Association failed.")
 
-    if room.connection():
-        print("Server connection performed. Saving...")
-        room.save()
-    else:
-        print("Error connection.")
    
 
