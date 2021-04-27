@@ -89,17 +89,24 @@ class ResourcesServerREST(object):
         saveFlag=False
         res=[]
         if command=='insertPlatform':
+            requestProfiles=requests.get(self.serviceCatalogAddress+"/profiles_catalog").json()
+            IP=requestProfiles.get('IP_address')
+            port=requestProfiles.get('port')
+            service=requestProfiles.get('service')
             platform_ID=json_body['platform_ID']
-            rooms=json_body['rooms'] 
-            newPlatform=self.serverCatalog.insertPlatform(platform_ID,rooms)
-            if newPlatform==True:
-                output="Platform '{}' has been added to Server\n".format(platform_ID)
-                if self.serverCatalog.createDB(self.influx_IP,self.influx_port,platform_ID):
-                    output=output+"Influx database created"
-                    saveFlag=True
-                    
+            if(requests.get(server.buildAddress(IP,port,service)+'/checkRegistered/'+platform_ID)):
+                rooms=json_body['rooms'] 
+                newPlatform=self.serverCatalog.insertPlatform(platform_ID,rooms)
+                if newPlatform==True:
+                    output="Platform '{}' has been added to Server\n".format(platform_ID)
+                    if self.serverCatalog.createDB(self.influx_IP,self.influx_port,platform_ID):
+                        output=output+"Influx database created"
+                        saveFlag=True
+                        
+                else:
+                    output="'{}' already exists!".format(platform_ID)
             else:
-                output="'{}' already exists!".format(platform_ID)
+                output="'{}' cannot be connected".format(platform_ID)
         elif command=='insertRoom':
             platform_ID=uri[1]
             room_ID=json_body['room_ID']
@@ -257,6 +264,6 @@ if __name__ == '__main__':
 
             
 
-        time.sleep(5)
+        time.sleep(30)
     cherrypy.engine.block()
 

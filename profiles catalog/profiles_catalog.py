@@ -4,6 +4,7 @@ import requests
 import time
 import sys
 from profiles_class import ProfilesCatalog
+from influxdb import InfluxDBClient
 class ProfilesCatalogREST():
     exposed=True
     def __init__(self,db_filename):
@@ -30,10 +31,19 @@ class ProfilesCatalogREST():
     def buildAddress(self,IP,port, service):
         finalAddress='http://'+IP+':'+str(port)+service
         return finalAddress
+    def retrieveService(self,service):
+            request=requests.get(self.serviceCatalogAddress+'/'+service).json()
+            IP=request.get('IP_address')
+            port=request.get('port')
+            service=request.get('service')
+            return IP,port,service
     def serverRequest(self,platform_ID,room_ID,info):
         self.getServer()
         result=requests.get(self.serverURL+'/'+platform_ID+'/'+room_ID+'/'+info).json()
         return result
+    def serverDelete(self,uri):
+        self.getServer()
+        result=requests.delete(self.serverURL+'/'+uri).json()
     def GET(self,*uri):
         uriLen=len(uri)
         if uriLen!=0:
@@ -61,8 +71,11 @@ class ProfilesCatalogREST():
                 else:
                     output=profile
             else:
-                if uri[0]=="check":
-                    output=self.profilesCatalog.checkExisting(uri[1])
+                if uri[0]=="checkExisting":
+                    output=self.profilesCatalog.checkExisting(uri[1],'produced_list')
+                elif uri[0]=="checkRegistered":
+                    output=self.profilesCatalog.checkExisting(uri[1],'profiles_list')
+                    
                 else:
                     output=self.profilesCatalog.profilesContent.get(uri[0])
             if output==None:
@@ -82,7 +95,7 @@ class ProfilesCatalogREST():
         if command=='insertProfile':
             platform_ID=json_body['platform_ID']
             platform_name=json_body['platform_name']
-            inactiveTime=json_body['inactiveTime']
+            inactiveTime=json_body['inactive_time']
             preferences=json_body['preferences']
             location=json_body['location'] 
             newProfile=self.profilesCatalog.insertProfile(platform_ID,platform_name,inactiveTime,preferences,location)
@@ -101,7 +114,7 @@ class ProfilesCatalogREST():
             if newRoomFlag==True:
                 output="Room '{}' has been added to platform '{}'".format(room_name,platform_ID)
                 saveFlag=True
-                ack=newRoom
+                ack=newRoomFlag
             else:
                 output="Room '{}' cannot be added to platform '{}'".format(room_name,platform_ID)
         elif command=='associateRoom':
@@ -120,7 +133,7 @@ class ProfilesCatalogREST():
         if saveFlag==True:
             self.profilesCatalog.save()
         print(output)
-        return json.dumps(ack)
+        return json.dumps({"result":ack})
 		
 
     def POST(self, *uri):
@@ -134,6 +147,15 @@ class ProfilesCatalogREST():
             newSetting=self.profilesCatalog.setParameter(platform_ID,parameter,parameter_value)
             if newSetting==True:
                 output="Platform '{}': {} is now {}".format(platform_ID, parameter,parameter_value)
+                if parameter=="location":
+                    influx_IP,influx_port,influx_service=profilesCatalog.retrieveService('influx_db')
+                    url=self.profilesCatalog.buildWeatherURL(location)
+                    r=requests.get(url).json()
+            
+                    body=self.profilesCatalog.createBody(platform_ID,parameter_value,r)
+                    clientDB=InfluxDBClient(influx_IP,influx_port,'root','root',platform_ID)
+                    clientDB.write_points(body)
+                    
                 self.profilesCatalog.save()
             else:
                 output="Platform '{}': Can't change {} ".format(platform_ID, parameter)
@@ -161,13 +183,42 @@ class ProfilesCatalogREST():
             platform_ID=uri[1]
             removedProfile=self.profilesCatalog.removeProfile(platform_ID) 
             if removedProfile==True:
+                try:
+                    self.serverDelete(platform_ID)
+                except:
+                    pass
                 output="Profile '{}' removed".format(platform_ID)
                 self.profilesCatalog.save()
+                result={"result":True}
             else:
                 output="Profile '{}' not found ".format(platform_ID)
+                result={"result":False}
             print(output)
+            return json.dumps(result)
+        elif command=='removeRoom':
+            platform_ID=uri[1]
+            room_ID=uri[2]
+            removedRoom=self.profilesCatalog.removeRoom(platform_ID,room_ID)
+            if removedRoom==True:
+                try:
+                    self.serverDelete(platform_ID+'/'+room_ID)
+                    pass
+                except:
+                    pass
+                output="Room '{}' from Profile '{}' removed".format(platform_ID,room_ID)
+                #self.profilesCatalog.save()
+                result={"result":True}
+            else:
+                output="PRoom '{}' from Profile '{}' ".format(platform_ID,room_ID)
+                result={"result":False}
+            print(output)
+            return json.dumps(result)
+            
+            
+            
         else:
             raise cherrypy.HTTPError(501, "No operation!")
+        
 
         
 if __name__ == '__main__':
@@ -184,5 +235,24 @@ if __name__ == '__main__':
     cherrypy.config.update({'server.socket_port': profilesCatalog.profilesCatalogPort})
     cherrypy.engine.start()
     while True:
-    	time.sleep(1)
+        influx_IP,influx_port,influx_service=profilesCatalog.retrieveService('influx_db')
+        for platform in profilesCatalog.profilesCatalog.profilesContent['profiles']:
+            platform_ID=platform.get("platform_ID")
+            location=platform.get("location")
+            url=profilesCatalog.profilesCatalog.buildWeatherURL(location)
+            try:
+                r=requests.get(url).json()
+            
+                body=profilesCatalog.profilesCatalog.createBody(platform_ID,location,r)
+                clientDB=InfluxDBClient(influx_IP,influx_port,'root','root',platform_ID)
+                try:
+                    clientDB.write_points(body)
+                except:
+                    pass
+            except:
+                pass
+            time.sleep(5)
+            
+        
+        time.sleep(profilesCatalog.profilesCatalog.delta)
     cherrypy.engine.block()

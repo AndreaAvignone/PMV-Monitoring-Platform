@@ -1,12 +1,14 @@
 {
     "description": "Welcome to the profiles database",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "weather_api": "https://api.openweathermap.org/data/2.5/weather",
+    "weather_key": "636b475c1fb0e1d78527fbb3edf59473",
+    "delta": 10800,
     "IP_address": "192.168.1.130",
     "port": 8081,
     "profiles_list": [
-        "MP-A00001",
-        "MP-A00002",
-        "MP-A00003"
+        "MP-A00003",
+        "MP-A00005"
     ],
     "produced_list": [
         "MP-A00001",
@@ -18,38 +20,6 @@
     ],
     "last_creation": 1607607430.684861,
     "profiles": [
-        {
-            "platform_ID": "MP-A00001",
-            "platform_name": "School",
-            "room_cnt": 1,
-            "inactive_time": 300,
-            "preferences": [
-                {
-                    "room_ID": "room_X1",
-                    "room_name": "room_X1",
-                    "connection_flag": false,
-                    "connection_timestamp": 1607607430.684861
-                }
-            ],
-            "location": "Turin",
-            "last_update": "10/12/2020 14:10"
-        },
-        {
-            "platform_ID": "MP-A00002",
-            "platform_name": "Office",
-            "inactive_time": 500,
-            "room_cnt": 1,
-            "preferences": [
-                {
-                    "room_ID": "room_X1",
-                    "room_name": "Bagno",
-                    "connection_flag": false,
-                    "connection_timestamp": null
-                }
-            ],
-            "location": "Milan",
-            "last_update": "11/12/2020 12:32"
-        },
         {
             "platform_ID": "MP-A00003",
             "platform_name": "Casa mia",
@@ -70,7 +40,7 @@
                     "devices": [
                         {
                             "device_ID": "dht11",
-                            "last_update": 1619088397.230628,
+                            "last_update": 1619445144.2072468,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -80,7 +50,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1619088407.6501317,
+                            "last_update": 1619445153.4906313,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -90,7 +60,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1619088419.7182689,
+                            "last_update": 1619445175.7324378,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -108,7 +78,7 @@
                         },
                         {
                             "device_ID": "revC",
-                            "last_update": 1619088408.1083403,
+                            "last_update": 1619445145.7984211,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -120,8 +90,17 @@
                     "connection_timestamp": 1614682176.856142
                 }
             ],
-            "location": "Turin",
-            "name": "Andrea"
+            "location": "Nichelino",
+            "last_update": "25/04/2021 15:41"
+        },
+        {
+            "platform_ID": "MP-A00005",
+            "platform_name": "Office",
+            "room_cnt": 1,
+            "inactive_time": 1800,
+            "preferences": "[]",
+            "location": "Milan",
+            "last_update": "25/04/2021 15:41"
         }
     ]
 }
