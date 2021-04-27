@@ -129,6 +129,26 @@ class GrafanaCatalog():
 		#print(r.json())
 		return self.new_dashboard_data
 
+	def deleteDashboard(self, platformID, roomID):
+		notFound=1
+		for org in self.orgContent["organizations"]:
+			if org["org_name"]==platformID:
+				self.key=org["key"]
+				for dash in org["dashboards"]:
+					if dash["room_ID"]==roomID:
+						notFound=0
+						self.headers= {
+						"Authorization": "Bearer "+self.key,
+						"Content-Type":"application/json",
+						"Accept":"application/json"}
+						self.url=self.server_url+"/api/dashboards/uid"+platformID+roomID
+						r=requests.delete(url=url, headers=headers, verify=False)
+						return True
+		if notFound==1:
+			return False
+
+
+
 	def retrieveDashInfo(self, platformID, roomID):
 		notFound=1
 		for org in self.orgContent["organizations"]:

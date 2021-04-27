@@ -97,7 +97,25 @@ class GrafanaCatalogREST():
             self.grafanaCatalog.save()
         print(output)
         return json.dumps(ack)
-        
+
+    def DELETE(self, *uri):
+        command=str(uri[0])
+        if command=='deleteDashboard':
+            platform_ID=uri[1]
+            room_ID=uri[2]
+            deleatedDashboard=self.grafanaCatalog.deleteDashboard(platform_ID,room_ID)
+            if deleatedDashboard==True:
+                output="Dashboard '{}' from Platform '{}' removed".format(room_ID,platform_ID)
+                result={"result":True}
+            else:
+                output="Dashboard '{}' from Platform '{}' ".format(room_ID,platform_ID)
+                result={"result":False}
+            print(output)
+            return json.dumps(result)  
+        else:
+            raise cherrypy.HTTPError(501, "No operation!")
+                
+                
 
 
 if __name__=='__main__':
