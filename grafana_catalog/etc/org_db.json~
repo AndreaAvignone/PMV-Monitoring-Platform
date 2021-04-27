@@ -31,7 +31,11 @@
             "keyId": 18,
             "key": "eyJrIjoiSXdKNDRLeHpaTWJ1Nnc0bVdTam5xOUo0WWdjOThWb3IiLCJuIjoiTVAtQTAwMDAzX2tleSIsImlkIjoyNX0=",
             "dashboards": [
-                
+                {
+                    "room_ID": "room_X1",
+                    "uid": "MP-A00003room_X1",
+                    "title": "bagno"
+                }
             ]
         },
         {

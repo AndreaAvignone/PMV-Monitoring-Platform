@@ -13,16 +13,17 @@ class GrafanaCatalog():
 		self.serviceCatalogAddress=self.orgContent['service_catalog']
 		
 		self.requestResult=requests.get(self.serviceCatalogAddress+"/influx_db").json()
-		self.influxIP=self.requestResult[0].get("IP_address")
-		self.influxPort=self.requestResult[0].get("port")
+		self.influxIP=self.requestResult.get("IP_address")
+		self.influxPort=self.requestResult.get("port")
 
-		self.db_url="http://"+self.influxIP+":"+self.influxPort
+		self.db_url="http://"+self.influxIP+":"+str(self.influxPort)
 
 		self.requestResult2=requests.get(self.serviceCatalogAddress+"/grafana").json()
-		self.grafanaIP=self.requestResult2[0].get("IP_address")
-		self.grafanaPort=self.requestResult2[0].get("port")
+		self.grafanaIP=self.requestResult2.get("IP_address")
+		self.grafanaPort=self.requestResult2.get("port")
 
-		self.server_url="https://"+self.grafanaIP+":"+self.grafanaPort
+		self.server_url="http://"+self.grafanaIP+":"+str(self.grafanaPort)
+		
 
 	#platformID=org_name
 	def createOrg(self, platformID):
@@ -111,7 +112,7 @@ class GrafanaCatalog():
 		"Content-Type":"application/json",
 		"Accept":"application/json"}
 
-		self.url="http://"+self.server_url+"/api/dashboards/db"
+		self.url=self.server_url+"/api/dashboards/db"
 		self.new_dashboard_data=json.load(open('etc/myDash.json'))
 		self.new_dashboard_data["dashboard"]["title"]=platformID+"_"+roomID
 		self.new_dashboard_data["dashboard"]["id"]=None
