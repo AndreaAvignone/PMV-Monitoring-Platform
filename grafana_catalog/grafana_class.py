@@ -118,6 +118,30 @@ class GrafanaCatalog():
 		self.new_dashboard_data["dashboard"]["uid"]=platformID+roomID
 		self.new_dashboard_data["dashboard"]["title"]=dash_info["dashboard_title"]
 		for panel in self.new_dashboard_data["dashboard"]["panels"]:
+			if panel["type"]!="row" and panel["type"]!="text":
+				panel["datasource"]=platformID
+				for target in panel["targets"]:
+					if target["measurement"]!="external":
+						for tag in target["tags"]:
+							tag["value"]=roomID
+		r=requests.post(url=self.url, headers=self.headers, data=json.dumps(self.new_dashboard_data), verify=False)
+		#print(r.json())
+		return self.new_dashboard_data
+		for org in self.orgContent["organizations"]:
+			if org["org_name"]==platformID:
+				self.key=org["key"]
+		self.headers= {
+		"Authorization": "Bearer "+self.key,
+		"Content-Type":"application/json",
+		"Accept":"application/json"}
+
+		self.url="http://"+self.server_url+"/api/dashboards/db"
+		self.new_dashboard_data=json.load(open('etc/myDash.json'))
+		self.new_dashboard_data["dashboard"]["title"]=platformID+"_"+roomID
+		self.new_dashboard_data["dashboard"]["id"]=None
+		self.new_dashboard_data["dashboard"]["uid"]=platformID+roomID
+		self.new_dashboard_data["dashboard"]["title"]=dash_info["dashboard_title"]
+		for panel in self.new_dashboard_data["dashboard"]["panels"]:
 			panel["datasource"]=platformID
 			for target in panel["targets"]:
 				for tag in target["tags"]:
