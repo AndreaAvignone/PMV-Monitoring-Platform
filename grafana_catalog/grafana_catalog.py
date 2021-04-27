@@ -108,7 +108,7 @@ class GrafanaCatalogREST():
                 output="Dashboard '{}' from Platform '{}' removed".format(room_ID,platform_ID)
                 result={"result":True}
             else:
-                output="Dashboard '{}' from Platform '{}' ".format(room_ID,platform_ID)
+                output="Dashboard '{}' from Platform '{}' not removed ".format(room_ID,platform_ID)
                 result={"result":False}
             print(output)
             return json.dumps(result)  
