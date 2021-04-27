@@ -145,29 +145,43 @@ class Server():
 
     def compute_MRT(self,platform_ID,room_ID):
         body={}
+        errFlag=0
         for p in self.myCalculator.MRT_parameters:
             req=self.findParameter(platform_ID,room_ID,p)
-            body[req['parameter']]=req['value']
-        mrt=self.myCalculator.MRT_dict(body)
-        self.setRoomParameter(platform_ID,room_ID,'MRT',mrt)
+            try:
+                body[req['parameter']]=req['value']
+            except:
+                errFlag=1
+        if errFlag!=1:
+            mrt=self.myCalculator.MRT_dict(body)
+            self.setRoomParameter(platform_ID,room_ID,'MRT',mrt)
 
     def compute_PMV(self,platform_ID,room_ID):
         body={}
+        errFlag=0
         for p in self.myCalculator.PMV_parameters:
             req=self.findParameter(platform_ID,room_ID,p)
-            body[req['parameter']]=req['value']
-        
-        pmv=self.myCalculator.PMV_dict(body)
-        self.setRoomParameter(platform_ID,room_ID,'PMV',pmv)
+            try:
+                body[req['parameter']]=req['value']
+            except:
+                errFlag=1
+        if errFlag!=1:
+            pmv=self.myCalculator.PMV_dict(body)
+            self.setRoomParameter(platform_ID,room_ID,'PMV',pmv)
 
     def compute_PPD(self,platform_ID,room_ID):
         body={}
+        errFlag=0
         for p in self.myCalculator.PPD_parameters:
             req=self.findParameter(platform_ID,room_ID,p)
-            body[req['parameter']]=req['value']
+            try:
+                body[req['parameter']]=req['value']
+            except:
+                errFlag=1
+        if errFlag!=1:
         
-        ppd=self.myCalculator.PPD_dict(body)
-        self.setRoomParameter(platform_ID,room_ID,'PPD',ppd)
+            ppd=self.myCalculator.PPD_dict(body)
+            self.setRoomParameter(platform_ID,room_ID,'PPD',ppd)
 
     def setRoomParameter(self,platform_ID,room_ID,parameter,parameter_value):
         i=self.findPos(platform_ID)
