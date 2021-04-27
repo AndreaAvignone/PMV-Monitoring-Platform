@@ -134,6 +134,8 @@ class ResourcesServerREST(object):
                         saveFlag=True
                     else:
                         output="Dashboard creation error"
+                        self.serverCatalog.removeRoom(platform_ID,room_ID)
+                        res.append("false")
                 else:
                     output="Platform '{}' - Room '{}' already exists. Resetting...".format(platform_ID,room_ID)
         elif command=='insertDevice':
