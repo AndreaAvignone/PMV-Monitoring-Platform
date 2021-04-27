@@ -60,6 +60,14 @@ class GrafanaCatalogREST():
                     ouput=None
                 if output==None:
                     raise cherrypy.HTTPError(404, "Information not found")
+            if cmd=='home':
+                home_url=self.grafanaCatalog.getHomeURL(uri[1])
+                if home_url is not False:
+                    output=home_url
+                else:
+                    ouput=None
+                if output==None:
+                    raise cherrypy.HTTPError(404, "Information not found")
         else:
             output=self.grafanaCatalog.orgContent['description']
 

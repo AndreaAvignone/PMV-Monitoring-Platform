@@ -171,12 +171,20 @@ class GrafanaCatalog():
 		"Content-Type":"application/json",
 		"Accept":"application/json"}
 		self.uid=platformID+roomID
-		self.url="https://"+self.server_url+"/api/dashboards/uid/"+self.uid
+		self.url=self.server_url+"/api/dashboards/uid/"+self.uid
 		r=requests.get(url=self.url, headers=self.headers, verify=False)
 		self.data=r.json()
 		#print(data)
-		self.dash_url="https://"+self.server_url+self.data["meta"]["url"]+"?orgId="+self.orgID
+		self.dash_url=self.server_url+self.data["meta"]["url"]+"?orgId="+self.orgID
 		return self.dash_url
+	def getHomeURL(self, platformID):
+		for org in self.orgContent["organizations"]:
+			if org["org_name"]==platformID:
+				self.key=org["key"]
+				self.orgID=str(org["orgId"])
+		
+		self.home_url=self.server_url+"?orgId="+self.orgID
+		return self.home_url
 
 	def insertDashboard(self, platformID, roomID, dash_info):
 		notExisting=1
