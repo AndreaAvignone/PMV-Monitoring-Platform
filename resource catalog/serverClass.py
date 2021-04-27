@@ -215,7 +215,7 @@ class Server():
 
     def dateUpdate(self,element):
         now=datetime.now()
-        new_date=now.strftime("%d/%m/%Y %H:%M")
+        new_date=now.strftime("%d/%m/%Y%H/%M")
         element['last_update']=new_date
 
     def save(self):

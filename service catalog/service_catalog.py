@@ -64,7 +64,8 @@ class ServiceCatalogREST():
                             output="Service '{}'- Registration failed".format(json_body['service'])
                     else:
                         raise cherrypy.HTTPError(404,"Service: Not found")
-                except:
+                except IndexError as e:
+                    print(e)
                     output="Error request."
             else:
                 raise cherrypy.HTTPError(501, "No operation!")
