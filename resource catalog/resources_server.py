@@ -14,10 +14,6 @@ class ResourcesServerREST(object):
         self.serverCatalogPort=self.serverCatalog.serverContent['port']
         self.service=self.registerRequest()
 
-        self.requestInflux=requests.get(self.serviceCatalogAddress+"/influx_db").json()
-        self.influx_IP=self.requestInflux.get('IP_address')
-        self.influx_port=self.requestInflux.get('port')
-
     def registerRequest(self):
         msg={"service":"server_catalog","IP_address":self.serverCatalogIP,"port":self.serverCatalogPort}
         try:
@@ -94,14 +90,25 @@ class ResourcesServerREST(object):
             port=requestProfiles.get('port')
             service=requestProfiles.get('service')
             platform_ID=json_body['platform_ID']
-            if(requests.get(server.buildAddress(IP,port,service)+'/checkRegistered/'+platform_ID)):
+            if(requests.get(self.buildAddress(IP,port,service)+'/checkRegistered/'+platform_ID)):
                 rooms=json_body['rooms'] 
                 newPlatform=self.serverCatalog.insertPlatform(platform_ID,rooms)
                 if newPlatform==True:
                     output="Platform '{}' has been added to Server\n".format(platform_ID)
+                    self.requestInflux=requests.get(self.serviceCatalogAddress+"/influx_db").json()
+                    self.influx_IP=self.requestInflux.get('IP_address')
+                    self.influx_port=self.requestInflux.get('port')
                     if self.serverCatalog.createDB(self.influx_IP,self.influx_port,platform_ID):
-                        output=output+"Influx database created"
-                        saveFlag=True
+                        output=output+"Influx database created\n"
+                        requestGrafana=requests.get(self.serviceCatalogAddress+"/grafana_catalog").json()
+                        self.grafana_IP=requestGrafana.get('IP_address')
+                        self.grafana_port=requestGrafana.get('port')
+                        self.grafana_service=requestGrafana.get('service')
+                        org_body={"platform_ID":platform_ID}
+                        newOrg=requests.put(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/insertOrganization",json=org_body)
+                        if newOrg:
+                            output=output+"Grafana organizion created"
+                            saveFlag=True
                         
                 else:
                     output="'{}' already exists!".format(platform_ID)
@@ -110,13 +117,23 @@ class ResourcesServerREST(object):
         elif command=='insertRoom':
             platform_ID=uri[1]
             room_ID=json_body['room_ID']
+            room_name=json_body['room_name']
             platformFlag,newRoom=self.serverCatalog.insertRoom(platform_ID,room_ID,json_body)
             if platformFlag is False:
                 raise cherrypy.HTTPError(404,"Platform Not found")
             else:
                 if newRoom==True:
-                    output="Platform '{}' - Room '{}' has been added to Server".format(platform_ID, room_ID)
-                    saveFlag=True
+                    requestGrafana=requests.get(self.serviceCatalogAddress+"/grafana_catalog").json()
+                    self.grafana_IP=requestGrafana.get('IP_address')
+                    self.grafana_port=requestGrafana.get('port')
+                    self.grafana_service=requestGrafana.get('service')
+                    dash_body={"room_ID":room_ID,"dashboard_title":room_name}
+                    newDash=requests.put(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/insertDashboard/"+platform_ID,json=dash_body)
+                    if newDash:
+                        output="Platform '{}' - Room '{}' has been added to Server".format(platform_ID, room_ID)
+                        saveFlag=True
+                    else:
+                        output="Dashboard creation error"
                 else:
                     output="Platform '{}' - Room '{}' already exists. Resetting...".format(platform_ID,room_ID)
         elif command=='insertDevice':

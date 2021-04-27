@@ -1,7 +1,6 @@
 import json
 from datetime import datetime
 import time
-import requests
 from influxdb import InfluxDBClient
 from rooms_catalog import RoomsCatalog
 from devices_catalog import DevicesCatalog
