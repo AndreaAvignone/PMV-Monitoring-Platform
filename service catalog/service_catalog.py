@@ -14,6 +14,7 @@ class ServiceCatalogREST():
         self.serviceCatalogIP=self.MyServiceCatalog['service_catalog'][0].get('IP_address')
         self.serviceCatalogPort=self.MyServiceCatalog['service_catalog'][0].get('port')
         self.service=self.MyServiceCatalog['service_catalog'][0].get('service')
+        self.ngrok=self.MyServiceCatalog['ngrok_api']
 		
     #a method to retrieve information concerning the requested resource. It returns a valid url, since until now only IP+port address are used
     def retrieveInfo(self,catalog,service):
@@ -38,10 +39,17 @@ class ServiceCatalogREST():
 
     def GET(self,*uri):
         if len(uri)!=0:
-            try:
-                output=self.MyServiceCatalog[str(uri[0])][0]
-            except:
-                raise cherrypy.HTTPError(404,"Service: Not found")
+            if uri[0]=="public":
+                r=requests.get(self.ngrok+'/api/tunnels/'+uri[1]).json()
+                output=self.MyServiceCatalog[str(uri[1])][0].copy()
+                output["IP_address"]=r["public_url"]
+                del output["port"]
+            else:
+                
+                try:
+                    output=self.MyServiceCatalog[str(uri[0])][0]
+                except:
+                    raise cherrypy.HTTPError(404,"Service: Not found")
         else:
             output=self.MyServiceCatalog['description'] #if no resource is found, it return a general description about database
 

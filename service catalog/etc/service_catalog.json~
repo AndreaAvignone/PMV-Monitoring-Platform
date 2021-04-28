@@ -1,5 +1,6 @@
 {
     "description": "Welcome to the monitoring platform catalog service",
+    "ngrok_api": "192.168.1.130"
     "service_catalog": [
         {
             "IP_address": "192.168.1.130",
@@ -47,6 +48,13 @@
             "IP_address": "192.168.1.130",
             "port": 3000,
             "service": "grafana"
+        }
+    ],
+    "grafana_catalog": [
+        {
+            "IP_address": "192.168.1.130",
+            "port": 8091,
+            "service": "/Monitoring-Platform/grafana"
         }
     ],
     "feedback_catalog": [
