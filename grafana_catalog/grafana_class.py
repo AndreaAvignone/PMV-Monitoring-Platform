@@ -18,11 +18,10 @@ class GrafanaCatalog():
 
 		self.db_url="http://"+self.influxIP+":"+str(self.influxPort)
 
-		self.requestResult2=requests.get(self.serviceCatalogAddress+"/grafana").json()
-		self.grafanaIP=self.requestResult2.get("IP_address")
-		self.grafanaPort=self.requestResult2.get("port")
+		self.requestResult2=requests.get(self.serviceCatalogAddress+"/public"+"/grafana").json()
+		self.server_url=self.requestResult2.get("IP_address")
 
-		self.server_url="http://"+self.grafanaIP+":"+str(self.grafanaPort)
+		
 		
 
 	#platformID=org_name
