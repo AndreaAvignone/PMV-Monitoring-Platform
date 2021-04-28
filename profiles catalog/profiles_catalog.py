@@ -168,6 +168,10 @@ class ProfilesCatalogREST():
             newSetting=self.profilesCatalog.setRoomParameter(platform_ID,room_ID,parameter,parameter_value)
             if newSetting==True:
                 output="Platform '{}' - Room '{}': {} is now {}".format(platform_ID,room_ID, parameter,parameter_value)
+                if parameter=="room_name":
+                     grafana_IP,grafana_port,grafana_service=profilesCatalog.retrieveService('grafana_catalog')
+                     update_body={"new_name":parameter_value}
+                     requests.post(self.buildAddress(grafana_IP,grafana_port,grafana_service)+"/changeDashboardName/"+platform_ID+'/'+room_ID,json=update_body)
                 self.profilesCatalog.save()
             else:
                 output="Platform '{}' Room '{}': Can't change {} ".format(platform_ID, room_ID,parameter)
