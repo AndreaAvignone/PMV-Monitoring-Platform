@@ -147,6 +147,44 @@ class GrafanaCatalog():
 		if notFound==1:
 			return False
 
+	def getDashboard(self, platformID, roomID):
+		notFound=1
+		for org in self.orgContent["organizations"]:
+			if org["org_name"]==platformID:
+				self.key=org["key"]
+				for dash in org["dashboards"]:
+					if dash["room_ID"]==roomID:
+						notFound=0
+						self.headers= {
+						"Authorization": "Bearer "+self.key,
+						"Content-Type":"application/json",
+						"Accept":"application/json"}
+						self.url=self.server_url+"/api/dashboards/uid/"+platformID+roomID
+						r=requests.get(url=self.url, headers=self.headers, verify=False)
+						dashboard_data=r.json()
+						return dashboard_data
+		if notFound==1:
+			return False
+
+	def changeDashboardName(self, platformID, roomID, new_name):
+		dashboard_data=self.getDashboard(platformID, roomID)
+		if dashboard_data!=False:
+			for org in self.orgContent["organizations"]:
+				if org["org_name"]==platformID:
+					self.key=org["key"]
+					for dash in org["dashboards"]:
+						if dash["room_ID"]==roomID:
+							dash["title"]=new_name
+			self.headers= {
+			"Authorization": "Bearer "+self.key,
+			"Content-Type":"application/json",
+			"Accept":"application/json"}
+			self.url=self.server_url+"/api/dashboards/db"
+			dashboard_data["dashboard"]["title"]=new_name
+			r=requests.post(url=self.url, headers=self.headers, data=json.dumps(dashboard_data), verify=False)
+			return True
+		else:
+			return False
 
 
 	def retrieveDashInfo(self, platformID, roomID):

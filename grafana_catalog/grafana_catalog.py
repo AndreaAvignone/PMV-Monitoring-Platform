@@ -106,6 +106,25 @@ class GrafanaCatalogREST():
         print(output)
         return json.dumps(ack)
 
+    def POST(self, *uri):
+        body=cherrypy.request.body.read()
+        json_body=json.loads(body.decode('utf-8'))
+        command=str(uri[0])
+        if command=="changeDashboardName":
+            platform_ID=uri[1]
+            room_ID=uri[2]
+            new_name=str(json_body['new_name'])
+            name_changed=self.grafanaCatalog.changeDashboardName(platform_ID, room_ID, new_name)
+            if name_changed==True:
+                output="Platform '{}' - Dashboard '{}': is now {}".format(platform_ID,room_ID, new_name)
+                self.grafanaCatalog.save()
+            else:
+                output="Platform '{}' - Dashboard '{}': Can't change name".format(platform_ID, room_ID)
+            print(output)
+        else:
+            raise cherrypy.HTTPError(501, "No operation!")
+
+
     def DELETE(self, *uri):
         command=str(uri[0])
         if command=='deleteDashboard':
