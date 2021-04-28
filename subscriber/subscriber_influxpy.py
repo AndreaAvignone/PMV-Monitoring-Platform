@@ -143,7 +143,7 @@ if __name__ == '__main__':
             for platform in unfollowing_list:
                 collection.client.unsubscribe()
                 time.sleep(0.5)
-            time.sleep(1)
+            time.sleep(30)
         collection.end()
     else:
         print("Connection failed.")
