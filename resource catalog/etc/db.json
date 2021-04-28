@@ -10,12 +10,12 @@
             "rooms": [
                 {
                     "room_ID": "room_X2",
-                    "MRT": 23.309,
+                    "MRT": 22.4568,
                     "Icl_clo": 0.5,
                     "M_met": 1.5,
                     "W_met": 0,
-                    "PMV": -0.7649,
-                    "PPD": 17.33,
+                    "PMV": -0.7893,
+                    "PPD": 18.13,
                     "devices": [
                         {
                             "device_ID": "revC",
@@ -23,12 +23,12 @@
                             "parameters": [
                                 {
                                     "parameter": "wind",
-                                    "value": 1.73,
+                                    "value": 1.43,
                                     "unit": "KmH",
-                                    "timestamp": 1619541410.1166067
+                                    "timestamp": 1619595490.9408846
                                 }
                             ],
-                            "timestamp": 1619541410.1166067
+                            "timestamp": 1619595490.9408846
                         },
                         {
                             "device_ID": "max76675",
@@ -37,9 +37,9 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
-                                    "value": 23.0,
+                                    "value": 22.25,
                                     "unit": "C",
-                                    "timestamp": 1619541393.5312307
+                                    "timestamp": 1619595505.3335865
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -52,7 +52,7 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1619541393.5312307
+                            "timestamp": 1619595505.3335865
                         },
                         {
                             "device_ID": "dht11",
@@ -61,12 +61,12 @@
                             "parameters": [
                                 {
                                     "parameter": "humidity",
-                                    "value": 60.0,
+                                    "value": 65.0,
                                     "unit": "%",
-                                    "timestamp": 1619541399.4345343
+                                    "timestamp": 1619595509.2120552
                                 }
                             ],
-                            "timestamp": 1619541399.4345343
+                            "timestamp": 1619595509.2120552
                         },
                         {
                             "device_ID": "ds18b20",
@@ -75,12 +75,12 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": 21.4375,
+                                    "value": 21.0625,
                                     "unit": "C",
-                                    "timestamp": 1619541395.090569
+                                    "timestamp": 1619595506.770664
                                 }
                             ],
-                            "timestamp": 1619541395.090569
+                            "timestamp": 1619595506.770664
                         }
                     ],
                     "last_update": "27/04/2021/15/09"
@@ -89,8 +89,8 @@
                     "room_ID": "room_X1",
                     "room_name": "bagno",
                     "MRT": null,
-                    "Icl_clo": null,
-                    "M_met": null,
+                    "Icl_clo": 0,
+                    "M_met": 0,
                     "W_met": null,
                     "devices": []
                 }

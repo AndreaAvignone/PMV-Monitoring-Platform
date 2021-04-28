@@ -209,7 +209,7 @@ class ProfilesCatalogREST():
                 #self.profilesCatalog.save()
                 result={"result":True}
             else:
-                output="PRoom '{}' from Profile '{}' ".format(platform_ID,room_ID)
+                output="Room '{}' from Profile '{}' ".format(platform_ID,room_ID)
                 result={"result":False}
             print(output)
             return json.dumps(result)

@@ -65,7 +65,7 @@ class GrafanaCatalogREST():
                 if home_url is not False:
                     output=home_url
                 else:
-                    ouput=None
+                    output=None
                 if output==None:
                     raise cherrypy.HTTPError(404, "Information not found")
         else:
