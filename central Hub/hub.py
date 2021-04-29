@@ -3,6 +3,7 @@ import json
 import socket
 import sys
 import time
+import os
 import requests
 
 class HUB():
@@ -20,12 +21,12 @@ class HUB():
     def retrieveBroker(self):
         print("Retrieving broker information...")
         try:
-            requestBroker=requests.get(self.serviceCatalogAddress+'public/broker').json()
+            requestBroker=requests.get(self.serviceCatalogAddress+'/public/broker').json()
             IP=requestBroker.get('IP_address')
             msg={"IP_address":IP}
             self.hubContent["broker"].append(msg)
             print("Broker info obtained.")
-        except:
+        except IndexError as e:
             print("Broker info not obtained.")
             
     def setup(self):
@@ -34,8 +35,8 @@ class HUB():
             requestResourcesCatalog=requests.get(self.serviceCatalogAddress+'/public/server_catalog').json()
             IP=requestResourcesCatalog.get('IP_address')
             service=requestResourcesCatalog.get('service')
-            self.hubContent['server_catalog']=self.buildAddress(IP,port,service)
-            json_body={'platform_ID':self.hub_ID,'rooms':self.rooms}
+            self.hubContent['server_catalog']=self.buildAddress(IP,service)
+            json_body={"platform_ID":self.hub_ID,"rooms":self.rooms}
             requests.put(self.hubContent['server_catalog']+'/insertPlatform',json=json_body)
             print("Connection performed")
         except:
@@ -80,16 +81,16 @@ class HUB():
 
 
     def buildAddress(self,IP, service):
-        finalAddress='https://'+IP+service
+        finalAddress=IP+service
         return finalAddress
 
 
 class HUB_REST():
     exposed=True
-    def __init__(self,db_filename, IP, port):
+    def __init__(self,db_filename,IP):
         self.hubCatalog=HUB(db_filename)
-        self.IP=socket.gethostbyname(socket.gethostname())
-        self.port=port
+        self.IP=IP
+        self.port=self.hubCatalog.hubContent["IP_port"]
 
     def GET(self, *uri):
         if len(uri)>0:
@@ -107,8 +108,9 @@ class HUB_REST():
             elif len(uri)==1 and uri[0]=='drivers':
                 raise cherrypy.HTTPError(405,"You can't!")
 
-            elif len(uri)==1 and uri[0]=='runRoom':
-                print("Running the room script.")
+            elif len(uri)==1 and uri[0]=='reboot':
+                print("Rebooting...")
+                output=True
             else:
                 if info is not False:
                     output=info
@@ -121,7 +123,8 @@ class HUB_REST():
 
 if __name__ == '__main__':
     db=sys.argv[1]
-    hub=HUB_REST(db,self.hubContent['IP_address'],self.hubContent['port'])
+    IP=socket.gethostbyname(socket.gethostname())
+    hub=HUB_REST(db,IP)
     conf = {
         '/': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),

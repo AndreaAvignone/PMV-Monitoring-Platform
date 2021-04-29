@@ -28,12 +28,12 @@ class RoomConfiguration(object):
             
         
     def findService(self,service):
-        r=requests.get(self.serviceCatalogAddress+'/'+service).json()
+        r=requests.get(self.serviceCatalogAddress+'/public/'+service).json()
         return self.buildAddress(r.get('IP_address'),r.get('port'),r.get('service'))
 
 
     def buildAddress(self,IP,port,service):
-        finalAddress='http://'+IP+':'+str(port)+service
+        finalAddress=IP+service
         return finalAddress
 
     def association(self):
