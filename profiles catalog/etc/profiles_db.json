@@ -103,13 +103,13 @@
                 {
                     "room_ID": "room_X2",
                     "room_name": "Meeting",
-                    "connection_flag": false,
+                    "connection_flag": true,
                     "devices": [],
-                    "connection_timestamp": 1619711971.3344269
+                    "connection_timestamp": 1619714005.831694
                 }
             ],
             "location": "Milano",
-            "last_update": "29/04/2021 17:59"
+            "last_update": "29/04/2021 18:33"
         }
     ]
 }

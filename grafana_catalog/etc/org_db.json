@@ -44,11 +44,17 @@
         },
         {
             "org_name": "MP-A00001",
-            "orgId": "47",
+            "orgId": "51",
             "key_name": "MP-A00001_key",
-            "keyId": 39,
-            "key": "eyJrIjoiRG1BYVpMeDZ6c2NydUVLWDI3emt1YXNzaFRlaW9UcEIiLCJuIjoiTVAtQTAwMDAxX2tleSIsImlkIjo0N30=",
-            "dashboards": []
+            "keyId": 43,
+            "key": "eyJrIjoiWDJrUmhNYjdvRWU2UGl1bnpMdEhPRm5vUTd3NHVialciLCJuIjoiTVAtQTAwMDAxX2tleSIsImlkIjo1MX0=",
+            "dashboards": [
+                {
+                    "room_ID": "room_X2",
+                    "uid": "MP-A00001room_X2",
+                    "title": "Meeting"
+                }
+            ]
         }
     ]
 }

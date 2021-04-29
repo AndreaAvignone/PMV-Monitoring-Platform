@@ -90,7 +90,7 @@ class ResourcesServerREST(object):
             port=requestProfiles.get('port')
             service=requestProfiles.get('service')
             platform_ID=json_body['platform_ID']
-            if(requests.get(self.buildAddress(IP,port,service)+'/checkRegistered/'+platform_ID)):
+            if(requests.get(self.buildAddress(IP,port,service)+'/checkRegistered/'+platform_ID).json()):
                 rooms=[]
                 newPlatform=self.serverCatalog.insertPlatform(platform_ID,rooms)
                 if newPlatform==True:
@@ -131,7 +131,7 @@ class ResourcesServerREST(object):
                     self.grafana_port=requestGrafana.get('port')
                     self.grafana_service=requestGrafana.get('service')
                     dash_body={"room_ID":room_ID,"dashboard_title":room_name}
-                    newDash=requests.put(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/insertDashboard/",json=dash_body)
+                    newDash=requests.put(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/insertDashboard/"+platform_ID,json=dash_body)
                     if newDash:
                         output="Platform '{}' - Room '{}' has been added to Server".format(platform_ID, room_ID)
                         saveFlag=True

@@ -251,7 +251,7 @@ class GrafanaCatalog():
 		"Content-Type":"application/json",
 		"Accept":"application/json"}
 
-		self.url="https://"+self.server_url+'/api/datasources'
+		self.url=self.server_url+'/api/datasources'
 
 		self.new_datasource_data=json.load(open('etc/myDatares.json'))
 		self.new_datasource_data["name"]=platformID
@@ -280,9 +280,9 @@ class GrafanaCatalog():
 		self.headers= {
 		"Content-Type":"application/json",
 		"Accept":"application/json"}
-		self.url="http://admin:menez30lode@"+self.server_url+"/api/admin/users"
+		self.url=self.server_url+"/api/admin/users"
 		self.body={"name":platformID, "login":platformID, "password":platformID, "OrgId":orgID}
-		r=requests.post(url=self.url, headers=self.headers, data=json.dumps(self.body), verify=False)
+		r=requests.post(url=self.url, auth=('admin','menez30lode'),headers=self.headers, data=json.dumps(self.body), verify=False)
 		#print(r.json())
 		return self.body
 		
