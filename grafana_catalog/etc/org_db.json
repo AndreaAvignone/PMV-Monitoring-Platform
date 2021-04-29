@@ -5,7 +5,8 @@
     "port": 8091,
     "organizations_list": [
         "Main Org.",
-        "MP-A00003"
+        "MP-A00003",
+        "MP-A00001"
     ],
     "organizations": [
         {
@@ -40,6 +41,14 @@
                     "title": "bagno"
                 }
             ]
+        },
+        {
+            "org_name": "MP-A00001",
+            "orgId": "47",
+            "key_name": "MP-A00001_key",
+            "keyId": 39,
+            "key": "eyJrIjoiRG1BYVpMeDZ6c2NydUVLWDI3emt1YXNzaFRlaW9UcEIiLCJuIjoiTVAtQTAwMDAxX2tleSIsImlkIjo0N30=",
+            "dashboards": []
         }
     ]
 }
