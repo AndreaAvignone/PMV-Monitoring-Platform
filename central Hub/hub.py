@@ -1,5 +1,6 @@
 import cherrypy
 import json
+import socket
 import sys
 import time
 import requests
@@ -19,10 +20,9 @@ class HUB():
     def retrieveBroker(self):
         print("Retrieving broker information...")
         try:
-            requestBroker=requests.get(self.serviceCatalogAddress+'/broker').json()
+            requestBroker=requests.get(self.serviceCatalogAddress+'public/broker').json()
             IP=requestBroker.get('IP_address')
-            port=requestBroker.get('port')
-            msg={"IP_address":IP,"port":int(port)}
+            msg={"IP_address":IP}
             self.hubContent["broker"].append(msg)
             print("Broker info obtained.")
         except:
@@ -31,9 +31,8 @@ class HUB():
     def setup(self):
         print("Connecting...")
         try:
-            requestResourcesCatalog=requests.get(self.serviceCatalogAddress+'/server_catalog').json()
+            requestResourcesCatalog=requests.get(self.serviceCatalogAddress+'/public/server_catalog').json()
             IP=requestResourcesCatalog.get('IP_address')
-            port=requestResourcesCatalog.get('port')
             service=requestResourcesCatalog.get('service')
             self.hubContent['server_catalog']=self.buildAddress(IP,port,service)
             json_body={'platform_ID':self.hub_ID,'rooms':self.rooms}
@@ -70,19 +69,18 @@ class HUB():
 
     def downloadDrivers(self,device_ID):
         try:
-            requestDriversCatalog=requests.get(self.serviceCatalogAddress+'/drivers_catalog').json()
+            requestDriversCatalog=requests.get(self.serviceCatalogAddress+'/public/drivers_catalog').json()
             IP=requestDriversCatalog.get('IP_address')
-            port=requestDriversCatalog.get('port')
             service=requestDriversCatalog.get('service')
-            drivers=requests.get(self.buildAddress(IP,port,service)+'/drivers_list/'+device_ID).json()
+            drivers=requests.get(self.buildAddress(IP,service)+'/drivers_list/'+device_ID).json()
             return drivers
         except:
             return False
 
 
 
-    def buildAddress(self,IP,port, service):
-        finalAddress='http://'+IP+':'+str(port)+service
+    def buildAddress(self,IP, service):
+        finalAddress='https://'+IP+service
         return finalAddress
 
 
@@ -90,7 +88,7 @@ class HUB_REST():
     exposed=True
     def __init__(self,db_filename, IP, port):
         self.hubCatalog=HUB(db_filename)
-        self.IP=IP
+        self.IP=socket.gethostbyname(socket.gethostname())
         self.port=port
 
     def GET(self, *uri):
@@ -108,6 +106,9 @@ class HUB_REST():
 
             elif len(uri)==1 and uri[0]=='drivers':
                 raise cherrypy.HTTPError(405,"You can't!")
+
+            elif len(uri)==1 and uri[0]=='runRoom':
+                print("Running the room script.")
             else:
                 if info is not False:
                     output=info

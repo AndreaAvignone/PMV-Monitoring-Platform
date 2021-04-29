@@ -1,11 +1,11 @@
 {
     "description": "Welcome to central HUB",
     "hub_ID": "MP-A00003",
-    "IP_address":"192.168.1.131",
+    "IP_address":"",
     "IP_port":9090,
     "inactiveTime": 80,
     "client_ID": "MP-A00003",
-    "service_catalog":"http://192.168.1.130:8080/Monitoring-Platform/services",
+    "service_catalog":"https://services-mp.eu.ngrok.io/Monitoring-Platform/services",
     "service":"/Monitoring-Platform/hub",
     "last_update": null,
     "broker": [],
