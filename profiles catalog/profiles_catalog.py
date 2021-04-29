@@ -96,7 +96,7 @@ class ProfilesCatalogREST():
             platform_ID=json_body['platform_ID']
             platform_name=json_body['platform_name']
             inactiveTime=json_body['inactive_time']
-            preferences=json_body['preferences']
+            preferences=[]
             location=json_body['location'] 
             newProfile=self.profilesCatalog.insertProfile(platform_ID,platform_name,inactiveTime,preferences,location)
             if newProfile==True:

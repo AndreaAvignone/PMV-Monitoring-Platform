@@ -8,12 +8,13 @@
     "port": 8081,
     "profiles_list": [
         "MP-A00003",
-        "MP-A00005"
+        "MP-A00001"
     ],
     "produced_list": [
         "MP-A00001",
         "MP-A00002",
         "MP-A00003",
+        "MP-A00004",
         "MP-A00005",
         "MP-A00006",
         "MP-A00007"
@@ -24,7 +25,7 @@
             "platform_ID": "MP-A00003",
             "platform_name": "Casa mia",
             "inactive_time": 1800,
-            "room_cnt": 2,
+            "room_cnt": 5,
             "preferences": [
                 {
                     "room_ID": "room_X1",
@@ -40,7 +41,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1619632653.6422606,
+                            "last_update": 1619709124.464118,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -50,7 +51,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1619632655.3245077,
+                            "last_update": 1619709107.370499,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -68,7 +69,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1619632664.4433649,
+                            "last_update": 1619709112.6845105,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -78,7 +79,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1619632652.7701623,
+                            "last_update": 1619709122.8502767,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -94,13 +95,21 @@
             "last_update": "25/04/2021 15:41"
         },
         {
-            "platform_ID": "MP-A00005",
+            "platform_ID": "MP-A00001",
             "platform_name": "Office",
-            "room_cnt": 1,
+            "room_cnt": 2,
             "inactive_time": 1800,
-            "preferences": "[]",
-            "location": "Milan",
-            "last_update": "25/04/2021 15:41"
+            "preferences": [
+                {
+                    "room_ID": "room_X2",
+                    "room_name": "Meeting",
+                    "connection_flag": false,
+                    "devices": [],
+                    "connection_timestamp": 1619711971.3344269
+                }
+            ],
+            "location": "Milano",
+            "last_update": "29/04/2021 17:59"
         }
     ]
 }

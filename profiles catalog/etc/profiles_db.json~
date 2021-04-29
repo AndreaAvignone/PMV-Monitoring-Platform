@@ -7,13 +7,13 @@
     "IP_address": "192.168.1.130",
     "port": 8081,
     "profiles_list": [
-        "MP-A00003",
-        "MP-A00005"
+        "MP-A00003"
     ],
     "produced_list": [
         "MP-A00001",
         "MP-A00002",
         "MP-A00003",
+        "MP-A00004",
         "MP-A00005",
         "MP-A00006",
         "MP-A00007"
@@ -24,12 +24,12 @@
             "platform_ID": "MP-A00003",
             "platform_name": "Casa mia",
             "inactive_time": 1800,
-            "room_cnt": 2,
+            "room_cnt": 5,
             "preferences": [
                 {
                     "room_ID": "room_X1",
-                    "room_name": "Bedroom",
-                    "connection_flag": false,
+                    "room_name": "Bagno",
+                    "connection_flag": true,
                     "devices": [],
                     "connection_timestamp": 1614682054.9977033
                 },
@@ -39,28 +39,18 @@
                     "connection_flag": true,
                     "devices": [
                         {
-                            "device_ID": "dht11",
-                            "last_update": 1619445144.2072468,
+                            "device_ID": "revC",
+                            "last_update": 1619703605.8883204,
                             "parameters": [
                                 {
-                                    "parameter": "humidity",
-                                    "unit": "%"
-                                }
-                            ]
-                        },
-                        {
-                            "device_ID": "ds18b20",
-                            "last_update": 1619445153.4906313,
-                            "parameters": [
-                                {
-                                    "parameter": "temperature",
-                                    "unit": "C"
+                                    "parameter": "wind",
+                                    "unit": "KmH"
                                 }
                             ]
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1619445175.7324378,
+                            "last_update": 1619703628.453643,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -77,29 +67,44 @@
                             ]
                         },
                         {
-                            "device_ID": "revC",
-                            "last_update": 1619445145.7984211,
+                            "device_ID": "dht11",
+                            "last_update": 1619703634.326729,
                             "parameters": [
                                 {
-                                    "parameter": "wind",
-                                    "unit": "KmH"
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1619703609.490577,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
                                 }
                             ]
                         }
                     ],
                     "connection_timestamp": 1614682176.856142
+                },
+                {
+                    "room_ID": "room_X4",
+                    "room_name": "Cucina",
+                    "connection_flag": false,
+                    "devices": [],
+                    "connection_timestamp": 1619702130.433315
+                },
+                {
+                    "room_ID": "room_X5",
+                    "room_name": "Meeting",
+                    "connection_flag": false,
+                    "devices": [],
+                    "connection_timestamp": 1619704441.386281
                 }
             ],
             "location": "Nichelino",
-            "last_update": "25/04/2021 15:41"
-        },
-        {
-            "platform_ID": "MP-A00005",
-            "platform_name": "Office",
-            "room_cnt": 1,
-            "inactive_time": 1800,
-            "preferences": "[]",
-            "location": "Milan",
             "last_update": "25/04/2021 15:41"
         }
     ]

@@ -91,21 +91,24 @@ class ResourcesServerREST(object):
             service=requestProfiles.get('service')
             platform_ID=json_body['platform_ID']
             if(requests.get(self.buildAddress(IP,port,service)+'/checkRegistered/'+platform_ID)):
-                rooms=json_body['rooms'] 
+                rooms=[]
                 newPlatform=self.serverCatalog.insertPlatform(platform_ID,rooms)
                 if newPlatform==True:
                     output="Platform '{}' has been added to Server\n".format(platform_ID)
                     self.requestInflux=requests.get(self.serviceCatalogAddress+"/influx_db").json()
                     self.influx_IP=self.requestInflux.get('IP_address')
                     self.influx_port=self.requestInflux.get('port')
+                    
                     if self.serverCatalog.createDB(self.influx_IP,self.influx_port,platform_ID):
                         output=output+"Influx database created\n"
                         requestGrafana=requests.get(self.serviceCatalogAddress+"/grafana_catalog").json()
+                        print(requestGrafana)
                         self.grafana_IP=requestGrafana.get('IP_address')
                         self.grafana_port=requestGrafana.get('port')
                         self.grafana_service=requestGrafana.get('service')
                         org_body={"platform_ID":platform_ID}
                         newOrg=requests.put(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/insertOrganization",json=org_body)
+                        print(newOrg)
                         if newOrg:
                             output=output+"Grafana organizion created"
                             saveFlag=True
@@ -128,7 +131,7 @@ class ResourcesServerREST(object):
                     self.grafana_port=requestGrafana.get('port')
                     self.grafana_service=requestGrafana.get('service')
                     dash_body={"room_ID":room_ID,"dashboard_title":room_name}
-                    newDash=requests.put(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/insertDashboard/"+platform_ID,json=dash_body)
+                    newDash=requests.put(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/insertDashboard/",json=dash_body)
                     if newDash:
                         output="Platform '{}' - Room '{}' has been added to Server".format(platform_ID, room_ID)
                         saveFlag=True

@@ -1,5 +1,6 @@
 import cherrypy
 import json
+import os
 import sys
 import requests
 import time
@@ -25,7 +26,7 @@ class Registration_deployer(object):
             return False
 
     def GET(self,*uri,**params):
-        if (len(uri))>0 and uri[0]=="reg.html":
+        if (len(uri))>0 and uri[0]=="reg":
             return open('etc/reg.html')
 
         elif (len(uri)>0 and uri[0]=="reg_results"):
@@ -54,7 +55,7 @@ class Registration_deployer(object):
             data=self.MyClientsCatalog.find(str(cherrypy.request.login)).copy()
             print(data)
             del data['password']
-            return (data)
+            return json.dumps(data)
     def PUT(self,*uri):
         body=cherrypy.request.body.read()
         json_body=json.loads(body.decode('utf-8'))
@@ -72,7 +73,7 @@ class Registration_deployer(object):
             raise cherrypy.HTTPError(501,"No operation!")
         print(output)
         result={"result":outputFlag}
-        return result
+        return json.dumps(result)
     def DELETE(self,*uri):
         command=str(uri[0])
         if command=='removePlatform':
@@ -89,13 +90,8 @@ class Registration_deployer(object):
             raise cherrypy.HTTPError(501, "No operation!")
         print(output)
         result={"result":outputFlag}
-        return result
+        return json.dumps(result)
         
-            
-                
-            
-
-            
 if __name__ == '__main__':
     clients_db=sys.argv[1]
     clientsCatalog=Registration_deployer(clients_db)
@@ -104,18 +100,18 @@ if __name__ == '__main__':
     conf = {
       'global' : {
         'server.socket_host' : clientsCatalog.clientsCatalogIP,
-        'server.socket_port' : clientsCatalog.clientsCatalogPort
+        'server.socket_port' : clientsCatalog.clientsCatalogPort,
         #'server.thread_pool' : 8
       },
       '/' : {
         # HTTP verb dispatcher
         'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
-        # JSON response
-        'tools.json_out.on' : True,
+        'tools.staticdir.root': os.path.abspath(os.getcwd()),
+        'tools.sessions.on': True,
         # Basic Auth
         'tools.auth_basic.on'      : True,
         'tools.auth_basic.realm'   : 'Francis Drake',
-        'tools.auth_basic.checkpassword' : checkpassword,
+        'tools.auth_basic.checkpassword' : checkpassword
         # Digest Auth
         #'tools.auth_digest.on'      : True,
         #'tools.auth_digest.realm'   : 'Francis Drake',

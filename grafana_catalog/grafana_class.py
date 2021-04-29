@@ -31,8 +31,8 @@ class GrafanaCatalog():
 		"Accept":"application/json"}
 		#create org
 		self.body={"name":platformID}
-		self.url="http://admin:menez30lode@"+self.server_url+"/api/orgs" #need admin authentication
-		r=requests.post(url=self.url, headers=self.headers, data=json.dumps(self.body), verify=False)
+		self.url=self.server_url+"/api/orgs" #need admin authentication
+		r=requests.post(url=self.url, auth=('admin','menez30lode@'),headers=self.headers, data=json.dumps(self.body), verify=False)
 		print(r.json())
 		#save org ID of new org
 		self.orgID=str(r.json()["orgId"])
@@ -42,13 +42,13 @@ class GrafanaCatalog():
 		r2=requests.post(url=self.url2, headers=self.headers, data=json.dumps(self.body2), verify=False)
 		#print(r2.json())
 		#swith active org
-		self.url3="http://admin:menez30lode@"+self.server_url+"/api/user/using/"+self.orgID
-		r3=requests.post(url=self.url3, verify=False)
+		self.url3=self.server_url+"/api/user/using/"+self.orgID
+		r3=requests.post(url=self.url3, auth=('admin','menez30lode@'),verify=False)
 		#print(r3.json())
 		#create api key
 		self.body4={"name":platformID+"_key", "role":"Admin"}
-		self.url4="http://admin:menez30lode@"+self.server_url+"/api/auth/keys"
-		r4=requests.post(url=self.url4, headers=self.headers, data=json.dumps(self.body4), verify=False)
+		self.url4=self.server_url+"/api/auth/keys"
+		r4=requests.post(url=self.url4, auth=('admin','menez30lode@'), headers=self.headers, data=json.dumps(self.body4), verify=False)
 		#print(r4.json())
 		#add new organization to json file
 		new_org={
