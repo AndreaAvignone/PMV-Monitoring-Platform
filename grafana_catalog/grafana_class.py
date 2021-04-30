@@ -101,6 +101,24 @@ class GrafanaCatalog():
 		else:
 			return False
 
+	def findPos(self,platform_ID):
+        notFound=1
+        for i in range(len(self.orgContent['organizations'])): 
+            if self.orgContent['organizations'][i]['org_name']==platform_ID:
+                notFound=0
+                return i
+        if notFound==1:
+            return False
+
+    def findRoomPos(self,dashboards,room_ID):
+        notFound=1
+        for i in range(len(dashboards)): 
+            if dashboards[i]['room_ID']==room_ID:
+                notFound=0
+                return i
+        if notFound==1:
+            return False
+
 
 	def createDashboard(self, platformID, roomID, dash_info):
 		for org in self.orgContent["organizations"]:
@@ -129,22 +147,23 @@ class GrafanaCatalog():
 		return self.new_dashboard_data
 
 	def deleteDashboard(self, platformID, roomID):
-		notFound=1
-		for org in self.orgContent["organizations"]:
-			if org["org_name"]==platformID:
-				self.key=org["key"]
-				for dash in org["dashboards"]:
-					if dash["room_ID"]==roomID:
-						notFound=0
-						self.headers= {
-						"Authorization": "Bearer "+self.key,
+		pos=self.findPos(platform_ID)
+        if pos is not False:
+        	key=self.orgContent['organizations'][pos]['key']
+            posRoom=self.findRoomPos(self.orgContent['organizations'][pos]['dashboards'],room_ID)
+            if posRoom is not False:
+                self.orgContent['organizations'][pos]['dashboards'].pop(posRoom)
+                headers= {
+						"Authorization": "Bearer "+key,
 						"Content-Type":"application/json",
 						"Accept":"application/json"}
-						self.url=self.server_url+"/api/dashboards/uid"+platformID+roomID
-						r=requests.delete(url=url, headers=headers, verify=False)
-						return True
-		if notFound==1:
-			return False
+				url=self.server_url+"/api/dashboards/uid"+platformID+roomID
+				r=requests.delete(url=url, headers=headers, verify=False)
+                return True
+            else:
+                return False
+        else:
+            return False
 
 	def getDashboard(self, platformID, roomID):
 		notFound=1
