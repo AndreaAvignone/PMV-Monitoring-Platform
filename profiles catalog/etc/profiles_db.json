@@ -24,7 +24,7 @@
         {
             "platform_ID": "MP-A00003",
             "platform_name": "Casa mia",
-            "inactive_time": 1800,
+            "inactive_time": 86400,
             "room_cnt": 5,
             "preferences": [
                 {
@@ -41,7 +41,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1619709124.464118,
+                            "last_update": 1619762398.5477316,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -51,7 +51,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1619709107.370499,
+                            "last_update": 1619762408.386232,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -69,7 +69,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1619709112.6845105,
+                            "last_update": 1619762389.8168533,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -79,7 +79,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1619709122.8502767,
+                            "last_update": 1619762398.4528763,
                             "parameters": [
                                 {
                                     "parameter": "temperature",

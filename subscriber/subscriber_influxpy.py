@@ -21,9 +21,12 @@ class DataCollector():
     def configuration(self):
         print("Retrieving broker information...")
         try:
-            broker=requests.get(self.hubAddress+'/public/broker').json()
-            self.broker_IP=broker.get('IP_address')
-            self.broker_port=urlparse(self.broker_IP).port
+            broker=requests.get(self.serviceCatalogAddress+'/public/broker').json()
+            broker_IP=urlparse(broker.get('IP_address'))
+            self.broker_port=broker_IP.port
+            self.broker_IP=broker_IP.netloc.replace(":"+str(self.broker_port),"")
+            
+            print(self.broker_port)
             print("Broker info obtained.")
             self.client=MyMQTT(self.clientID,self.broker_IP,self.broker_port,self)
             time.sleep(0.5)
