@@ -7,6 +7,7 @@ import datetime
 from conf.MyMQTT import *
 import sys
 from influxdb import InfluxDBClient
+from urllib.parse import urlparse
 
 class DataCollector():
     def __init__(self,configuration_filename,clientID="SubscriberClient"):
@@ -20,7 +21,9 @@ class DataCollector():
     def configuration(self):
         print("Retrieving broker information...")
         try:
-            self.broker_IP,self.broker_port,self.broker_service=self.retrieveService('broker')
+            broker=requests.get(self.hubAddress+'/public/broker').json()
+            self.broker_IP=broker.get('IP_address')
+            self.broker_port=urlparse(self.broker_IP).port
             print("Broker info obtained.")
             self.client=MyMQTT(self.clientID,self.broker_IP,self.broker_port,self)
             time.sleep(0.5)
