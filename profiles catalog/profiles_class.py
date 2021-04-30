@@ -133,7 +133,7 @@ class ProfilesCatalog():
         notFound=1
         if pos is not False:
             for pref in self.profilesContent['profiles'][pos]['preferences']:
-                if pref['connection_flag'] is False and (request_timestamp-pref['connection_timestamp'])<60:
+                if pref['connection_flag'] is False and (request_timestamp-pref['connection_timestamp'])<300:
                     pref['connection_flag']=True
                     notFound=0
                     return True,pref

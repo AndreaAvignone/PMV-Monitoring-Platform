@@ -6,8 +6,7 @@
     "organizations_list": [
         "Main Org.",
         "MP-A00003",
-        "MP-A00005",
-        "MP-00006"
+        "MP-A00001"
     ],
     "organizations": [
         {
@@ -26,11 +25,16 @@
         },
         {
             "org_name": "MP-A00003",
-            "orgId": "25",
+            "orgId": "46",
             "key_name": "MP-A00003_key",
-            "keyId": 18,
-            "key": "eyJrIjoiSXdKNDRLeHpaTWJ1Nnc0bVdTam5xOUo0WWdjOThWb3IiLCJuIjoiTVAtQTAwMDAzX2tleSIsImlkIjoyNX0=",
+            "keyId": 38,
+            "key": "eyJrIjoiQmQ2bDRUSGtQWkt4NjY3N29nbnJOVU1EelpIaE5RVWQiLCJuIjoiTVAtQTAwMDAzX2tleSIsImlkIjo0Nn0=",
             "dashboards": [
+                {
+                    "room_ID": "room_X2",
+                    "uid": "MP-A00003room_X2",
+                    "title": "Camera"
+                },
                 {
                     "room_ID": "room_X1",
                     "uid": "MP-A00003room_X1",
@@ -39,31 +43,12 @@
             ]
         },
         {
-            "org_name": "MP-A00005",
-            "orgId": "26",
-            "key_name": "MP-A00005_key",
-            "keyId": 19,
-            "key": "eyJrIjoiNHM3SDhZaWR2TU82NVhUQVJMRmFEbnZaQmkycEd3eWQiLCJuIjoiTVAtQTAwMDA1X2tleSIsImlkIjoyNn0=",
+            "org_name": "MP-A00001",
+            "orgId": "50",
+            "key_name": "MP-A00001_key",
+            "keyId": 42,
+            "key": "eyJrIjoiVnNYYjZXSXNuSE90Z2N3cDFoczAzUmdjVjlsSWQzdEEiLCJuIjoiTVAtQTAwMDAxX2tleSIsImlkIjo1MH0=",
             "dashboards": []
-        },
-        {
-            "org_name": "MP-00006",
-            "orgId": "34",
-            "key_name": "MP-00006_key",
-            "keyId": 26,
-            "key": "eyJrIjoidVdVOTRBYlB1TUFlOXV0SFhPdnR0QjRvYm82NTU2NWIiLCJuIjoiTVAtMDAwMDZfa2V5IiwiaWQiOjM0fQ==",
-            "dashboards": [
-                {
-                    "room_ID": "room_X6",
-                    "uid": "MP-00006room_X6",
-                    "title": "Cameretta"
-                },
-                {
-                    "room_ID": "room_X7",
-                    "uid": "MP-00006room_X7",
-                    "title": "Cucina"
-                }
-            ]
         }
     ]
 }

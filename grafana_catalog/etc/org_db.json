@@ -5,7 +5,8 @@
     "port": 8091,
     "organizations_list": [
         "Main Org.",
-        "MP-A00003"
+        "MP-A00003",
+        "MP-A00001"
     ],
     "organizations": [
         {
@@ -38,6 +39,20 @@
                     "room_ID": "room_X1",
                     "uid": "MP-A00003room_X1",
                     "title": "bagno"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00001",
+            "orgId": "51",
+            "key_name": "MP-A00001_key",
+            "keyId": 43,
+            "key": "eyJrIjoiWDJrUmhNYjdvRWU2UGl1bnpMdEhPRm5vUTd3NHVialciLCJuIjoiTVAtQTAwMDAxX2tleSIsImlkIjo1MX0=",
+            "dashboards": [
+                {
+                    "room_ID": "room_X2",
+                    "uid": "MP-A00001room_X2",
+                    "title": "Meeting"
                 }
             ]
         }

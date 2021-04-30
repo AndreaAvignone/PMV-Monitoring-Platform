@@ -10,12 +10,12 @@
             "rooms": [
                 {
                     "room_ID": "room_X2",
-                    "MRT": 23.1675,
+                    "MRT": 23.3624,
                     "Icl_clo": 0.5,
                     "M_met": 1.5,
                     "W_met": 0,
-                    "PMV": -1.1678,
-                    "PPD": 33.69,
+                    "PMV": -0.8298,
+                    "PPD": 19.53,
                     "devices": [
                         {
                             "device_ID": "revC",
@@ -23,12 +23,12 @@
                             "parameters": [
                                 {
                                     "parameter": "wind",
-                                    "value": 3.37,
+                                    "value": 2.05,
                                     "unit": "KmH",
-                                    "timestamp": 1619529654.4366446
+                                    "timestamp": 1619713741.9724624
                                 }
                             ],
-                            "timestamp": 1619529654.4366446
+                            "timestamp": 1619713741.9724624
                         },
                         {
                             "device_ID": "max76675",
@@ -37,9 +37,9 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
-                                    "value": 22.75,
+                                    "value": 23.0,
                                     "unit": "C",
-                                    "timestamp": 1619529653.4752753
+                                    "timestamp": 1619713755.130369
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -52,7 +52,7 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1619529653.4752753
+                            "timestamp": 1619713755.130369
                         },
                         {
                             "device_ID": "dht11",
@@ -61,12 +61,12 @@
                             "parameters": [
                                 {
                                     "parameter": "humidity",
-                                    "value": 58.0,
+                                    "value": 68.0,
                                     "unit": "%",
-                                    "timestamp": 1619529637.469971
+                                    "timestamp": 1619713754.6030393
                                 }
                             ],
-                            "timestamp": 1619529637.469971
+                            "timestamp": 1619713754.6030393
                         },
                         {
                             "device_ID": "ds18b20",
@@ -75,18 +75,32 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": 21.4375,
+                                    "value": 21.375,
                                     "unit": "C",
-                                    "timestamp": 1619529631.2507308
+                                    "timestamp": 1619713743.9705813
                                 }
                             ],
-                            "timestamp": 1619529631.2507308
+                            "timestamp": 1619713743.9705813
                         }
                     ],
-                    "last_update": "27/04/2021 15:09"
+                    "last_update": "27/04/2021/15/09"
+                },
+                {
+                    "room_ID": "room_X1",
+                    "room_name": "bagno",
+                    "MRT": null,
+                    "Icl_clo": 0,
+                    "M_met": 0,
+                    "W_met": null,
+                    "devices": []
                 }
             ],
             "creation_date": "02/03/2021 11:36"
+        },
+        {
+            "platform_ID": "MP-A00001",
+            "rooms": [],
+            "creation_date": "29/04/2021 18:28"
         }
     ]
 }

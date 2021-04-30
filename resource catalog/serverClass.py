@@ -110,6 +110,7 @@ class Server():
     def createDB(self, influx_IP,influx_port,platform_ID):
         client=InfluxDBClient(host=influx_IP,port=influx_port)
         client.create_database(platform_ID)
+        return True
 
     def insertRoom(self,platform_ID,room_ID,room):
         i=self.findPos(platform_ID)
