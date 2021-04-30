@@ -115,6 +115,8 @@ class ResourcesServerREST(object):
                         
                 else:
                     output="'{}' already exists!".format(platform_ID)
+                    platform=self.serverCatalog.retrievePlatform(platform_ID)
+                    platform['local_IP']=json_body['local_IP']
             else:
                 output="'{}' cannot be connected".format(platform_ID)
         elif command=='insertRoom':
