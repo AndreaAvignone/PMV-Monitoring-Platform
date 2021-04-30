@@ -2,6 +2,7 @@ import json
 import requests
 import time
 from conf.MyMQTT import *
+from urllib.parse import urlparse
 import sys
 
 class DataCollector():
@@ -13,9 +14,9 @@ class DataCollector():
         r=requests.get(self.hubAddress) #ping
         if r.status_code==200:
             self.hub_ID=requests.get(self.hubAddress+'/hub_ID').json()
-            broker=requests.get(self.hubAddress+'/broker').json()
-            self.broker_IP=broker[0].get('IP_address')
-            self.broker_port=broker[0].get('port')
+            broker=requests.get(self.hubAddress+'/public/broker').json()
+            self.broker_IP=broker.get('IP_address')
+            self.broker_port=urlparse(self.broker_IP).port
             self.server_catalog=requests.get(f'{self.hubAddress}/server_catalog').json()
             self.client=MyMQTT(self.hub_ID,self.broker_IP,self.broker_port,self)
             return True
