@@ -206,7 +206,7 @@ class ResourcesServerREST(object):
             else:
                 output="Platform '{}' - Room '{}': Can't change {} ".format(platform_ID, room_ID,parameter)
         elif command=="warning":
-            output="\n\n"+json.dumps(json_body)
+            output="\n\n"+uri[1]+"\n"+uri[2]+json.dumps(json_body)
         else:
             raise cherrypy.HTTPError(501, "No operation!")
         if saveFlag:
