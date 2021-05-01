@@ -1,5 +1,5 @@
 {
-  "dashboard": 
+  "dashboard":
   {
     "annotations": {
       "list": [
@@ -17,7 +17,7 @@
     "editable": false,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 38,
+    "id": null,
     "links": [],
     "panels": [
       {
@@ -119,7 +119,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "custom": {}
@@ -164,7 +164,7 @@
         "type": "row"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -284,7 +284,7 @@
         "type": "gauge"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -464,7 +464,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -644,7 +644,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -839,7 +839,7 @@
         "type": "timeseries"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1034,7 +1034,7 @@
         "type": "timeseries"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1217,7 +1217,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -1340,7 +1340,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -1463,7 +1463,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1860,7 +1860,7 @@
         "type": "timeseries"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -2039,7 +2039,7 @@
         "type": "gauge"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -2162,7 +2162,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2298,7 +2298,7 @@
           "mode": "spectrum"
         },
         "dataFormat": "timeseries",
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {},
@@ -2396,7 +2396,7 @@
         "yBucketSize": 10
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2524,6 +2524,200 @@
         "type": "stat"
       },
       {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  -0.5,
+                  0.5
+                ],
+                "type": "outside_range"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "avg"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "alerting",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "PMV is outside the optimal range",
+          "name": "PMV Alerting",
+          "noDataState": "no_data",
+          "notifications": [
+            {
+              "uid": "BTm3bBRRz"
+            }
+          ]
+        },
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "PMV"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 5,
+          "w": 10,
+          "x": 14,
+          "y": 27
+        },
+        "hiddenSeries": false,
+        "id": 83,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.3",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "5m"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "linear"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "PMV",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "queryType": "randomWalk",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "lt",
+            "value": -0.5,
+            "visible": true
+          },
+          {
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 0.5,
+            "visible": true
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "PMV Alerting",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:193",
+            "decimals": 1,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": "2",
+            "min": "-2",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:194",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
         "collapsed": false,
         "datasource": null,
         "gridPos": {
@@ -2538,7 +2732,7 @@
         "type": "row"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -2819,7 +3013,7 @@
         "type": "table"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -2935,7 +3129,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -3051,7 +3245,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -3167,7 +3361,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -3283,7 +3477,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -3399,7 +3593,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -3515,7 +3709,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -3658,7 +3852,7 @@
         "type": "gauge"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -3801,7 +3995,7 @@
         "type": "gauge"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -3956,7 +4150,7 @@
         "type": "timeseries"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -4105,7 +4299,7 @@
         "type": "gauge"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -4317,7 +4511,7 @@
           "rgb(32, 236, 5)",
           "#C4162A"
         ],
-        "datasource": "MP-A00003",
+        "datasource": "",
         "decimals": 1,
         "esMetric": "Count",
         "fieldConfig": {
@@ -4449,7 +4643,7 @@
         "valueName": "current"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -4528,7 +4722,7 @@
       },
       {
         "cacheTimeout": null,
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -4769,7 +4963,7 @@
       },
       {
         "cacheTimeout": null,
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -4882,7 +5076,7 @@
       },
       {
         "cacheTimeout": null,
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -4994,7 +5188,7 @@
         "type": "gauge"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -5076,7 +5270,7 @@
         "type": "gauge"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -5150,7 +5344,7 @@
         "type": "stat"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -5345,7 +5539,7 @@
         "type": "timeseries"
       },
       {
-        "datasource": "MP-A00003",
+        "datasource": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -5520,9 +5714,9 @@
       "nowDelay": ""
     },
     "timezone": "utc",
-    "title": "No title",
+    "title": "",
     "uid": "",
-    "version": 3
+    "version": 20
   },
   "overwrite":true
 }

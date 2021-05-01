@@ -21,8 +21,8 @@ class GrafanaCatalog():
         self.requestResult2=requests.get(self.serviceCatalogAddress+"/public"+"/grafana").json()
         self.server_url=self.requestResult2.get("IP_address")
 
-        
-        
+        self.requestResult3=requests.get(self.serviceCatalogAddress+"/public"+"/server_catalog").json()
+        self.server_warning_url=self.requestResult.get("IP_address")
 
     #platformID=org_name
     def createOrg(self, platformID):
@@ -142,6 +142,9 @@ class GrafanaCatalog():
                     if target["measurement"]!="external":
                         for tag in target["tags"]:
                             tag["value"]=roomID
+            if panel["type"]=="graph":
+                for channel in panel["alert"]["notifications"]:
+                    channel["uid"]=platformID+roomID
         r=requests.post(url=self.url, headers=self.headers, data=json.dumps(self.new_dashboard_data), verify=False)
         #print(r.json())
         return self.new_dashboard_data
@@ -252,6 +255,7 @@ class GrafanaCatalog():
         dash=self.retrieveDashInfo(platformID, roomID)
         if dash is False:
             createdDashboard=self.createDashboard(platformID, roomID, dash_info)
+            self.createNotificationChannel(platformID, roomID)
             dash_info={"room_ID":roomID, "uid":createdDashboard["dashboard"]["uid"], "title":createdDashboard["dashboard"]["title"]}
             for org in self.orgContent["organizations"]:
                 if org["org_name"]==platformID:
@@ -279,6 +283,26 @@ class GrafanaCatalog():
         r2=requests.post(url=self.url, headers=self.headers, data=json.dumps(self.new_datasource_data), verify=False)
         #print(r2.json())
 
+    def createNotificationChannel(self, platformID, roomID):
+        for org in self.orgContent["organizations"]:
+            if org["org_name"]==platformID:
+                key=org["key"]
+        headers= {
+        "Authorization": "Bearer "+key,
+        "Content-Type":"application/json",
+        "Accept":"application/json"}
+        url=self.server_url+"/api/alert-notifications"
+        body={"uid":platformID+roomID,
+        "name":platformID+roomID,
+        "type":"webhook",
+        "settings":{
+        "url":self.server_warning_url+"/"+platformID+"/"+roomID,
+        "addresses": self.server_warning_url+"/"+platformID+"/"+roomID
+        }}
+        r=requests.post(url=url, headers=headers, data=json.dumps(body))
+        print(r.json())
+
+        return True
 
     def userListCreate(self):
         self.userList=[]
