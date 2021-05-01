@@ -10,12 +10,12 @@
             "rooms": [
                 {
                     "room_ID": "room_X2",
-                    "MRT": 23.3624,
-                    "Icl_clo": 0.5,
-                    "M_met": 1.5,
+                    "MRT": 22.5138,
+                    "Icl_clo": 1,
+                    "M_met": 1.2,
                     "W_met": 0,
-                    "PMV": -0.8298,
-                    "PPD": 19.53,
+                    "PMV": -0.3554,
+                    "PPD": 7.63,
                     "devices": [
                         {
                             "device_ID": "revC",
@@ -23,12 +23,12 @@
                             "parameters": [
                                 {
                                     "parameter": "wind",
-                                    "value": 2.05,
+                                    "value": 1.64,
                                     "unit": "KmH",
-                                    "timestamp": 1619713741.9724624
+                                    "timestamp": 1619853133.2015188
                                 }
                             ],
-                            "timestamp": 1619713741.9724624
+                            "timestamp": 1619853133.2015188
                         },
                         {
                             "device_ID": "max76675",
@@ -37,9 +37,9 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
-                                    "value": 23.0,
+                                    "value": 22.25,
                                     "unit": "C",
-                                    "timestamp": 1619713755.130369
+                                    "timestamp": 1619853116.722107
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -52,7 +52,7 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1619713755.130369
+                            "timestamp": 1619853116.722107
                         },
                         {
                             "device_ID": "dht11",
@@ -63,10 +63,10 @@
                                     "parameter": "humidity",
                                     "value": 68.0,
                                     "unit": "%",
-                                    "timestamp": 1619713754.6030393
+                                    "timestamp": 1619853123.270773
                                 }
                             ],
-                            "timestamp": 1619713754.6030393
+                            "timestamp": 1619853123.270773
                         },
                         {
                             "device_ID": "ds18b20",
@@ -75,12 +75,12 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": 21.375,
+                                    "value": 20.875,
                                     "unit": "C",
-                                    "timestamp": 1619713743.9705813
+                                    "timestamp": 1619853116.779341
                                 }
                             ],
-                            "timestamp": 1619713743.9705813
+                            "timestamp": 1619853116.779341
                         }
                     ],
                     "last_update": "27/04/2021/15/09"
@@ -95,12 +95,23 @@
                     "devices": []
                 }
             ],
-            "creation_date": "02/03/2021 11:36"
+            "creation_date": "02/03/2021 11:36",
+            "local_IP": "http://192.168.1.131:9090/Monitoring-Platform/hub"
         },
         {
             "platform_ID": "MP-A00001",
-            "rooms": [],
-            "creation_date": "29/04/2021 18:28"
+            "rooms": [
+                {
+                    "room_ID": "room_X2",
+                    "room_name": "Meeting",
+                    "MRT": null,
+                    "Icl_clo": null,
+                    "M_met": null,
+                    "W_met": null,
+                    "devices": []
+                }
+            ],
+            "creation_date": "29/04/2021 18:33"
         }
     ]
 }

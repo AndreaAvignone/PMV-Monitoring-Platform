@@ -10,12 +10,12 @@
             "rooms": [
                 {
                     "room_ID": "room_X2",
-                    "MRT": 22.8074,
-                    "Icl_clo": 0.8,
-                    "M_met": 1.2,
+                    "MRT": 23.4396,
+                    "Icl_clo": 0.5,
+                    "M_met": 1.5,
                     "W_met": 0,
-                    "PMV": -0.7305,
-                    "PPD": 16.23,
+                    "PMV": -0.6866,
+                    "PPD": 14.91,
                     "devices": [
                         {
                             "device_ID": "revC",
@@ -23,12 +23,12 @@
                             "parameters": [
                                 {
                                     "parameter": "wind",
-                                    "value": 1.53,
+                                    "value": 2.19,
                                     "unit": "KmH",
-                                    "timestamp": 1619763030.7361176
+                                    "timestamp": 1619857890.0330157
                                 }
                             ],
-                            "timestamp": 1619763030.7361176
+                            "timestamp": 1619857890.0330157
                         },
                         {
                             "device_ID": "max76675",
@@ -37,9 +37,9 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
-                                    "value": 22.5,
+                                    "value": 23.25,
                                     "unit": "C",
-                                    "timestamp": 1619763015.1342013
+                                    "timestamp": 1619857906.7572398
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -52,7 +52,7 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1619763015.1342013
+                            "timestamp": 1619857906.7572398
                         },
                         {
                             "device_ID": "dht11",
@@ -61,12 +61,12 @@
                             "parameters": [
                                 {
                                     "parameter": "humidity",
-                                    "value": 71.0,
+                                    "value": 56.0,
                                     "unit": "%",
-                                    "timestamp": 1619763039.7579937
+                                    "timestamp": 1619857886.8356962
                                 }
                             ],
-                            "timestamp": 1619763039.7579937
+                            "timestamp": 1619857886.8356962
                         },
                         {
                             "device_ID": "ds18b20",
@@ -75,12 +75,12 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": 20.8125,
+                                    "value": 22.4375,
                                     "unit": "C",
-                                    "timestamp": 1619763018.3729444
+                                    "timestamp": 1619857885.3400311
                                 }
                             ],
-                            "timestamp": 1619763018.3729444
+                            "timestamp": 1619857885.3400311
                         }
                     ],
                     "last_update": "27/04/2021/15/09"
@@ -92,10 +92,13 @@
                     "Icl_clo": 0,
                     "M_met": 0,
                     "W_met": null,
+                    "PMV": null,
+                    "PPD": null,
                     "devices": []
                 }
             ],
-            "creation_date": "02/03/2021 11:36"
+            "creation_date": "02/03/2021 11:36",
+            "local_IP": "http://192.168.1.131:9090/Monitoring-Platform/hub"
         },
         {
             "platform_ID": "MP-A00001",
@@ -107,6 +110,8 @@
                     "Icl_clo": null,
                     "M_met": null,
                     "W_met": null,
+                    "PMV": null,
+                    "PPD": null,
                     "devices": []
                 }
             ],

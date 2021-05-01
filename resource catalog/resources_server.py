@@ -123,6 +123,8 @@ class ResourcesServerREST(object):
             platform_ID=uri[1]
             room_ID=json_body['room_ID']
             room_name=json_body['room_name']
+            json_body['PMV']=None,
+            json_body['PPD']=None,
             platformFlag,newRoom=self.serverCatalog.insertRoom(platform_ID,room_ID,json_body)
             if platformFlag is False:
                 raise cherrypy.HTTPError(404,"Platform Not found")
@@ -203,6 +205,8 @@ class ResourcesServerREST(object):
                 saveFlag=True
             else:
                 output="Platform '{}' - Room '{}': Can't change {} ".format(platform_ID, room_ID,parameter)
+        elif command=="warning":
+            output="\n\n"+json.dumps(json_body)
         else:
             raise cherrypy.HTTPError(501, "No operation!")
         if saveFlag:
