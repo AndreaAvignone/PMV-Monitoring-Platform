@@ -4,6 +4,7 @@ import requests
 import time
 import sys
 from serverClass import *
+from conf.simplePublisher import *
 
 class ResourcesServerREST(object):
     exposed=True
@@ -206,22 +207,22 @@ class ResourcesServerREST(object):
             else:
                 output="Platform '{}' - Room '{}': Can't change {} ".format(platform_ID, room_ID,parameter)
         elif command=="warning":
-<<<<<<< HEAD
-            output="\n\n"+uri[1]+"\n"+uri[2]+json.dumps(json_body)
-=======
             platform_ID=uri[1]
             room_ID=str(uri[2])
+            requestProfiles=requests.get(server.serviceCatalogAddress+"/profiles_catalog").json()
+            profilesURL=self.buildAddress(requestProfiles.get('IP_address'),requestProfiles.get('port'),requestProfiles.get('service'))
+            
             request=requests.get(server.serviceCatalogAddress+"/broker").json()
             IP=request.get('IP_address')
             port=request.get('port')
             publisher=MyPublisher("server","warning/"+platform_ID+"/"+room_ID,IP,port)
             publisher.start()
             json_body["platform_ID"]=platform_ID
-            json_body["room_ID"]=room_ID
-            publisher.myPublish(json_body)
+            json_body["room_name"]=requests.get(profilesURL+'/'+platform_ID+"/preferences/"+room_ID).json().get('room_name')
+            publisher.myPublish(json.dumps(json_body))
             output="platform_ID\nroom_ID\n"+json.dumps(json_body)
+            publisher.stop()
 
->>>>>>> aef49e3f47e50e7fe4bf3f104f15b90fb520eb69
         else:
             raise cherrypy.HTTPError(501, "No operation!")
         if saveFlag:

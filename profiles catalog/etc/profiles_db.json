@@ -25,6 +25,7 @@
             "platform_ID": "MP-A00003",
             "platform_name": "Casa mia",
             "inactive_time": 86400,
+            "warning": true,
             "room_cnt": 5,
             "preferences": [
                 {
@@ -41,7 +42,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1619762398.5477316,
+                            "last_update": 1619910892.7141008,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -51,7 +52,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1619762408.386232,
+                            "last_update": 1619910874.3962774,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -69,7 +70,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1619762389.8168533,
+                            "last_update": 1619910887.53951,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -79,7 +80,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1619762398.4528763,
+                            "last_update": 1619910898.0496538,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -97,6 +98,7 @@
         {
             "platform_ID": "MP-A00001",
             "platform_name": "Office",
+            "warning": true,
             "room_cnt": 2,
             "inactive_time": 1800,
             "preferences": [

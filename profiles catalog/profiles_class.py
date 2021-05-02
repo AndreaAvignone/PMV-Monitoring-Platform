@@ -10,10 +10,11 @@ class NewProfile():
         self.preferences=preferences
         self.location=location
         self.lastUpdate=lastUpdate
+        self.warning="no"
         self.room_cnt=1
         
     def jsonify(self):
-        profile={'platform_ID':self.platform_ID,'platform_name':self.platform_name,'room_cnt':self.room_cnt,'inactive_time':self.inactiveTime,'preferences':self.preferences,'location':self.location,'last_update':self.lastUpdate}
+        profile={'platform_ID':self.platform_ID,'platform_name':self.platform_name,'warning':self.warning,'room_cnt':self.room_cnt,'inactive_time':self.inactiveTime,'preferences':self.preferences,'location':self.location,'last_update':self.lastUpdate}
         return profile
 
 class ProfilesCatalog():
