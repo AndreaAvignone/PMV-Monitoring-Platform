@@ -24,7 +24,7 @@
         {
             "platform_ID": "MP-A00003",
             "platform_name": "Casa mia",
-            "inactive_time": 86400,
+            "inactive_time": "86400",
             "warning": true,
             "room_cnt": 5,
             "preferences": [
@@ -42,7 +42,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1619910892.7141008,
+                            "last_update": 1620075332.0931067,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -52,7 +52,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1619910874.3962774,
+                            "last_update": 1620075328.8579583,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -70,7 +70,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1619910887.53951,
+                            "last_update": 1620075337.8322766,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -80,7 +80,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1619910898.0496538,
+                            "last_update": 1620075331.4944165,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -100,7 +100,7 @@
             "platform_name": "Office",
             "warning": true,
             "room_cnt": 2,
-            "inactive_time": 1800,
+            "inactive_time": "1800",
             "preferences": [
                 {
                     "room_ID": "room_X2",

@@ -6,7 +6,9 @@
     "organizations_list": [
         "Main Org.",
         "MP-A00003",
-        "MP-A00001"
+        "MP-A00001",
+        "MP-A00007",
+        "MP-A00002"
     ],
     "organizations": [
         {
@@ -53,6 +55,34 @@
                     "room_ID": "room_X2",
                     "uid": "MP-A00001room_X2",
                     "title": "Meeting"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00007",
+            "orgId": "52",
+            "key_name": "MP-A00007_key",
+            "keyId": 44,
+            "key": "eyJrIjoiY3k2YkprT3dHYk13Zmk0VVdIblVlUEFqWDE3UGpLNzgiLCJuIjoiTVAtQTAwMDA3X2tleSIsImlkIjo1Mn0=",
+            "dashboards": [
+                {
+                    "room_ID": "room_X2",
+                    "uid": "MP-A00007room_X2",
+                    "title": "Stanza"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00002",
+            "orgId": "53",
+            "key_name": "MP-A00002_key",
+            "keyId": 45,
+            "key": "eyJrIjoiN2NLMmZJUW9GSVM1MnJGaEhWM0JIRVRORUk5NjQxaU0iLCJuIjoiTVAtQTAwMDAyX2tleSIsImlkIjo1M30=",
+            "dashboards": [
+                {
+                    "room_ID": "room_X2",
+                    "uid": "MP-A00002room_X2",
+                    "title": "Laboratorio"
                 }
             ]
         }

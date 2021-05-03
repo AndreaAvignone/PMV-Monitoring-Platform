@@ -44,7 +44,7 @@ class ClientsCatalog():
         
 
     def save(self):
-        #self.createDict()
+        self.createDict()
         with open(self.db_filename,'w') as file:
             json.dump(self.clientsContent,file, indent=4)
 

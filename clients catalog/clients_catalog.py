@@ -15,6 +15,7 @@ class Registration_deployer(object):
         self.clientsCatalogIP=self.MyClientsCatalog.clientsContent['IP_address']
         self.clientsCatalogPort=self.MyClientsCatalog.clientsContent['port']
         self.service=self.registerRequest()
+        self.flagNew=False
 
     def registerRequest(self):
         msg={"service":"clients_catalog","IP_address":self.clientsCatalogIP,"port":self.clientsCatalogPort}
@@ -30,28 +31,24 @@ class Registration_deployer(object):
             return open('etc/reg.html')
 
         elif (len(uri)>0 and uri[0]=="reg_results"):
-            users=json.load(open(self.db_filename))
-            for user in users.get("users_list"):
+            for user in self.MyClientsCatalog.clientsContent.get("users_list"):
                 if user['user_ID']==params['userID']:
                     return open("etc/fail_reg_user.html") 
             if params['psw']!=params['psw-repeat']:
                 return open("etc/fail_reg_pass.html") 
 
             else:
-                users["users_list"].append({
+                self.MyClientsCatalog.clientsContent["users_list"].append({
                     "user_ID":params['userID'],
                     "catalog_list":[],
                     "password":params['psw']
                     })
-                for i in range(len(users["users_list"])):
-                    if users["users_list"][i]['user_ID']==params['userID']:
-                        users["users_list"][i]['catalog_list'].append({'catalog_ID':params['catalogID'],'connection_flag':False})
-
-
                 self.MyClientsCatalog.save()
+                self.checkpassword = cherrypy.lib.auth_basic.checkpassword_dict(self.MyClientsCatalog.userpassdict)
+                self.flagNew=True
                 return open("etc/correct_reg.html")
         elif(len(uri))>0 and uri[0]=="login":
-            
+        
             data=self.MyClientsCatalog.find(str(cherrypy.request.login)).copy()
             print(data)
             del data['password']
@@ -96,7 +93,7 @@ if __name__ == '__main__':
     clients_db=sys.argv[1]
     clientsCatalog=Registration_deployer(clients_db)
     get_ha1 = cherrypy.lib.auth_digest.get_ha1_dict_plain(clientsCatalog.MyClientsCatalog.userpassdict)
-    checkpassword = cherrypy.lib.auth_basic.checkpassword_dict(clientsCatalog.MyClientsCatalog.userpassdict)
+    clientsCatalog.checkpassword = cherrypy.lib.auth_basic.checkpassword_dict(clientsCatalog.MyClientsCatalog.userpassdict)
     conf = {
       'global' : {
         'server.socket_host' : clientsCatalog.clientsCatalogIP,
@@ -111,7 +108,7 @@ if __name__ == '__main__':
         # Basic Auth
         'tools.auth_basic.on'      : True,
         'tools.auth_basic.realm'   : 'Francis Drake',
-        'tools.auth_basic.checkpassword' : checkpassword
+        'tools.auth_basic.checkpassword' : clientsCatalog.checkpassword
         # Digest Auth
         #'tools.auth_digest.on'      : True,
         #'tools.auth_digest.realm'   : 'Francis Drake',
@@ -125,5 +122,38 @@ if __name__ == '__main__':
     cherrypy.config.update({'server.socket_port':clientsCatalog.clientsCatalogPort})
     cherrypy.engine.start()
     while True:
+        if clientsCatalog.flagNew:
+            clientsCatalog.flagNew=False
+            cherrypy.engine.stop()
+            cherrypy.server.httpserver=None
+            clientsCatalog.MyClientsCatalog.createDict()
+            conf = {
+              'global' : {
+                'server.socket_host' : clientsCatalog.clientsCatalogIP,
+                'server.socket_port' : clientsCatalog.clientsCatalogPort,
+                #'server.thread_pool' : 8
+              },
+              '/' : {
+                # HTTP verb dispatcher
+                'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
+                'tools.staticdir.root': os.path.abspath(os.getcwd()),
+                'tools.sessions.on': True,
+                # Basic Auth
+                'tools.auth_basic.on'      : True,
+                'tools.auth_basic.realm'   : 'Francis Drake',
+                'tools.auth_basic.checkpassword' : clientsCatalog.checkpassword
+                # Digest Auth
+                #'tools.auth_digest.on'      : True,
+                #'tools.auth_digest.realm'   : 'Francis Drake',
+                #'tools.auth_digest.get_ha1' : get_ha1,
+                #'tools.auth_digest.key'     : 'f565c27146793cfb',
+              }
+            }
+            
+            cherrypy.tree.mount(clientsCatalog, clientsCatalog.service, conf)
+            cherrypy.config.update({'server.socket_host':clientsCatalog.clientsCatalogIP})
+            cherrypy.config.update({'server.socket_port':clientsCatalog.clientsCatalogPort})
+            cherrypy.engine.start()
         time.sleep(1)
+        
     cherrypy.engine.block()

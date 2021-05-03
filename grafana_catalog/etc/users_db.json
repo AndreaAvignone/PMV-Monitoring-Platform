@@ -3,7 +3,9 @@
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
     "users_list": [
         "MP-A00003",
-        "MP-A00001"
+        "MP-A00001",
+        "MP-A00007",
+        "MP-A00002"
     ],
     "users": [
         {
@@ -17,6 +19,18 @@
             "login": "MP-A00001",
             "password": "MP-A00001",
             "OrgId": 51
+        },
+        {
+            "name": "MP-A00007",
+            "login": "MP-A00007",
+            "password": "MP-A00007",
+            "OrgId": 52
+        },
+        {
+            "name": "MP-A00002",
+            "login": "MP-A00002",
+            "password": "MP-A00002",
+            "OrgId": 53
         }
     ]
 }
