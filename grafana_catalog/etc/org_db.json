@@ -7,8 +7,7 @@
         "Main Org.",
         "MP-A00003",
         "MP-A00001",
-        "MP-A00007",
-        "MP-A00002"
+        "MP-A00007"
     ],
     "organizations": [
         {
@@ -69,25 +68,6 @@
                     "room_ID": "room_X2",
                     "uid": "MP-A00007room_X2",
                     "title": "Stanza"
-                }
-            ]
-        },
-        {
-            "org_name": "MP-A00002",
-            "orgId": "53",
-            "key_name": "MP-A00002_key",
-            "keyId": 45,
-            "key": "eyJrIjoiN2NLMmZJUW9GSVM1MnJGaEhWM0JIRVRORUk5NjQxaU0iLCJuIjoiTVAtQTAwMDAyX2tleSIsImlkIjo1M30=",
-            "dashboards": [
-                {
-                    "room_ID": "room_X2",
-                    "uid": "MP-A00002room_X2",
-                    "title": "Laboratorio"
-                },
-                {
-                    "room_ID": "room_X1",
-                    "uid": "MP-A00002room_X1",
-                    "title": "Lab"
                 }
             ]
         }
