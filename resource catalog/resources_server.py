@@ -169,6 +169,15 @@ class ResourcesServerREST(object):
             try:
                 newValue=self.serverCatalog.insertDeviceValue(platform_ID, room_ID, device_ID,json_body)
                 output="Platform '{}' - Room '{}' - Device '{}': parameters updated".format(platform_ID, room_ID, device_ID)
+                request=requests.get(server.serviceCatalogAddress+"/broker").json()
+                IP=request.get('IP_address')
+                port=request.get('port')
+                publisher=MyPublisher("server",platform_ID+"/"+room_ID,IP,port)
+                publisher.start()
+                msg={"parameter":"pmv","value":self.serverCatalog.retrieveRoomInfo(platform_ID,room_ID).get("PMV"),"unit":"","timestamp":json_body['timestamp']}
+                publisher.myPublish(json.dumps(msg))
+                time.sleep(0.4)
+                publisher.stop()
                 
                 for index in self.serverCatalog.comfort_values:
                     p=self.serverCatalog.findParameter(platform_ID,room_ID,index)
