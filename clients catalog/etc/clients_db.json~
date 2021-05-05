@@ -26,21 +26,6 @@
             "user_ID": "Tom",
             "catalog_list": [],
             "password": "tom"
-        },
-        {
-            "user_ID": "Ciao",
-            "catalog_list": [],
-            "password": "ciao"
-        },
-        {
-            "user_ID": "Prova",
-            "catalog_list": [],
-            "password": "pro"
-        },
-        {
-            "user_ID": "A",
-            "catalog_list": [],
-            "password": "a"
         }
     ]
 }
