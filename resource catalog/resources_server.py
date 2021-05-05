@@ -212,6 +212,15 @@ class ResourcesServerREST(object):
                 output="Platform '{}' - Room '{}': {} is now {}".format(platform_ID, room_ID, parameter,parameter_value)
                 self.serverCatalog.compute_PMV(platform_ID,room_ID)
                 self.serverCatalog.compute_PPD(platform_ID,room_ID)
+                request=requests.get(server.serviceCatalogAddress+"/broker").json()
+                IP=request.get('IP_address')
+                port=request.get('port')
+                publisher=MyPublisher("server",platform_ID+"/"+room_ID,IP,port)
+                publisher.start()
+                msg={"parameter":"pmv","value":self.serverCatalog.retrieveRoomInfo(platform_ID,room_ID).get("PMV"),"unit":"","timestamp":json_body['timestamp']}
+                publisher.myPublish(json.dumps(msg))
+                time.sleep(0.4)
+                publisher.stop()
                 saveFlag=True
             else:
                 output="Platform '{}' - Room '{}': Can't change {} ".format(platform_ID, room_ID,parameter)
