@@ -79,16 +79,6 @@
             "keyId": 45,
             "key": "eyJrIjoiN2NLMmZJUW9GSVM1MnJGaEhWM0JIRVRORUk5NjQxaU0iLCJuIjoiTVAtQTAwMDAyX2tleSIsImlkIjo1M30=",
             "dashboards": [
-                {
-                    "room_ID": "room_X2",
-                    "uid": "MP-A00002room_X2",
-                    "title": "Laboratorio"
-                },
-                {
-                    "room_ID": "room_X1",
-                    "uid": "MP-A00002room_X1",
-                    "title": "Lab"
-                }
             ]
         }
     ]
