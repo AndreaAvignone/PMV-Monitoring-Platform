@@ -172,6 +172,7 @@
               "mode": "thresholds"
             },
             "custom": {},
+            "decimals": 1,
             "displayName": "PMV",
             "mappings": [],
             "max": 2,
