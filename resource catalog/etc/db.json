@@ -10,12 +10,12 @@
             "rooms": [
                 {
                     "room_ID": "room_X2",
-                    "MRT": 23.6067,
+                    "MRT": 23.6004,
                     "Icl_clo": 0.8,
                     "M_met": 1.2,
                     "W_met": 0,
-                    "PMV": -0.1234,
-                    "PPD": 5.32,
+                    "PMV": -0.1142,
+                    "PPD": 5.27,
                     "devices": [
                         {
                             "device_ID": "revC",
@@ -25,10 +25,10 @@
                                     "parameter": "wind",
                                     "value": 0.67,
                                     "unit": "KmH",
-                                    "timestamp": 1620210978.3387008
+                                    "timestamp": 1620211008.375756
                                 }
                             ],
-                            "timestamp": 1620210978.3387008
+                            "timestamp": 1620211008.375756
                         },
                         {
                             "device_ID": "max76675",
@@ -39,7 +39,7 @@
                                     "parameter": "temperature_g",
                                     "value": 23.5,
                                     "unit": "C",
-                                    "timestamp": 1620210977.3731673
+                                    "timestamp": 1620211007.4118595
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -52,7 +52,7 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1620210977.3731673
+                            "timestamp": 1620211007.4118595
                         },
                         {
                             "device_ID": "dht11",
@@ -63,10 +63,10 @@
                                     "parameter": "humidity",
                                     "value": 55.0,
                                     "unit": "%",
-                                    "timestamp": 1620210986.645164
+                                    "timestamp": 1620211017.2025943
                                 }
                             ],
-                            "timestamp": 1620210986.645164
+                            "timestamp": 1620211017.2025943
                         },
                         {
                             "device_ID": "ds18b20",
@@ -75,12 +75,12 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": 22.4375,
+                                    "value": 22.5,
                                     "unit": "C",
-                                    "timestamp": 1620210976.9312286
+                                    "timestamp": 1620211007.8112369
                                 }
                             ],
-                            "timestamp": 1620210976.9312286
+                            "timestamp": 1620211007.8112369
                         }
                     ],
                     "last_update": "27/04/2021/15/09"
