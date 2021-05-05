@@ -25,7 +25,7 @@ class GrafanaCatalog():
         self.server_warningIP=self.requestResult3.get("IP_address")
         self.server_warningPort=self.requestResult3.get("port")
         self.server_warningService=self.requestResult3.get("service")
-        self.server_warning_url=self.server_warningIP+self.server_warningService
+        self.server_warning_url=self.server_warningIP+self.server_warningService+"/warning"
 
     #platformID=org_name
     def createOrg(self, platformID):

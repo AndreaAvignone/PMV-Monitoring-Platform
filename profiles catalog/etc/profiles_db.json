@@ -9,16 +9,21 @@
     "profiles_list": [
         "MP-A00003",
         "MP-A00001",
-        "MP-A00002"
+        "MP-A00000",
+        "MP-A00010"
     ],
     "produced_list": [
         "MP-A00001",
+        "MP-A00000",
         "MP-A00002",
         "MP-A00003",
         "MP-A00004",
         "MP-A00005",
         "MP-A00006",
-        "MP-A00007"
+        "MP-A00007",
+        "MP-A00008",
+        "MP-A00009",
+        "MP-A00010"
     ],
     "last_creation": 1607607430.684861,
     "profiles": [
@@ -115,22 +120,40 @@
             "last_update": "29/04/2021 18:33"
         },
         {
-            "platform_ID": "MP-A00002",
-            "platform_name": "Kit",
-            "warning": "no",
-            "room_cnt": 1,
-            "inactive_time": 1800,
+            "platform_ID": "MP-A00000",
+            "platform_name": "Villa",
+            "warning": true,
+            "room_cnt": 2,
+            "inactive_time": "1800",
             "preferences": [
                 {
-                    "room_ID": "room_X1",
-                    "room_name": "Lab",
+                    "room_ID": "room_X2",
+                    "room_name": "Sala",
                     "connection_flag": true,
                     "devices": [],
-                    "connection_timestamp": 1620233573.1379955
+                    "connection_timestamp": 1620238591.480695
                 }
             ],
             "location": "Nichelino",
-            "last_update": "05/05/2021 18:52"
+            "last_update": "05/05/2021 20:04"
+        },
+        {
+            "platform_ID": "MP-A00010",
+            "platform_name": "Home",
+            "warning": true,
+            "room_cnt": 1,
+            "inactive_time": "1800",
+            "preferences": [
+                {
+                    "room_ID": "room_X1",
+                    "room_name": "Living",
+                    "connection_flag": true,
+                    "devices": [],
+                    "connection_timestamp": 1620239848.598451
+                }
+            ],
+            "location": "Nichelino",
+            "last_update": "05/05/2021 20:37"
         }
     ]
 }

@@ -8,24 +8,29 @@
     "port": 8081,
     "profiles_list": [
         "MP-A00003",
-        "MP-A00001"
+        "MP-A00001",
+        "MP-A00000"
     ],
     "produced_list": [
         "MP-A00001",
+        "MP-A00000",
         "MP-A00002",
         "MP-A00003",
         "MP-A00004",
         "MP-A00005",
         "MP-A00006",
-        "MP-A00007"
+        "MP-A00007",
+        "MP-A00008",
+        "MP-A00009",
+        "MP.A00010"
     ],
     "last_creation": 1607607430.684861,
     "profiles": [
         {
             "platform_ID": "MP-A00003",
             "platform_name": "Casa mia",
-            "inactive_time": 86400,
-            "warning": "false",
+            "inactive_time": "86400",
+            "warning": true,
             "room_cnt": 5,
             "preferences": [
                 {
@@ -42,7 +47,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1619762398.5477316,
+                            "last_update": 1620229537.5932713,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -52,7 +57,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1619762408.386232,
+                            "last_update": 1620229557.5216718,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -70,7 +75,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1619762389.8168533,
+                            "last_update": 1620229561.161687,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -80,7 +85,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1619762398.4528763,
+                            "last_update": 1620229555.3313708,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -100,7 +105,7 @@
             "platform_name": "Office",
             "warning": true,
             "room_cnt": 2,
-            "inactive_time": 1800,
+            "inactive_time": "1800",
             "preferences": [
                 {
                     "room_ID": "room_X2",
@@ -112,6 +117,24 @@
             ],
             "location": "Milano",
             "last_update": "29/04/2021 18:33"
+        },
+        {
+            "platform_ID": "MP-A00000",
+            "platform_name": "Villa",
+            "warning": true,
+            "room_cnt": 2,
+            "inactive_time": "1800",
+            "preferences": [
+                {
+                    "room_ID": "room_X2",
+                    "room_name": "Sala",
+                    "connection_flag": true,
+                    "devices": [],
+                    "connection_timestamp": 1620238591.480695
+                }
+            ],
+            "location": "Nichelino",
+            "last_update": "05/05/2021 20:04"
         }
     ]
 }

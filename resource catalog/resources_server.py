@@ -139,15 +139,18 @@ class ResourcesServerREST(object):
                     newDash=requests.put(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/insertDashboard/"+platform_ID,json=dash_body)
                     if newDash:
                         output="Platform '{}' - Room '{}' has been added to Server".format(platform_ID, room_ID)
-                        request=requests.get(server.serviceCatalogAddress+"/broker").json()
-                        IP=request.get('IP_address')
-                        port=request.get('port')
-                        publisher=MyPublisher("server_r","warning/"+platform_ID+"/"+room_ID,IP,port)
-                        publisher.start()
-                        msg={"platform_ID":platform_ID,"room_name":room_name,"message":"Room associated!"}
-                        publisher.myPublish(json.dumps(msg))
-                        time.sleep(0.4)
-                        publisher.stop()
+                        try:
+                            request=requests.get(server.serviceCatalogAddress+"/broker").json()
+                            IP=request.get('IP_address')
+                            port=request.get('port')
+                            publisher=MyPublisher("server_r","warning/"+platform_ID+"/"+room_ID,IP,port)
+                            publisher.start()
+                            msg={"platform_ID":platform_ID,"room_name":room_name,"message":"Room associated!"}
+                            publisher.myPublish(json.dumps(msg))
+                            time.sleep(0.4)
+                            publisher.stop()
+                        except:
+                            pass
 
                         saveFlag=True
                     else:

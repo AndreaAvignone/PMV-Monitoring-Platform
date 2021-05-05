@@ -7,7 +7,10 @@
         "Main Org.",
         "MP-A00003",
         "MP-A00001",
-        "MP-A00007"
+        "MP-A00007",
+        "MP-A00009",
+        "MP-A00000",
+        "MP-A00010"
     ],
     "organizations": [
         {
@@ -68,6 +71,48 @@
                     "room_ID": "room_X2",
                     "uid": "MP-A00007room_X2",
                     "title": "Stanza"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00009",
+            "orgId": "54",
+            "key_name": "MP-A00009_key",
+            "keyId": 46,
+            "key": "eyJrIjoiUjVwZ0lBM1V2ZFBYcGg5TFB4VEFZclJQWVJqVGkxUDIiLCJuIjoiTVAtQTAwMDA5X2tleSIsImlkIjo1NH0=",
+            "dashboards": [
+                {
+                    "room_ID": "room_X1",
+                    "uid": "MP-A00009room_X1",
+                    "title": "Laboratorio"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00000",
+            "orgId": "55",
+            "key_name": "MP-A00000_key",
+            "keyId": 47,
+            "key": "eyJrIjoiSFhDV2c2ejJCMGdyRzZtVWJWbEQwSmVlWWtoTDA2M1AiLCJuIjoiTVAtQTAwMDAwX2tleSIsImlkIjo1NX0=",
+            "dashboards": [
+                {
+                    "room_ID": "room_X2",
+                    "uid": "MP-A00000room_X2",
+                    "title": "Sala"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00010",
+            "orgId": "56",
+            "key_name": "MP-A00010_key",
+            "keyId": 48,
+            "key": "eyJrIjoicWpPd24zRExMcWNLQ3NiQ0Q2NEJBVFpSZnp6YUJPNzciLCJuIjoiTVAtQTAwMDEwX2tleSIsImlkIjo1Nn0=",
+            "dashboards": [
+                {
+                    "room_ID": "room_X1",
+                    "uid": "MP-A00010room_X1",
+                    "title": "Living"
                 }
             ]
         }
