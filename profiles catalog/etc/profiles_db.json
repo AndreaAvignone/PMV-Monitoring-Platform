@@ -42,7 +42,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1620075332.0931067,
+                            "last_update": 1620078063.0161858,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -52,7 +52,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1620075328.8579583,
+                            "last_update": 1620078055.1437356,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -70,7 +70,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1620075337.8322766,
+                            "last_update": 1620078046.5017014,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -80,7 +80,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1620075331.4944165,
+                            "last_update": 1620078073.0143168,
                             "parameters": [
                                 {
                                     "parameter": "temperature",

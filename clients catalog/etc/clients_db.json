@@ -21,6 +21,16 @@
             "user_ID": "Ana",
             "catalog_list": [],
             "password": "try"
+        },
+        {
+            "user_ID": "Prova",
+            "catalog_list": [],
+            "password": "prova"
+        },
+        {
+            "user_ID": "Tom",
+            "catalog_list": [],
+            "password": "tom"
         }
     ]
 }
