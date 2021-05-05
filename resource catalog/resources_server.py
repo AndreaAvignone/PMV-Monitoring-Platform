@@ -142,7 +142,7 @@ class ResourcesServerREST(object):
                         request=requests.get(server.serviceCatalogAddress+"/broker").json()
                         IP=request.get('IP_address')
                         port=request.get('port')
-                        publisher=MyPublisher("server_r",platform_ID+"/"+room_ID,IP,port)
+                        publisher=MyPublisher("server_r","warning/"+platform_ID+"/"+room_ID,IP,port)
                         publisher.start()
                         msg={"platform_ID":platform_ID,"room_name":room_name,"message":"Room associated!"}
                         publisher.myPublish(json.dumps(msg))
