@@ -71,15 +71,6 @@
                     "title": "Stanza"
                 }
             ]
-        },
-        {
-            "org_name": "MP-A00002",
-            "orgId": "53",
-            "key_name": "MP-A00002_key",
-            "keyId": 45,
-            "key": "eyJrIjoiN2NLMmZJUW9GSVM1MnJGaEhWM0JIRVRORUk5NjQxaU0iLCJuIjoiTVAtQTAwMDAyX2tleSIsImlkIjo1M30=",
-            "dashboards": [
-            ]
         }
     ]
 }
