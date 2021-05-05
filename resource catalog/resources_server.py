@@ -172,7 +172,7 @@ class ResourcesServerREST(object):
                 request=requests.get(server.serviceCatalogAddress+"/broker").json()
                 IP=request.get('IP_address')
                 port=request.get('port')
-                publisher=MyPublisher("server",platform_ID+"/"+room_ID,IP,port)
+                publisher=MyPublisher("server_v",platform_ID+"/"+room_ID,IP,port)
                 publisher.start()
                 msg={"parameter":"pmv","value":self.serverCatalog.retrieveRoomInfo(platform_ID,room_ID).get("PMV"),"unit":"","timestamp":json_body['timestamp']}
                 publisher.myPublish(json.dumps(msg))
@@ -215,9 +215,9 @@ class ResourcesServerREST(object):
                 request=requests.get(server.serviceCatalogAddress+"/broker").json()
                 IP=request.get('IP_address')
                 port=request.get('port')
-                publisher=MyPublisher("server",platform_ID+"/"+room_ID,IP,port)
+                publisher=MyPublisher("server_p",platform_ID+"/"+room_ID,IP,port)
                 publisher.start()
-                msg={"parameter":"pmv","value":self.serverCatalog.retrieveRoomInfo(platform_ID,room_ID).get("PMV"),"unit":"","timestamp":json_body['timestamp']}
+                msg={"parameter":"pmv","value":self.serverCatalog.retrieveRoomInfo(platform_ID,room_ID).get("PMV"),"unit":"","timestamp":time.time()}
                 publisher.myPublish(json.dumps(msg))
                 time.sleep(0.4)
                 publisher.stop()
