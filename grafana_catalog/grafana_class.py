@@ -22,7 +22,10 @@ class GrafanaCatalog():
         self.server_url=self.requestResult2.get("IP_address")
 
         self.requestResult3=requests.get(self.serviceCatalogAddress+"/public"+"/server_catalog").json()
-        self.server_warning_url=self.requestResult.get("IP_address")
+        self.server_warningIP=self.requestResult3.get("IP_address")
+        self.server_warningPort=self.requestResult3.get("port")
+        self.server_warningService=self.requestResult3.get("service")
+        self.server_warning_url="http://"+self.server_warningIP+':'+str(self.server_warningPort)+self.server_warningService
 
     #platformID=org_name
     def createOrg(self, platformID):
