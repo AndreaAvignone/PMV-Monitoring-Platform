@@ -1,11 +1,13 @@
 {
     "description":"Welcome to the drivers database",
+    "IP_address":"192.168.1.130",
+    "port":8084,
     "service_catalog":"http://192.168.1.130:8080/Monitoring-Platform/services",
     "drivers_list": [
         {
             "device_ID": "dht11",
             "end_points": "MQTT/REST",
-            "time_sleep":5,
+            "time_sleep":30,
             "parameters": [{
                 "parameter": "humidity",
                 "value": null,
@@ -16,7 +18,7 @@
         {
             "device_ID": "revC",
             "end_points": "MQTT/REST",
-            "time_sleep":5,
+            "time_sleep":30,
             "parameters": [{
                 "parameter": "wind",
                 "value": null,
@@ -27,7 +29,7 @@
         {
             "device_ID": "max76675",
             "end_points": "MQTT/REST",
-            "time_sleep":5,
+            "time_sleep":30,
             "parameters": [{
                 "parameter": "temperature_g",
                 "value": null,
@@ -49,7 +51,7 @@
         {
             "device_ID": "ds18b20",
             "end_points": "MQTT/REST",
-            "time_sleep":5,
+            "time_sleep":30,
             "parameters": [{
                 "parameter": "temperature",
                 "value": null,

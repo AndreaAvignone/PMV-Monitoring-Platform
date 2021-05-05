@@ -31,6 +31,11 @@
             "user_ID": "Tom",
             "catalog_list": [],
             "password": "tom"
+        },
+        {
+            "user_ID": "Tommy",
+            "catalog_list": [],
+            "password": "tom"
         }
     ]
 }

@@ -16,6 +16,17 @@
             }]
         },
         {
+            "device_ID": "dht22",
+            "end_points": "MQTT/REST",
+            "time_sleep":30,
+            "parameters": [{
+                "parameter": "humidity",
+                "value": null,
+                "unit": "%",
+                "timestamp": null
+            }]
+        },
+        {
             "device_ID": "revC",
             "end_points": "MQTT/REST",
             "time_sleep":30,

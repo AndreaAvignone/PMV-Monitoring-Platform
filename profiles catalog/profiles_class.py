@@ -11,7 +11,7 @@ class NewProfile():
         self.location=location
         self.lastUpdate=lastUpdate
         self.warning="no"
-        self.room_cnt=1
+        self.room_cnt=0
         
     def jsonify(self):
         profile={'platform_ID':self.platform_ID,'platform_name':self.platform_name,'warning':self.warning,'room_cnt':self.room_cnt,'inactive_time':self.inactiveTime,'preferences':self.preferences,'location':self.location,'last_update':self.lastUpdate}
