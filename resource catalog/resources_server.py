@@ -2,6 +2,7 @@ import cherrypy
 import json
 import requests
 import time
+import datetime
 import sys
 from serverClass import *
 from conf.simplePublisher import *
@@ -248,8 +249,10 @@ class ResourcesServerREST(object):
             port=request.get('port')
             publisher=MyPublisher("server","warning/"+platform_ID+"/"+room_ID,IP,port)
             publisher.start()
+            now=datetime.now()
             json_body["platform_ID"]=platform_ID
             json_body["room_name"]=requests.get(profilesURL+'/'+platform_ID+"/preferences/"+room_ID).json().get('room_name')
+            json_body["message"]=json_body["message"]+" at "+str(now.hour)+":"+str(now.minute)
             publisher.myPublish(json.dumps(json_body))
             output="platform_ID\nroom_ID\n"+json.dumps(json_body)
             publisher.stop()

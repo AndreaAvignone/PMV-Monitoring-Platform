@@ -48,7 +48,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1620229537.5932713,
+                            "last_update": 1620329687.685041,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -58,7 +58,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1620229557.5216718,
+                            "last_update": 1620329693.4907575,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -76,7 +76,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1620229561.161687,
+                            "last_update": 1620327836.2744682,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -86,7 +86,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1620229555.3313708,
+                            "last_update": 1620329694.5158405,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -148,7 +148,56 @@
                     "room_ID": "room_X1",
                     "room_name": "Living",
                     "connection_flag": true,
-                    "devices": [],
+                    "devices": [
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1620241345.416586,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "dht22",
+                            "last_update": 1620241352.4568853,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "revC",
+                            "last_update": 1620241355.0919528,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "unit": "KmH"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "max76675",
+                            "last_update": 1620241355.1915061,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "unit": "C"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "unit": "mm"
+                                }
+                            ]
+                        }
+                    ],
                     "connection_timestamp": 1620239848.598451
                 }
             ],
