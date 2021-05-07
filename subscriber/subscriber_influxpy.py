@@ -26,7 +26,6 @@ class DataCollector():
             self.broker_port=broker_IP.port
             self.broker_IP=broker_IP.netloc.replace(":"+str(self.broker_port),"")
             
-            print(self.broker_port)
             print("Broker info obtained.")
             self.client=MyMQTT(self.clientID,self.broker_IP,self.broker_port,self)
             time.sleep(0.5)
@@ -96,8 +95,8 @@ class DataCollector():
 
     
     def last_meas(self,parameter,room_ID,rfc):
-        q="show measurements where room_ID='{}';".format(room_ID)
-        r=self.clientDB.query(q).get_points()
+        #q="show measurements;"
+        r=self.clientDB.get_list_measurements()
         flag=False
         for point in r:
             if point['name']==parameter:

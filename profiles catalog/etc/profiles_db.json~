@@ -9,7 +9,8 @@
     "profiles_list": [
         "MP-A00003",
         "MP-A00001",
-        "MP-A00000"
+        "MP-A00000",
+        "MP-A00010"
     ],
     "produced_list": [
         "MP-A00001",
@@ -22,7 +23,7 @@
         "MP-A00007",
         "MP-A00008",
         "MP-A00009",
-        "MP.A00010"
+        "MP-A00010"
     ],
     "last_creation": 1607607430.684861,
     "profiles": [
@@ -47,7 +48,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1620229537.5932713,
+                            "last_update": 1620387878.0131924,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -57,7 +58,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1620229557.5216718,
+                            "last_update": 1620387857.328852,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -75,7 +76,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1620229561.161687,
+                            "last_update": 1620381558.5856724,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -85,7 +86,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1620229555.3313708,
+                            "last_update": 1620387872.5197575,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -122,19 +123,86 @@
             "platform_ID": "MP-A00000",
             "platform_name": "Villa",
             "warning": true,
-            "room_cnt": 2,
+            "room_cnt": 3,
             "inactive_time": "1800",
             "preferences": [
                 {
-                    "room_ID": "room_X2",
+                    "room_ID": "room_X3",
                     "room_name": "Sala",
-                    "connection_flag": true,
+                    "connection_flag": false,
                     "devices": [],
-                    "connection_timestamp": 1620238591.480695
+                    "connection_timestamp": 1620389105.72497
                 }
             ],
             "location": "Nichelino",
             "last_update": "05/05/2021 20:04"
+        },
+        {
+            "platform_ID": "MP-A00010",
+            "platform_name": "Home",
+            "warning": true,
+            "room_cnt": 1,
+            "inactive_time": "1800",
+            "preferences": [
+                {
+                    "room_ID": "room_X1",
+                    "room_name": "Living",
+                    "connection_flag": true,
+                    "devices": [
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1620241345.416586,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "dht22",
+                            "last_update": 1620241352.4568853,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "revC",
+                            "last_update": 1620241355.0919528,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "unit": "KmH"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "max76675",
+                            "last_update": 1620241355.1915061,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "unit": "C"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "unit": "mm"
+                                }
+                            ]
+                        }
+                    ],
+                    "connection_timestamp": 1620239848.598451
+                }
+            ],
+            "location": "Nichelino",
+            "last_update": "05/05/2021 20:37"
         }
     ]
 }

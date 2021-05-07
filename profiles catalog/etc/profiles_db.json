@@ -48,7 +48,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1620329687.685041,
+                            "last_update": 1620387878.0131924,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -58,7 +58,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1620329693.4907575,
+                            "last_update": 1620387857.328852,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -76,7 +76,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1620327836.2744682,
+                            "last_update": 1620381558.5856724,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -86,7 +86,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1620329694.5158405,
+                            "last_update": 1620387872.5197575,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -131,7 +131,7 @@
                     "room_name": "Sala",
                     "connection_flag": true,
                     "devices": [],
-                    "connection_timestamp": 1620238591.480695
+                    "connection_timestamp": 1620389105.72497
                 }
             ],
             "location": "Nichelino",

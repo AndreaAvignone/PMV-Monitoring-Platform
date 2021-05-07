@@ -281,10 +281,11 @@ class ResourcesServerREST(object):
                     else:
                         output="Platform '{}'- Room '{}' - Device '{}' not found ".format(platform_ID,room_ID,device_ID)
                 else:
+                    requestGrafana=requests.get(self.serviceCatalogAddress+"/grafana_catalog").json()
                     self.grafana_IP=requestGrafana.get('IP_address')
                     self.grafana_port=requestGrafana.get('port')
                     self.grafana_service=requestGrafana.get('service')
-                    removedDash=requests.delete(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/deleteDashboard/"+platform_ID+"/"+room_ID)
+                    removedDash=requests.delete(self.buildAddress(self.grafana_IP,self.grafana_port,self.grafana_service)+"/deleteDashboard/"+platform_ID+"/"+room_ID).json()
                     if removedDash['result']:
                         removedRoom=self.serverCatalog.removeRoom(platform_ID,room_ID)
                         if removedRoom==True:

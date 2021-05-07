@@ -153,7 +153,7 @@ class GrafanaCatalog():
         return self.new_dashboard_data
 
     def deleteDashboard(self, platformID, roomID):
-        pos=self.findPos(platform_ID)
+        pos=self.findPos(platformID)
         if pos is not False:
             key=self.orgContent['organizations'][pos]['key']
             posRoom=self.findRoomPos(self.orgContent['organizations'][pos]['dashboards'],room_ID)
