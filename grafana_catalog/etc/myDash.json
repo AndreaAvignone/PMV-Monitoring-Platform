@@ -172,7 +172,7 @@
               "mode": "thresholds"
             },
             "custom": {},
-            "decimals": 1,
+            "decimals": 2,
             "displayName": "PMV",
             "mappings": [],
             "max": 2,
@@ -253,7 +253,9 @@
             "measurement": "PMV",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"PMV\" WHERE (\"roomID\" = '')",
             "queryType": "randomWalk",
+            "rawQuery": true,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -389,7 +391,9 @@
             "measurement": "Icl_clo",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"Icl_clo\" WHERE (\"roomID\" = '') ",
             "queryType": "randomWalk",
+            "rawQuery": true,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -434,6 +438,8 @@
             "measurement": "Icl_clo",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"Icl_clo\" WHERE (\"roomID\" = '') ",
+            "rawQuery": true,
             "refId": "B",
             "resultFormat": "time_series",
             "select": [
@@ -569,7 +575,9 @@
             "measurement": "M_met",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"M_met\" WHERE (\"roomID\" = '') ",
             "queryType": "randomWalk",
+            "rawQuery": true,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -614,6 +622,8 @@
             "measurement": "M_met",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"M_met\" WHERE (\"roomID\" = '')",
+            "rawQuery": true,
             "refId": "B",
             "resultFormat": "time_series",
             "select": [
@@ -764,7 +774,9 @@
             "measurement": "PMV",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"PMV\" WHERE (\"roomID\" = '') AND $timeFilter GROUP BY time(30m) fill(previous)",
             "queryType": "randomWalk",
+            "rawQuery": false,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -1267,8 +1279,8 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 4,
-          "w": 4,
+          "h": 8,
+          "w": 5,
           "x": 6,
           "y": 15
         },
@@ -1277,7 +1289,7 @@
           "colorMode": "background",
           "graphMode": "none",
           "justifyMode": "auto",
-          "orientation": "auto",
+          "orientation": "horizontal",
           "reduceOptions": {
             "calcs": [
               "lastNotNull"
@@ -1286,11 +1298,12 @@
             "values": false
           },
           "text": {},
-          "textMode": "value"
+          "textMode": "value_and_name"
         },
         "pluginVersion": "7.4.3",
         "targets": [
           {
+            "alias": "Average",
             "groupBy": [
               {
                 "params": [
@@ -1305,10 +1318,13 @@
                 "type": "fill"
               }
             ],
+            "hide": false,
             "measurement": "PMV",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"PMV\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
             "queryType": "randomWalk",
+            "rawQuery": true,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -1332,88 +1348,9 @@
                 "value": ""
               }
             ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "PMV - 7 days Average",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {},
-            "decimals": 2,
-            "mappings": [],
-            "max": 3,
-            "min": -3,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(12, 9, 156)",
-                  "value": null
-                },
-                {
-                  "color": "semi-dark-blue",
-                  "value": -1.5
-                },
-                {
-                  "color": "light-blue",
-                  "value": -1
-                },
-                {
-                  "color": "rgb(37, 237, 9)",
-                  "value": -0.5
-                },
-                {
-                  "color": "#eab839",
-                  "value": 0.5
-                },
-                {
-                  "color": "semi-dark-orange",
-                  "value": 1
-                },
-                {
-                  "color": "dark-red",
-                  "value": 1.5
-                }
-              ]
-            }
           },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 3,
-          "x": 10,
-          "y": 15
-        },
-        "id": 52,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
           {
+            "alias": "Mode",
             "groupBy": [
               {
                 "params": [
@@ -1428,11 +1365,61 @@
                 "type": "fill"
               }
             ],
+            "hide": false,
             "measurement": "PMV",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT mode(\"value\") FROM \"PMV\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
             "queryType": "randomWalk",
-            "refId": "A",
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mode"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "MIN",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PMV",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT min(\"value\") FROM \"PMV\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "C",
             "resultFormat": "time_series",
             "select": [
               [
@@ -1455,11 +1442,58 @@
                 "value": ""
               }
             ]
+          },
+          {
+            "alias": "MAX",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PMV",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT max(\"value\") FROM \"PMV\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
           }
         ],
         "timeFrom": null,
         "timeShift": null,
-        "title": "PMV - 7 days MIN",
+        "title": "PMV - 7 days ",
         "transparent": true,
         "type": "stat"
       },
@@ -1674,8 +1708,8 @@
         },
         "gridPos": {
           "h": 8,
-          "w": 11,
-          "x": 13,
+          "w": 13,
+          "x": 11,
           "y": 15
         },
         "id": 37,
@@ -1684,7 +1718,7 @@
           "legend": {
             "calcs": [],
             "displayMode": "list",
-            "placement": "bottom"
+            "placement": "right"
           },
           "tooltipOptions": {
             "mode": "single"
@@ -1869,6 +1903,7 @@
               "mode": "thresholds"
             },
             "custom": {},
+            "decimals": 1,
             "displayName": "PMV",
             "mappings": [],
             "max": 2,
@@ -2009,6 +2044,8 @@
             "measurement": "PPD",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"PPD\" WHERE (\"roomID\" = '')",
+            "rawQuery": true,
             "refId": "B",
             "resultFormat": "time_series",
             "select": [
@@ -2038,251 +2075,6 @@
         "timeShift": null,
         "title": "",
         "type": "gauge"
-      },
-      {
-        "datasource": "",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {},
-            "decimals": 2,
-            "mappings": [],
-            "max": 3,
-            "min": -3,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(12, 9, 156)",
-                  "value": null
-                },
-                {
-                  "color": "semi-dark-blue",
-                  "value": -1.5
-                },
-                {
-                  "color": "light-blue",
-                  "value": -1
-                },
-                {
-                  "color": "rgb(37, 237, 9)",
-                  "value": -0.5
-                },
-                {
-                  "color": "#eab839",
-                  "value": 0.5
-                },
-                {
-                  "color": "semi-dark-orange",
-                  "value": 1
-                },
-                {
-                  "color": "dark-red",
-                  "value": 1.5
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 4,
-          "x": 6,
-          "y": 19
-        },
-        "id": 53,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "7d"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "PMV",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mode"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "PMV - 7 days Mode",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {},
-            "decimals": 2,
-            "mappings": [],
-            "max": 3,
-            "min": -3,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(12, 9, 156)",
-                  "value": null
-                },
-                {
-                  "color": "semi-dark-blue",
-                  "value": -1.5
-                },
-                {
-                  "color": "light-blue",
-                  "value": -1
-                },
-                {
-                  "color": "rgb(37, 237, 9)",
-                  "value": -0.5
-                },
-                {
-                  "color": "#eab839",
-                  "value": 0.5
-                },
-                {
-                  "color": "semi-dark-orange",
-                  "value": 1
-                },
-                {
-                  "color": "dark-red",
-                  "value": 1.5
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 3,
-          "x": 10,
-          "y": 19
-        },
-        "id": 51,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "7d"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "PMV",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "max"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "PMV - 7days MAX",
-        "transparent": true,
-        "type": "stat"
       },
       {
         "cards": {
@@ -2495,7 +2287,9 @@
             "measurement": "feedback",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"feedback\" WHERE (\"roomID\" = '') ",
             "queryType": "randomWalk",
+            "rawQuery": true,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -2542,7 +2336,7 @@
               "query": {
                 "params": [
                   "A",
-                  "5m",
+                  "1m",
                   "now"
                 ]
               },
@@ -2553,13 +2347,13 @@
               "type": "query"
             }
           ],
-          "executionErrorState": "alerting",
-          "for": "5m",
+          "executionErrorState": "keep_state",
+          "for": "1m",
           "frequency": "1m",
           "handler": 1,
           "message": "PMV is outside the optimal range",
           "name": "PMV Alerting",
-          "noDataState": "no_data",
+          "noDataState": "keep_state",
           "notifications": [
             {
               "uid": "BTm3bBRRz"
@@ -2617,13 +2411,13 @@
             "groupBy": [
               {
                 "params": [
-                  "5m"
+                  "$__interval"
                 ],
                 "type": "time"
               },
               {
                 "params": [
-                  "linear"
+                  "none"
                 ],
                 "type": "fill"
               }
@@ -2631,7 +2425,9 @@
             "measurement": "PMV",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"PMV\" WHERE (\"roomID\" = '') ",
             "queryType": "randomWalk",
+            "rawQuery": false,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -2734,983 +2530,6 @@
       },
       {
         "datasource": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {
-              "align": "center",
-              "displayMode": "lcd-gauge",
-              "filterable": false
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "dark-blue",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Time"
-              },
-              "properties": [
-                {
-                  "id": "custom.displayMode",
-                  "value": "color-background"
-                },
-                {
-                  "id": "color",
-                  "value": {
-                    "fixedColor": "semi-dark-purple",
-                    "mode": "fixed"
-                  }
-                },
-                {
-                  "id": "custom.align",
-                  "value": "left"
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Air Temperature"
-              },
-              "properties": [
-                {
-                  "id": "min",
-                  "value": 4
-                },
-                {
-                  "id": "max",
-                  "value": 38
-                },
-                {
-                  "id": "displayName",
-                  "value": "Air Temperature"
-                },
-                {
-                  "id": "thresholds",
-                  "value": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "semi-dark-blue",
-                        "value": null
-                      },
-                      {
-                        "color": "light-blue",
-                        "value": 10
-                      },
-                      {
-                        "color": "rgb(32, 237, 5)",
-                        "value": 18
-                      },
-                      {
-                        "color": "semi-dark-yellow",
-                        "value": 24
-                      },
-                      {
-                        "color": "dark-red",
-                        "value": 32
-                      }
-                    ]
-                  }
-                },
-                {
-                  "id": "custom.width",
-                  "value": 288
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "MRT"
-              },
-              "properties": [
-                {
-                  "id": "min",
-                  "value": 4
-                },
-                {
-                  "id": "max",
-                  "value": 38
-                },
-                {
-                  "id": "displayName",
-                  "value": "Mean Radiant Temperature"
-                },
-                {
-                  "id": "thresholds",
-                  "value": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "semi-dark-blue",
-                        "value": null
-                      },
-                      {
-                        "color": "light-blue",
-                        "value": 10
-                      },
-                      {
-                        "color": "rgb(32, 237, 5)",
-                        "value": 18
-                      },
-                      {
-                        "color": "light-yellow",
-                        "value": 24
-                      },
-                      {
-                        "color": "dark-red",
-                        "value": 32
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Mean Radiant Temperature"
-              },
-              "properties": [
-                {
-                  "id": "custom.width",
-                  "value": 338
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 33
-        },
-        "id": 14,
-        "options": {
-          "frameIndex": 0,
-          "showHeader": true,
-          "sortBy": [
-            {
-              "desc": true,
-              "displayName": "Time"
-            }
-          ]
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
-          {
-            "alias": "Air Temperature",
-            "groupBy": [
-              {
-                "params": [
-                  "1h"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "temperature",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          },
-          {
-            "alias": "MRT",
-            "groupBy": [
-              {
-                "params": [
-                  "1h"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "hide": false,
-            "measurement": "MRT",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "B",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          }
-        ],
-        "title": "",
-        "transformations": [
-          {
-            "id": "seriesToColumns",
-            "options": {
-              "byField": "Time"
-            }
-          }
-        ],
-        "type": "table"
-      },
-      {
-        "datasource": "",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {},
-            "decimals": 1,
-            "mappings": [],
-            "max": 38,
-            "min": 4,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(12, 9, 156)",
-                  "value": null
-                },
-                {
-                  "color": "light-blue",
-                  "value": 10
-                },
-                {
-                  "color": "rgb(37, 237, 9)",
-                  "value": 18
-                },
-                {
-                  "color": "light-yellow",
-                  "value": 24
-                },
-                {
-                  "color": "dark-red",
-                  "value": 32
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 4,
-          "x": 12,
-          "y": 33
-        },
-        "id": 54,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "7d"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "temperature",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Air Temperature - 7 days Average",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {},
-            "decimals": 1,
-            "mappings": [],
-            "max": 38,
-            "min": 4,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(12, 9, 156)",
-                  "value": null
-                },
-                {
-                  "color": "light-blue",
-                  "value": 10
-                },
-                {
-                  "color": "rgb(37, 237, 9)",
-                  "value": 18
-                },
-                {
-                  "color": "light-yellow",
-                  "value": 24
-                },
-                {
-                  "color": "dark-red",
-                  "value": 32
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 4,
-          "x": 16,
-          "y": 33
-        },
-        "id": 56,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "7d"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "temperature",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "min"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Air Temperature - 7 days MIN",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {},
-            "decimals": 1,
-            "mappings": [],
-            "max": 38,
-            "min": 4,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(12, 9, 156)",
-                  "value": null
-                },
-                {
-                  "color": "light-blue",
-                  "value": 10
-                },
-                {
-                  "color": "rgb(37, 237, 9)",
-                  "value": 18
-                },
-                {
-                  "color": "light-yellow",
-                  "value": 24
-                },
-                {
-                  "color": "dark-red",
-                  "value": 32
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 4,
-          "x": 20,
-          "y": 33
-        },
-        "id": 58,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "7d"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "temperature",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "max"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Air Temperature - 7 days MAX",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {},
-            "decimals": 1,
-            "mappings": [],
-            "max": 38,
-            "min": 4,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(12, 9, 156)",
-                  "value": null
-                },
-                {
-                  "color": "light-blue",
-                  "value": 10
-                },
-                {
-                  "color": "rgb(37, 237, 9)",
-                  "value": 18
-                },
-                {
-                  "color": "light-yellow",
-                  "value": 24
-                },
-                {
-                  "color": "dark-red",
-                  "value": 32
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 4,
-          "x": 12,
-          "y": 37
-        },
-        "id": 55,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "7d"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "MRT",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "MRT - 7 days Average",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {},
-            "decimals": 1,
-            "mappings": [],
-            "max": 38,
-            "min": 4,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(12, 9, 156)",
-                  "value": null
-                },
-                {
-                  "color": "light-blue",
-                  "value": 10
-                },
-                {
-                  "color": "rgb(37, 237, 9)",
-                  "value": 18
-                },
-                {
-                  "color": "light-yellow",
-                  "value": 24
-                },
-                {
-                  "color": "dark-red",
-                  "value": 32
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 4,
-          "x": 16,
-          "y": 37
-        },
-        "id": 57,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "7d"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "MRT",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "min"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "MRT - 7 days MIN",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {},
-            "decimals": 1,
-            "mappings": [],
-            "max": 38,
-            "min": 4,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(12, 9, 156)",
-                  "value": null
-                },
-                {
-                  "color": "light-blue",
-                  "value": 10
-                },
-                {
-                  "color": "rgb(37, 237, 9)",
-                  "value": 18
-                },
-                {
-                  "color": "light-yellow",
-                  "value": 24
-                },
-                {
-                  "color": "dark-red",
-                  "value": 32
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 4,
-          "x": 20,
-          "y": 37
-        },
-        "id": 59,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "text": {},
-          "textMode": "value"
-        },
-        "pluginVersion": "7.4.3",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "7d"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "MRT",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "value"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "max"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "roomID",
-                "operator": "=",
-                "value": ""
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "MRT - 7 days MAX",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -3786,7 +2605,7 @@
           "h": 6,
           "w": 5,
           "x": 0,
-          "y": 41
+          "y": 33
         },
         "id": 4,
         "options": {
@@ -3824,6 +2643,8 @@
             "measurement": "temperature",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"temperature\" WHERE (\"roomID\" = '') ",
+            "rawQuery": true,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -3929,7 +2750,7 @@
           "h": 6,
           "w": 5,
           "x": 5,
-          "y": 41
+          "y": 33
         },
         "id": 41,
         "options": {
@@ -3949,24 +2770,13 @@
         "targets": [
           {
             "alias": "MRT",
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
+            "groupBy": [],
             "hide": false,
             "measurement": "MRT",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT \"value\" FROM \"MRT\" WHERE (\"roomID\" = '') ",
+            "rawQuery": true,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -3976,10 +2786,6 @@
                     "value"
                   ],
                   "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "last"
                 }
               ]
             ],
@@ -4042,7 +2848,7 @@
           "h": 8,
           "w": 14,
           "x": 10,
-          "y": 41
+          "y": 33
         },
         "id": 65,
         "options": {
@@ -4215,7 +3021,7 @@
                         "value": null
                       },
                       {
-                        "color": "semi-dark-yellow",
+                        "color": "light-yellow",
                         "value": 33
                       },
                       {
@@ -4233,7 +3039,7 @@
           "h": 6,
           "w": 5,
           "x": 0,
-          "y": 47
+          "y": 39
         },
         "id": 38,
         "options": {
@@ -4271,6 +3077,8 @@
             "measurement": "wind",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"wind\" WHERE (\"roomID\" = '') ",
+            "rawQuery": true,
             "refId": "B",
             "resultFormat": "time_series",
             "select": [
@@ -4339,19 +3147,19 @@
                 {
                   "id": "thresholds",
                   "value": {
-                    "mode": "absolute",
+                    "mode": "percentage",
                     "steps": [
                       {
-                        "color": "light-blue",
+                        "color": "light-yellow",
                         "value": null
                       },
                       {
-                        "color": "dark-blue",
-                        "value": 30
+                        "color": "rgb(37, 237, 9)",
+                        "value": 33
                       },
                       {
-                        "color": "red",
-                        "value": 65
+                        "color": "dark-blue",
+                        "value": 66
                       }
                     ]
                   }
@@ -4424,7 +3232,7 @@
           "h": 6,
           "w": 5,
           "x": 5,
-          "y": 47
+          "y": 39
         },
         "id": 40,
         "options": {
@@ -4462,6 +3270,8 @@
             "measurement": "humidity",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"value\") FROM \"humidity\" WHERE (\"roomID\" = '') ",
+            "rawQuery": true,
             "refId": "C",
             "resultFormat": "time_series",
             "select": [
@@ -4491,13 +3301,1322 @@
         "type": "gauge"
       },
       {
+        "datasource": "",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [],
+            "max": 38,
+            "min": 4,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(12, 9, 156)",
+                  "value": null
+                },
+                {
+                  "color": "light-blue",
+                  "value": 10
+                },
+                {
+                  "color": "rgb(37, 237, 9)",
+                  "value": 18
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 24
+                },
+                {
+                  "color": "dark-red",
+                  "value": 32
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Humidity"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "humidity"
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 100
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "light-yellow",
+                        "value": null
+                      },
+                      {
+                        "color": "rgb(37, 237, 9)",
+                        "value": 33
+                      },
+                      {
+                        "color": "dark-blue",
+                        "value": 66
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Wind"
+              },
+              "properties": [
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "percentage",
+                    "steps": [
+                      {
+                        "color": "rgb(37, 237, 9)",
+                        "value": null
+                      },
+                      {
+                        "color": "light-yellow",
+                        "value": 33
+                      },
+                      {
+                        "color": "dark-red",
+                        "value": 66
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 3.6
+                },
+                {
+                  "id": "unit",
+                  "value": "velocitykmh"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 13,
+          "w": 4,
+          "x": 12,
+          "y": 41
+        },
+        "id": 54,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.4.3",
+        "targets": [
+          {
+            "alias": "Air Temperature",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "temperature",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(value) FROM \"temperature\" WHERE (\"roomID\" = '') AND time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "MRT",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "MRT",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(value) FROM \"MRT\" WHERE (\"roomID\" = '') AND time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "Humidity",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "humidity",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(value) FROM \"humidity\" WHERE (\"roomID\" = '') AND time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "Wind",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "wind",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(value) FROM \"wind\" WHERE (\"roomID\" = '') AND time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "7 days Average",
+        "type": "stat"
+      },
+      {
+        "datasource": "",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [],
+            "max": 38,
+            "min": 4,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(12, 9, 156)",
+                  "value": null
+                },
+                {
+                  "color": "light-blue",
+                  "value": 10
+                },
+                {
+                  "color": "rgb(37, 237, 9)",
+                  "value": 18
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 24
+                },
+                {
+                  "color": "dark-red",
+                  "value": 32
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Humidity"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "humidity"
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 100
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "light-yellow",
+                        "value": null
+                      },
+                      {
+                        "color": "rgb(37, 237, 9)",
+                        "value": 33
+                      },
+                      {
+                        "color": "dark-blue",
+                        "value": 66
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Wind"
+              },
+              "properties": [
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "percentage",
+                    "steps": [
+                      {
+                        "color": "rgb(37, 237, 9)",
+                        "value": null
+                      },
+                      {
+                        "color": "light-yellow",
+                        "value": 33
+                      },
+                      {
+                        "color": "dark-red",
+                        "value": 66
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 3.6
+                },
+                {
+                  "id": "unit",
+                  "value": "velocitykmh"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 13,
+          "w": 4,
+          "x": 16,
+          "y": 41
+        },
+        "id": 87,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.4.3",
+        "targets": [
+          {
+            "alias": "Air Temperature",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "temperature",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT min(\"value\") FROM \"temperature\" WHERE (\"roomID\" = '') AND time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "min"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "MRT",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "MRT",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT min(\"value\") FROM \"MRT\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "min"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "Humidity",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "humidity",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT min(\"value\") FROM \"humidity\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "min"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "Wind",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "wind",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT min(\"value\") FROM \"wind\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "min"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "7 days MIN",
+        "type": "stat"
+      },
+      {
+        "datasource": "",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [],
+            "max": 38,
+            "min": 4,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(12, 9, 156)",
+                  "value": null
+                },
+                {
+                  "color": "light-blue",
+                  "value": 10
+                },
+                {
+                  "color": "rgb(37, 237, 9)",
+                  "value": 18
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 24
+                },
+                {
+                  "color": "dark-red",
+                  "value": 32
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Humidity"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "humidity"
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 100
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "light-yellow",
+                        "value": null
+                      },
+                      {
+                        "color": "rgb(37, 237, 9)",
+                        "value": 33
+                      },
+                      {
+                        "color": "dark-blue",
+                        "value": 66
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Wind"
+              },
+              "properties": [
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "percentage",
+                    "steps": [
+                      {
+                        "color": "rgb(37, 237, 9)",
+                        "value": null
+                      },
+                      {
+                        "color": "light-yellow",
+                        "value": 33
+                      },
+                      {
+                        "color": "dark-red",
+                        "value": 66
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 3.6
+                },
+                {
+                  "id": "unit",
+                  "value": "velocitykmh"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 13,
+          "w": 4,
+          "x": 20,
+          "y": 41
+        },
+        "id": 88,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.4.3",
+        "targets": [
+          {
+            "alias": "Air Temperature",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "temperature",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT max(\"value\") FROM \"temperature\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "MRT",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "MRT",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT max(\"value\") FROM \"MRT\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "Humidity",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "humidity",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT max(\"value\") FROM \"humidity\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "Wind",
+            "groupBy": [
+              {
+                "params": [
+                  "7d"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "wind",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT max(\"value\") FROM \"wind\" WHERE (\"roomID\" = '') AND  time > now()+2h - 7d",
+            "queryType": "randomWalk",
+            "rawQuery": true,
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "7 days MAX",
+        "type": "stat"
+      },
+      {
+        "datasource": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "center",
+              "displayMode": "lcd-gauge",
+              "filterable": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-blue",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-purple",
+                    "mode": "fixed"
+                  }
+                },
+                {
+                  "id": "custom.align",
+                  "value": "left"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Air Temperature"
+              },
+              "properties": [
+                {
+                  "id": "min",
+                  "value": 4
+                },
+                {
+                  "id": "max",
+                  "value": 38
+                },
+                {
+                  "id": "displayName",
+                  "value": "Air Temperature"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "semi-dark-blue",
+                        "value": null
+                      },
+                      {
+                        "color": "light-blue",
+                        "value": 10
+                      },
+                      {
+                        "color": "rgb(32, 237, 5)",
+                        "value": 18
+                      },
+                      {
+                        "color": "semi-dark-yellow",
+                        "value": 24
+                      },
+                      {
+                        "color": "dark-red",
+                        "value": 32
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "custom.width",
+                  "value": 288
+                },
+                {
+                  "id": "decimals",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "MRT"
+              },
+              "properties": [
+                {
+                  "id": "min",
+                  "value": 4
+                },
+                {
+                  "id": "max",
+                  "value": 38
+                },
+                {
+                  "id": "displayName",
+                  "value": "Mean Radiant Temperature"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "semi-dark-blue",
+                        "value": null
+                      },
+                      {
+                        "color": "light-blue",
+                        "value": 10
+                      },
+                      {
+                        "color": "rgb(32, 237, 5)",
+                        "value": 18
+                      },
+                      {
+                        "color": "light-yellow",
+                        "value": 24
+                      },
+                      {
+                        "color": "dark-red",
+                        "value": 32
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "decimals",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Mean Radiant Temperature"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 338
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 45
+        },
+        "id": 14,
+        "options": {
+          "frameIndex": 0,
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Time"
+            }
+          ]
+        },
+        "pluginVersion": "7.4.3",
+        "targets": [
+          {
+            "alias": "Air Temperature",
+            "groupBy": [
+              {
+                "params": [
+                  "1h"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "temperature",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "queryType": "randomWalk",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "alias": "MRT",
+            "groupBy": [
+              {
+                "params": [
+                  "1h"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "MRT",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "roomID",
+                "operator": "=",
+                "value": ""
+              }
+            ]
+          }
+        ],
+        "title": "Mean values per hour",
+        "transformations": [
+          {
+            "id": "seriesToColumns",
+            "options": {
+              "byField": "Time"
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
         "collapsed": false,
         "datasource": null,
         "gridPos": {
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 53
+          "y": 54
         },
         "id": 63,
         "panels": [],
@@ -4525,7 +4644,7 @@
           "h": 6,
           "w": 8,
           "x": 0,
-          "y": 54
+          "y": 55
         },
         "hideEmpty": false,
         "hideZero": false,
@@ -4672,7 +4791,7 @@
           "h": 3,
           "w": 12,
           "x": 8,
-          "y": 54
+          "y": 55
         },
         "id": 74,
         "options": {
@@ -4697,7 +4816,9 @@
             "measurement": "external",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"condition\") FROM \"external\" ",
             "queryType": "randomWalk",
+            "rawQuery": false,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -4873,7 +4994,7 @@
           "h": 9,
           "w": 4,
           "x": 20,
-          "y": 54
+          "y": 55
         },
         "id": 11,
         "interval": null,
@@ -4916,6 +5037,8 @@
             "measurement": "external",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"wind_speed\") FROM \"external\" ",
+            "rawQuery": true,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -4940,6 +5063,8 @@
             "measurement": "external",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"wind_deg\") FROM \"external\"",
+            "rawQuery": true,
             "refId": "B",
             "resultFormat": "time_series",
             "select": [
@@ -5026,7 +5151,7 @@
           "h": 6,
           "w": 4,
           "x": 8,
-          "y": 57
+          "y": 58
         },
         "id": 76,
         "interval": null,
@@ -5053,6 +5178,8 @@
             "measurement": "external",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"temp_ext\") FROM \"external\" ",
+            "rawQuery": true,
             "refId": "B",
             "resultFormat": "time_series",
             "select": [
@@ -5139,7 +5266,7 @@
           "h": 6,
           "w": 4,
           "x": 12,
-          "y": 57
+          "y": 58
         },
         "id": 75,
         "interval": null,
@@ -5166,6 +5293,8 @@
             "measurement": "external",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"temp_ext_feel\") FROM \"external\" ",
+            "rawQuery": true,
             "refId": "B",
             "resultFormat": "time_series",
             "select": [
@@ -5225,7 +5354,7 @@
           "h": 6,
           "w": 4,
           "x": 16,
-          "y": 57
+          "y": 58
         },
         "id": 78,
         "options": {
@@ -5247,7 +5376,9 @@
             "measurement": "external",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT last(\"hum_ext\") FROM \"external\" ",
             "queryType": "randomWalk",
+            "rawQuery": true,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -5300,7 +5431,7 @@
           "h": 3,
           "w": 8,
           "x": 0,
-          "y": 60
+          "y": 61
         },
         "id": 69,
         "options": {
@@ -5325,7 +5456,9 @@
             "measurement": "external",
             "orderByTime": "ASC",
             "policy": "default",
+            "query": "SELECT \"city\" FROM \"external\" WHERE $timeFilter",
             "queryType": "randomWalk",
+            "rawQuery": false,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -5394,7 +5527,7 @@
           "h": 8,
           "w": 12,
           "x": 0,
-          "y": 63
+          "y": 64
         },
         "hideTimeOverride": false,
         "id": 67,
@@ -5591,7 +5724,7 @@
           "h": 8,
           "w": 12,
           "x": 12,
-          "y": 63
+          "y": 64
         },
         "hideTimeOverride": false,
         "id": 79,
@@ -5717,7 +5850,7 @@
     "timezone": "utc",
     "title": "",
     "uid": "",
-    "version": 20
+    "version": 55
   },
   "overwrite":true
 }
