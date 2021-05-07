@@ -48,7 +48,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1620387878.0131924,
+                            "last_update": 1620396007.43294,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -58,7 +58,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1620387857.328852,
+                            "last_update": 1620396002.8209035,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -76,7 +76,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1620381558.5856724,
+                            "last_update": 1620392284.3377063,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -86,7 +86,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1620387872.5197575,
+                            "last_update": 1620395992.3494864,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -125,15 +125,7 @@
             "warning": true,
             "room_cnt": 2,
             "inactive_time": "1800",
-            "preferences": [
-                {
-                    "room_ID": "room_X2",
-                    "room_name": "Sala",
-                    "connection_flag": true,
-                    "devices": [],
-                    "connection_timestamp": 1620389373.6929617
-                }
-            ],
+            "preferences": [],
             "location": "Nichelino",
             "last_update": "05/05/2021 20:04"
         },
@@ -141,64 +133,15 @@
             "platform_ID": "MP-A00010",
             "platform_name": "Home",
             "warning": true,
-            "room_cnt": 1,
+            "room_cnt": 2,
             "inactive_time": "1800",
             "preferences": [
                 {
-                    "room_ID": "room_X1",
-                    "room_name": "Living",
+                    "room_ID": "room_X2",
+                    "room_name": "Kitchen",
                     "connection_flag": true,
-                    "devices": [
-                        {
-                            "device_ID": "ds18b20",
-                            "last_update": 1620241345.416586,
-                            "parameters": [
-                                {
-                                    "parameter": "temperature",
-                                    "unit": "C"
-                                }
-                            ]
-                        },
-                        {
-                            "device_ID": "dht22",
-                            "last_update": 1620241352.4568853,
-                            "parameters": [
-                                {
-                                    "parameter": "humidity",
-                                    "unit": "%"
-                                }
-                            ]
-                        },
-                        {
-                            "device_ID": "revC",
-                            "last_update": 1620241355.0919528,
-                            "parameters": [
-                                {
-                                    "parameter": "wind",
-                                    "unit": "KmH"
-                                }
-                            ]
-                        },
-                        {
-                            "device_ID": "max76675",
-                            "last_update": 1620241355.1915061,
-                            "parameters": [
-                                {
-                                    "parameter": "temperature_g",
-                                    "unit": "C"
-                                },
-                                {
-                                    "parameter": "emissivity",
-                                    "unit": null
-                                },
-                                {
-                                    "parameter": "diameter",
-                                    "unit": "mm"
-                                }
-                            ]
-                        }
-                    ],
-                    "connection_timestamp": 1620239848.598451
+                    "devices": [],
+                    "connection_timestamp": 1620398240.4537625
                 }
             ],
             "location": "Nichelino",

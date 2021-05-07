@@ -165,6 +165,12 @@ class GrafanaCatalog():
         pos=self.findPos(platformID)
         if pos is not False:
             key=self.orgContent['organizations'][pos]['key']
+            headers= {
+                "Authorization": "Bearer "+key,
+                "Content-Type":"application/json",
+                "Accept":"application/json"}
+            url=self.server_url+"/api/dashboards/uid/"+platformID+roomID
+            r=requests.delete(url=url, headers=headers, verify=False)
             posRoom=self.findRoomPos(self.orgContent['organizations'][pos]['dashboards'],roomID)
             if posRoom is not False:
                 self.orgContent['organizations'][pos]['dashboards'].pop(posRoom)
@@ -172,7 +178,7 @@ class GrafanaCatalog():
                         "Authorization": "Bearer "+key,
                         "Content-Type":"application/json",
                         "Accept":"application/json"}
-                url=self.server_url+"/api/dashboards/uid"+platformID+roomID
+                url=self.server_url+"/api/dashboards/uid/"+platformID+roomID
                 r=requests.delete(url=url, headers=headers, verify=False)
                 return True
             else:

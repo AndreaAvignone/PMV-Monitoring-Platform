@@ -104,9 +104,9 @@
             "key": "eyJrIjoicWpPd24zRExMcWNLQ3NiQ0Q2NEJBVFpSZnp6YUJPNzciLCJuIjoiTVAtQTAwMDEwX2tleSIsImlkIjo1Nn0=",
             "dashboards": [
                 {
-                    "room_ID": "room_X1",
-                    "uid": "MP-A00010room_X1",
-                    "title": "Living"
+                    "room_ID": "room_X2",
+                    "uid": "MP-A00010room_X2",
+                    "title": "Kitchen"
                 }
             ]
         }
