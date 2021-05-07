@@ -134,6 +134,7 @@ class GrafanaCatalogREST():
             if deleatedDashboard==True:
                 output="Dashboard '{}' from Platform '{}' removed".format(room_ID,platform_ID)
                 result={"result":True}
+                self.grafanaCatalog.save()
             else:
                 output="Dashboard '{}' from Platform '{}' not removed ".format(room_ID,platform_ID)
                 result={"result":False}

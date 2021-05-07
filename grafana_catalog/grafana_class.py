@@ -165,7 +165,7 @@ class GrafanaCatalog():
         pos=self.findPos(platformID)
         if pos is not False:
             key=self.orgContent['organizations'][pos]['key']
-            posRoom=self.findRoomPos(self.orgContent['organizations'][pos]['dashboards'],room_ID)
+            posRoom=self.findRoomPos(self.orgContent['organizations'][pos]['dashboards'],roomID)
             if posRoom is not False:
                 self.orgContent['organizations'][pos]['dashboards'].pop(posRoom)
                 headers= {

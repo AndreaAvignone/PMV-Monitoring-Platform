@@ -94,13 +94,7 @@
             "key_name": "MP-A00000_key",
             "keyId": 47,
             "key": "eyJrIjoiSFhDV2c2ejJCMGdyRzZtVWJWbEQwSmVlWWtoTDA2M1AiLCJuIjoiTVAtQTAwMDAwX2tleSIsImlkIjo1NX0=",
-            "dashboards": [
-                {
-                    "room_ID": "room_X2",
-                    "uid": "MP-A00000room_X2",
-                    "title": "Sala"
-                }
-            ]
+            "dashboards": []
         },
         {
             "org_name": "MP-A00010",
