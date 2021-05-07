@@ -145,6 +145,15 @@ class GrafanaCatalog():
                     if target["measurement"]!="external":
                         for tag in target["tags"]:
                             tag["value"]=roomID
+                    try:
+                        if target["rawQuery"]:
+                            s1=target["query"]
+                            s2=s1.split("'")[0]
+                            s3=s1.split("'")[2]
+                            s4=s2+"'"+roomID+"'"+s3
+                            target["query"]=s4
+                    except:
+                        pass
             if panel["type"]=="graph":
                 for channel in panel["alert"]["notifications"]:
                     channel["uid"]=platformID+roomID
