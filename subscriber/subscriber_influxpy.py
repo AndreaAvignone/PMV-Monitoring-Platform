@@ -1,5 +1,3 @@
-#PROBLEMS: - transform the two putbody in one single, so adapt the server to deal with it.
-
 import json
 import requests
 import time
@@ -17,6 +15,7 @@ class DataCollector():
         self.platformList=[]
         self.lastCheck=None
         self.delta=self.subContent['delta']
+        self.pending={}
 
     def configuration(self):
         print("Retrieving broker information...")
@@ -92,6 +91,18 @@ class DataCollector():
             if self.last_meas(p['parameter'],room_ID,rfc):
                 new_json_body = [{"measurement":p['parameter'],"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":p['value']}}]
                 self.clientDB.write_points(new_json_body)
+                if(p['parameter']=="PMV"):
+                    try:
+                        last_pend=self.pending[platform_ID+'/'+room_ID]
+                    except:
+                        last_pend=0
+                    if(p['value']<-0.5 or p['value']>0.5):
+                        if(time.timestamp()-last_pend>=60):
+                            warn_message="PMV is outside the optimal range"
+                            postBody={"message":warn_message}
+                            requests.post(self.buildAddress(self.server_IP,self.server_port,self.server_service)+'/warning/'+platform_ID+'/'+room_ID,json=postBody)
+                            self.pending[platform_ID+'/'+room_ID]=time.timestamp()
+
 
     
     def last_meas(self,parameter,room_ID,rfc):
