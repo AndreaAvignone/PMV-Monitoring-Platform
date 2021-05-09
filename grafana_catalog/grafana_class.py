@@ -80,14 +80,6 @@ class GrafanaCatalog():
         if notFound==1:
             return False
 
-    #def retrieveOrgParameter(self, platformID, parameter):
-        org=self.retrieveOrgInfo(platformID)
-        try:
-            result=org[parameter]
-        except:
-            result=False
-        return result
-
     def insertOrg(self, platformID):
         notExisting=1
         org=self.retrieveOrgInfo(platformID)
@@ -158,7 +150,6 @@ class GrafanaCatalog():
                 for channel in panel["alert"]["notifications"]:
                     channel["uid"]=platformID+roomID
         r=requests.post(url=self.url, headers=self.headers, data=json.dumps(self.new_dashboard_data), verify=False)
-        #print(r.json())
         return self.new_dashboard_data
 
     def deleteDashboard(self, platformID, roomID):
@@ -254,6 +245,7 @@ class GrafanaCatalog():
         #print(data)
         self.dash_url=self.server_url+self.data["meta"]["url"]+"?orgId="+self.orgID
         return self.dash_url
+
     def getHomeURL(self, platformID):
         notFound=1
         for org in self.orgContent["organizations"]:
@@ -273,7 +265,6 @@ class GrafanaCatalog():
         dash=self.retrieveDashInfo(platformID, roomID)
         if dash is False:
             createdDashboard=self.createDashboard(platformID, roomID, dash_info)
-            self.createNotificationChannel(platformID, roomID)
             dash_info={"room_ID":roomID, "uid":createdDashboard["dashboard"]["uid"], "title":createdDashboard["dashboard"]["title"]}
             for org in self.orgContent["organizations"]:
                 if org["org_name"]==platformID:
@@ -281,7 +272,6 @@ class GrafanaCatalog():
                     return True
         else:
             return False
-
 
     def createDatasource(self, platformID):
         for org in self.orgContent["organizations"]:
@@ -300,27 +290,6 @@ class GrafanaCatalog():
         self.new_datasource_data["url"]=self.db_url
         r2=requests.post(url=self.url, headers=self.headers, data=json.dumps(self.new_datasource_data), verify=False)
         #print(r2.json())
-
-    def createNotificationChannel(self, platformID, roomID):
-        for org in self.orgContent["organizations"]:
-            if org["org_name"]==platformID:
-                key=org["key"]
-        headers= {
-        "Authorization": "Bearer "+key,
-        "Content-Type":"application/json",
-        "Accept":"application/json"}
-        url=self.server_url+"/api/alert-notifications"
-        body={"uid":platformID+roomID,
-        "name":platformID+roomID,
-        "type":"webhook",
-        "settings":{
-        "url":self.server_warning_url+"/"+platformID+"/"+roomID,
-        "addresses": self.server_warning_url+"/"+platformID+"/"+roomID
-        }}
-        r=requests.post(url=url, headers=headers, data=json.dumps(body))
-        print(r.json())
-
-        return True
 
     def userListCreate(self):
         self.userList=[]
