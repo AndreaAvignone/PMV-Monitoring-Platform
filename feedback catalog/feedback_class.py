@@ -129,6 +129,18 @@ class FeedbackCatalog():
     def buildAddress(self,IP,port, service):
         finalAddress='http://'+IP+':'+str(port)+service
         return finalAddress
+    def retrieveResources(platform_ID,room_ID):
+        self.influx_IP,self.influx_port,self.influx_service=self.retrieveService('server_catalog')
+        serverURL=self.buildAddress(IP,port,service)
+        pmv=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/PMV")
+        Icl_clo=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/Icl_clo")
+        M_met=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/M_met")
+        mrt=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/MRT")
+
+        temp=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"?parameter=temperature")
+        hum=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"?parameter=humidity")
+        wind=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"?parameter=wind")
+        return pmv,mrt,clo,met,temp,hum,wind
 
 
     def updateDB(self,platform_ID,room_ID,parameter,value):
@@ -137,17 +149,23 @@ class FeedbackCatalog():
         timestamp=time.time()
         rfc=datetime.datetime.fromtimestamp(timestamp)
         rfc=rfc.strftime("%Y-%m-%dT%H:%M:%SZ")
+        pmv,mrt,clo,met,temp,hum,wind=self.retrieveResources(platform_ID,room_ID)
+        final_dict={"PMV":pmv,"MRT":mrt,"Icl_clo":clo,"M_met":met,"temperature":temp,"humidity":hum,"wind":wind,"parameter":value}
+        
         self.clientDB=InfluxDBClient(self.influx_IP,self.influx_port,'root','root',platform_ID)
         if self.last_meas(parameter,room_ID,rfc):
             try:
                 json_body = [{"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":value}}]
-                self.clientDB.write_points(json_body)
+                json_body2 = [{"measurement":parameter+"2","tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":final_dict}]
+                #self.clientDB.write_points(json_body)
+                #self.clientDB.write_points(json_body2)
+                print(json_body2)
             except:
                 print("InfluxDB connection lost.")
 
     def last_meas(self,parameter,room_ID,rfc):
-        q="show measurements where room_ID='{}';".format(room_ID)
-        r=self.clientDB.query(q).get_points()
+        #q="show measurements;"
+        r=self.clientDB.get_list_measurements()
         flag=False
         for point in r:
             if point['name']==parameter:
