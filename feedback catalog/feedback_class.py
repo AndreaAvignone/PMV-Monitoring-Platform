@@ -129,17 +129,17 @@ class FeedbackCatalog():
     def buildAddress(self,IP,port, service):
         finalAddress='http://'+IP+':'+str(port)+service
         return finalAddress
-    def retrieveResources(platform_ID,room_ID):
-        self.influx_IP,self.influx_port,self.influx_service=self.retrieveService('server_catalog')
-        serverURL=self.buildAddress(IP,port,service)
-        pmv=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/PMV")
-        Icl_clo=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/Icl_clo")
-        M_met=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/M_met")
-        mrt=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/MRT")
+    def retrieveResources(self,platform_ID,room_ID):
+        self.server_IP,self.server_port,self.server_service=self.retrieveService('server_catalog')
+        serverURL=self.buildAddress(self.server_IP,self.server_port,self.server_service)
+        pmv=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/PMV").json()
+        clo=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/Icl_clo").json()
+        met=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/M_met").json()
+        mrt=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"/MRT").json()
 
-        temp=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"?parameter=temperature")
-        hum=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"?parameter=humidity")
-        wind=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"?parameter=wind")
+        temp=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"?parameter=temperature").json().get("value")
+        hum=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"?parameter=humidity").json().get("value")
+        wind=requests.get(serverURL+"/"+platform_ID+"/"+room_ID+"?parameter=wind").json().get("value")
         return pmv,mrt,clo,met,temp,hum,wind
 
 
@@ -151,16 +151,16 @@ class FeedbackCatalog():
         rfc=rfc.strftime("%Y-%m-%dT%H:%M:%SZ")
         pmv,mrt,clo,met,temp,hum,wind=self.retrieveResources(platform_ID,room_ID)
         final_dict={"PMV":pmv,"MRT":mrt,"Icl_clo":clo,"M_met":met,"temperature":temp,"humidity":hum,"wind":wind,"parameter":value}
-        
         self.clientDB=InfluxDBClient(self.influx_IP,self.influx_port,'root','root',platform_ID)
         if self.last_meas(parameter,room_ID,rfc):
             try:
                 json_body = [{"measurement":parameter,"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":value}}]
                 json_body2 = [{"measurement":parameter+"2","tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":final_dict}]
-                #self.clientDB.write_points(json_body)
-                #self.clientDB.write_points(json_body2)
-                print(json_body2)
-            except:
+                self.clientDB.write_points(json_body)
+                self.clientDB.write_points(json_body2)
+                #print(json_body2)
+            except Exception as e:
+                print(e)
                 print("InfluxDB connection lost.")
 
     def last_meas(self,parameter,room_ID,rfc):
@@ -180,7 +180,7 @@ class FeedbackCatalog():
             a=(time.mktime(a))
         b = time.strptime(rfc, '%Y-%m-%dT%H:%M:%SZ')
         b=(time.mktime(b))
-        if b-a>=self.delta:
+        if b-a>=10:
             return True
         
     def save(self):
