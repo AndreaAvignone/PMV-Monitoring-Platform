@@ -40,6 +40,13 @@
             "user_ID": "Tom",
             "catalog_list": [],
             "password": "tom"
+        },
+        {
+            "user_ID": "Silvia ",
+            "catalog_list": [
+                "MP-A00013"
+            ],
+            "password": "lampone"
         }
     ]
 }
