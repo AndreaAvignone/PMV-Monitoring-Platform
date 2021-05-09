@@ -10,12 +10,12 @@
             "rooms": [
                 {
                     "room_ID": "room_X2",
-                    "MRT": 24.6608,
+                    "MRT": 23.8037,
                     "Icl_clo": 0.5,
                     "M_met": 1.2,
                     "W_met": 0,
-                    "PMV": -0.5963,
-                    "PPD": 12.45,
+                    "PMV": -1.4144,
+                    "PPD": 46.28,
                     "devices": [
                         {
                             "device_ID": "revC",
@@ -23,12 +23,12 @@
                             "parameters": [
                                 {
                                     "parameter": "wind",
-                                    "value": 0.6,
+                                    "value": 1.45,
                                     "unit": "KmH",
-                                    "timestamp": 1620399291.8862398
+                                    "timestamp": 1620548728.8863878
                                 }
                             ],
-                            "timestamp": 1620399291.8862398
+                            "timestamp": 1620548728.8863878
                         },
                         {
                             "device_ID": "max76675",
@@ -37,9 +37,9 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
-                                    "value": 24.5,
+                                    "value": 23.5,
                                     "unit": "C",
-                                    "timestamp": 1620399306.2312028
+                                    "timestamp": 1620548734.7541788
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -52,7 +52,7 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1620399306.2312028
+                            "timestamp": 1620548734.7541788
                         },
                         {
                             "device_ID": "dht11",
@@ -61,12 +61,12 @@
                             "parameters": [
                                 {
                                     "parameter": "humidity",
-                                    "value": 44.0,
+                                    "value": 50.0,
                                     "unit": "%",
-                                    "timestamp": 1620392254.1167183
+                                    "timestamp": 1620548721.193129
                                 }
                             ],
-                            "timestamp": 1620392284.3377063
+                            "timestamp": 1620548721.193129
                         },
                         {
                             "device_ID": "ds18b20",
@@ -75,12 +75,12 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": 22.75,
+                                    "value": 21.75,
                                     "unit": "C",
-                                    "timestamp": 1620399293.7090373
+                                    "timestamp": 1620548710.7733796
                                 }
                             ],
-                            "timestamp": 1620399293.7090373
+                            "timestamp": 1620548710.7733796
                         }
                     ],
                     "last_update": "27/04/2021/15/09"
@@ -127,27 +127,13 @@
             "platform_ID": "MP-A00010",
             "rooms": [
                 {
-                    "room_ID": "room_X2",
+                    "room_ID": "room_X1",
                     "room_name": "Kitchen",
-                    "MRT": 24.3866,
+                    "MRT": 22.5417,
                     "Icl_clo": 0.8,
                     "M_met": 1.2,
                     "W_met": 0,
                     "devices": [
-                        {
-                            "device_ID": "dht22",
-                            "end_points": "MQTT/REST",
-                            "time_sleep": 30,
-                            "parameters": [
-                                {
-                                    "parameter": "humidity",
-                                    "value": 30.600000381469727,
-                                    "unit": "%",
-                                    "timestamp": 1620399319.356926
-                                }
-                            ],
-                            "timestamp": 1620399319.356926
-                        },
                         {
                             "device_ID": "ds18b20",
                             "end_points": "MQTT/REST",
@@ -155,12 +141,26 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature",
-                                    "value": 22.75,
+                                    "value": 21.5625,
                                     "unit": "C",
-                                    "timestamp": 1620399311.7618296
+                                    "timestamp": 1620544475.7000613
                                 }
                             ],
-                            "timestamp": 1620399311.7618296
+                            "timestamp": 1620544475.7000613
+                        },
+                        {
+                            "device_ID": "dht22",
+                            "end_points": "MQTT/REST",
+                            "time_sleep": 30,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "value": 47.599998474121094,
+                                    "unit": "%",
+                                    "timestamp": 1620544482.3790066
+                                }
+                            ],
+                            "timestamp": 1620544482.3790066
                         },
                         {
                             "device_ID": "revC",
@@ -169,12 +169,12 @@
                             "parameters": [
                                 {
                                     "parameter": "wind",
-                                    "value": 0.59,
+                                    "value": 0.21,
                                     "unit": "KmH",
-                                    "timestamp": 1620399296.2106748
+                                    "timestamp": 1620544486.6619062
                                 }
                             ],
-                            "timestamp": 1620399296.2106748
+                            "timestamp": 1620544486.6619062
                         },
                         {
                             "device_ID": "max76675",
@@ -183,9 +183,9 @@
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
-                                    "value": 24.25,
+                                    "value": 22.5,
                                     "unit": "C",
-                                    "timestamp": 1620399296.0528848
+                                    "timestamp": 1620544479.6155207
                                 },
                                 {
                                     "parameter": "emissivity",
@@ -198,15 +198,15 @@
                                     "unit": "mm"
                                 }
                             ],
-                            "timestamp": 1620399296.0528848
+                            "timestamp": 1620544479.6155207
                         }
                     ],
-                    "PMV": -0.0994,
-                    "PPD": 5.2,
-                    "last_update": "07/05/202116/38"
+                    "PMV": -0.1843,
+                    "PPD": 5.7,
+                    "last_update": "09/05/202109/05"
                 }
             ],
-            "creation_date": "05/05/2021 20:38",
+            "creation_date": "09/05/2021 09:04",
             "local_IP": "http://192.168.1.100:9090/Monitoring-Platform/hub"
         }
     ]

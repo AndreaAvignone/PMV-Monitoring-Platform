@@ -24,7 +24,9 @@
         },
         {
             "user_ID": "Andrea",
-            "catalog_list": [],
+            "catalog_list": [
+                "MP-A00010"
+            ],
             "password": "prova"
         },
         {
@@ -36,9 +38,7 @@
         },
         {
             "user_ID": "Tom",
-            "catalog_list": [
-                "MP-A00010"
-            ],
+            "catalog_list": [],
             "password": "tom"
         }
     ]
