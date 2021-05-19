@@ -25,14 +25,15 @@
         "MP-A00008",
         "MP-A00009",
         "MP-A00010",
-        "MP-A00013"
+        "MP-A00013",
+        "MP-A00014"
     ],
     "last_creation": 1607607430.684861,
     "profiles": [
         {
             "platform_ID": "MP-A00003",
             "platform_name": "Casa mia",
-            "inactive_time": "86400",
+            "inactive_time": "43200",
             "warning": true,
             "room_cnt": 5,
             "preferences": [
@@ -50,7 +51,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1620564097.4083967,
+                            "last_update": 1621381012.1999176,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -60,7 +61,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1620564086.9207118,
+                            "last_update": 1621381005.9581563,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -78,7 +79,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1620564101.0052485,
+                            "last_update": 1621381012.2023475,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -88,7 +89,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1620564089.573399,
+                            "last_update": 1621380992.4229093,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -209,7 +210,56 @@
                     "room_ID": "room_X1",
                     "room_name": "Bedroom",
                     "connection_flag": true,
-                    "devices": [],
+                    "devices": [
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1621375664.7404861,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "dht22",
+                            "last_update": 1621375648.632505,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "max76675",
+                            "last_update": 1621375640.6978312,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "unit": "C"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "unit": "mm"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "revC",
+                            "last_update": 1621375665.7546356,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "unit": "KmH"
+                                }
+                            ]
+                        }
+                    ],
                     "connection_timestamp": 1620564203.459523
                 }
             ],

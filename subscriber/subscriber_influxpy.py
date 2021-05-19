@@ -90,7 +90,10 @@ class DataCollector():
         for p in myResult:
             if self.last_meas(p['parameter'],room_ID,rfc):
                 new_json_body = [{"measurement":p['parameter'],"tags":{"user":platform_ID,"roomID":room_ID},"time":rfc,"fields":{"value":p['value']}}]
-                self.clientDB.write_points(new_json_body)
+                try:
+                    self.clientDB.write_points(new_json_body)
+                except IndexError as e:
+                    print(e)
                 if(p['parameter']=="PMV"):
                     
                     try:

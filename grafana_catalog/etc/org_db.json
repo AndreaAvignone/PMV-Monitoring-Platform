@@ -72,6 +72,11 @@
                     "room_ID": "room_X2",
                     "uid": "MP-A00007room_X2",
                     "title": "Stanza"
+                },
+                {
+                    "room_ID": "room_X1",
+                    "uid": "MP-A00007room_X1",
+                    "title": "Tester3"
                 }
             ]
         },

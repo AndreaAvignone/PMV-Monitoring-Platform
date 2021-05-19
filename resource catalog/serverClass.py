@@ -7,13 +7,14 @@ from devices_catalog import DevicesCatalog
 from computations import *
 
 class NewPlatform():
-    def __init__(self,platform_ID,rooms,last_update):
+    def __init__(self,platform_ID,rooms,last_update,local_IP):
         self.platform_ID=platform_ID
         self.rooms=rooms
+        self.local_IP=local_IP
         self.lastUpdate=last_update
         
     def jsonify(self):
-        platform={'platform_ID':self.platform_ID,'rooms':self.rooms,'creation_date':self.lastUpdate}
+        platform={'platform_ID':self.platform_ID,"local_IP":self.local_IP,'rooms':self.rooms,'creation_date':self.lastUpdate}
         return platform
     
 class Server():
@@ -96,13 +97,13 @@ class Server():
                 return False
 
         
-    def insertPlatform(self,platform_ID,rooms):
+    def insertPlatform(self,platform_ID,rooms,local_IP):
         notExisting=1
         now=datetime.now()
         timestamp=now.strftime("%d/%m/%Y %H:%M")
         platform=self.retrievePlatform(platform_ID)
         if platform is False:
-            createdPlatform=NewPlatform(platform_ID,rooms,timestamp).jsonify()
+            createdPlatform=NewPlatform(platform_ID,rooms,timestamp,local_IP).jsonify()
             self.serverContent['platforms_list'].append(createdPlatform)
             return True
         else:
@@ -230,7 +231,7 @@ class Server():
 
     def dateUpdate(self,element):
         now=datetime.now()
-        new_date=now.strftime("%d/%m/%Y%H/%M")
+        new_date=now.strftime("%d/%m/%Y/%H/%M")
         element['last_update']=new_date
 
     def save(self):

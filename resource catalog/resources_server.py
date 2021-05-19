@@ -92,9 +92,10 @@ class ResourcesServerREST(object):
             port=requestProfiles.get('port')
             service=requestProfiles.get('service')
             platform_ID=json_body['platform_ID']
+            local_IP=json_body['local_IP']
             if(requests.get(self.buildAddress(IP,port,service)+'/checkRegistered/'+platform_ID).json()):
                 rooms=[]
-                newPlatform=self.serverCatalog.insertPlatform(platform_ID,rooms)
+                newPlatform=self.serverCatalog.insertPlatform(platform_ID,rooms,local_IP)
                 if newPlatform==True:
                     output="Platform '{}' has been added to Server\n".format(platform_ID)
                     self.requestInflux=requests.get(self.serviceCatalogAddress+"/influx_db").json()
@@ -220,7 +221,11 @@ class ResourcesServerREST(object):
             platform_ID=uri[1]
             room_ID=str(uri[2])
             parameter=json_body['parameter']
-            parameter_value=json_body['parameter_value']
+            if(parameter=="Icl_clo" or parameter=="M_met"):
+                parameter_value=float(json_body['parameter_value'])
+            
+            else:
+                parameter_value=json_body['parameter_value']
             newSetting=self.serverCatalog.setRoomParameter(platform_ID,room_ID,parameter,parameter_value)
             if newSetting==True:
                 output="Platform '{}' - Room '{}': {} is now {}".format(platform_ID, room_ID, parameter,parameter_value)

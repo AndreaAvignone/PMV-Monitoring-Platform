@@ -42,11 +42,16 @@
             "password": "tom"
         },
         {
-            "user_ID": "Silvia ",
+            "user_ID": "Silvia",
             "catalog_list": [
                 "MP-A00013"
             ],
             "password": "lampone"
+        },
+        {
+            "user_ID": "MP00007",
+            "catalog_list": [],
+            "password": "Prova1"
         }
     ]
 }
