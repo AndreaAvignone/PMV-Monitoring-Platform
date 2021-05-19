@@ -1,5 +1,5 @@
 import numpy as np
-
+import math
 
 class MRT_calculator(object):
     def __init__(self):
@@ -84,7 +84,10 @@ class PMV_calculator(object):
         Icl_clo=body['Icl_clo']
         if temperature is not None and wind is not None and humidity is not None and MRT is not None and M_met is not None and W_met is not None and Icl_clo is not None:
             pmv=self.PMV_calculation(M_met,W_met,Icl_clo,temperature,MRT,wind,humidity)
-            return pmv
+            if math.isnan(pmv):
+                pass
+            else:
+                return pmv
                 
 
 class PPD_calculator(object):

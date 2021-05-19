@@ -48,6 +48,17 @@
                 }
             ],
             "last_update": "19/05/2021 09:48"
+        },
+        {
+            "platform_ID": "MP-A00014",
+            "rooms": [
+                {
+                    "room_ID": "room_X1",
+                    "feedback": "cold",
+                    "last_update": 1621418066.6859255
+                }
+            ],
+            "last_update": "19/05/2021 11:54"
         }
     ]
 }

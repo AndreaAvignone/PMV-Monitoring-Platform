@@ -11,7 +11,8 @@
         "MP-A00009",
         "MP-A00000",
         "MP-A00010",
-        "MP-A00013"
+        "MP-A00013",
+        "MP-A00014"
     ],
     "organizations": [
         {
@@ -132,6 +133,20 @@
                     "room_ID": "room_X1",
                     "uid": "MP-A00013room_X1",
                     "title": "Bedroom"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00014",
+            "orgId": "58",
+            "key_name": "MP-A00014_key",
+            "keyId": 50,
+            "key": "eyJrIjoiVEU0SkxjaVJkYU9oNjJ1bW1rdURnTW11WEMyOENKME4iLCJuIjoiTVAtQTAwMDE0X2tleSIsImlkIjo1OH0=",
+            "dashboards": [
+                {
+                    "room_ID": "room_X1",
+                    "uid": "MP-A00014room_X1",
+                    "title": "Test3"
                 }
             ]
         }

@@ -8,7 +8,8 @@
         "MP-A00009",
         "MP-A00000",
         "MP-A00010",
-        "MP-A00013"
+        "MP-A00013",
+        "MP-A00014"
     ],
     "users": [
         {
@@ -52,6 +53,12 @@
             "login": "MP-A00013",
             "password": "MP-A00013",
             "OrgId": 57
+        },
+        {
+            "name": "MP-A00014",
+            "login": "MP-A00014",
+            "password": "MP-A00014",
+            "OrgId": 58
         }
     ]
 }

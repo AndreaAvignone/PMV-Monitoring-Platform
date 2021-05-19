@@ -11,7 +11,8 @@
         "MP-A00001",
         "MP-A00000",
         "MP-A00010",
-        "MP-A00013"
+        "MP-A00013",
+        "MP-A00014"
     ],
     "produced_list": [
         "MP-A00001",
@@ -51,7 +52,7 @@
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1621381012.1999176,
+                            "last_update": 1621425609.5146253,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -61,7 +62,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1621381005.9581563,
+                            "last_update": 1621425607.5081623,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -79,7 +80,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1621381012.2023475,
+                            "last_update": 1621425624.5799398,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -89,7 +90,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1621380992.4229093,
+                            "last_update": 1621425619.3148382,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -213,7 +214,7 @@
                     "devices": [
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1621375664.7404861,
+                            "last_update": 1621424529.352792,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -223,7 +224,7 @@
                         },
                         {
                             "device_ID": "dht22",
-                            "last_update": 1621375648.632505,
+                            "last_update": 1621424517.1783738,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -233,7 +234,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1621375640.6978312,
+                            "last_update": 1621424512.227644,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -251,7 +252,7 @@
                         },
                         {
                             "device_ID": "revC",
-                            "last_update": 1621375665.7546356,
+                            "last_update": 1621424531.993403,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -265,6 +266,73 @@
             ],
             "location": "Nichelino",
             "last_update": "09/05/2021 14:43"
+        },
+        {
+            "platform_ID": "MP-A00014",
+            "platform_name": "Test3",
+            "warning": true,
+            "room_cnt": 1,
+            "inactive_time": "1800",
+            "preferences": [
+                {
+                    "room_ID": "room_X1",
+                    "room_name": "Test3",
+                    "connection_flag": true,
+                    "devices": [
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1621425461.8810794,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "dht22",
+                            "last_update": 1621425453.9580364,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "revC",
+                            "last_update": 1621425452.82209,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "unit": "KmH"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "max76675",
+                            "last_update": 1621425444.0574362,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "unit": "C"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "unit": "mm"
+                                }
+                            ]
+                        }
+                    ],
+                    "connection_timestamp": 1621417468.7416985
+                }
+            ],
+            "location": "Torino",
+            "last_update": "19/05/2021 11:44"
         }
     ]
 }
