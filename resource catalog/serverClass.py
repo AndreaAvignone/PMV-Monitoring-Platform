@@ -184,6 +184,55 @@ class Server():
         
             ppd=self.myCalculator.PPD_dict(body)
             self.setRoomParameter(platform_ID,room_ID,'PPD',ppd)
+    def parse_warning(self,platform_ID,room_ID):
+        
+        req=self.findParameter(platform_ID,room_ID,"PMV")
+        hot_flag=False
+        suggestion="TIP: "
+        cold_flag=False
+        if req['value']<=-2:
+            status="COLD"
+            cold_flag=True
+        elif req['value']>-2 and req['value'] <=-1:
+            status="COOL"
+            cold_flag=True
+        elif req['value']>-1 and req['value']<-0.5:
+            status="SLIGHTLY COOL"
+            cold_flag=True
+        elif req['value']>0.5 and req['value']<1:
+            status="SLIGHTLY WARM"
+            hot_flag=True
+        elif req['value']>=1 and req['value']<2:
+            status="WARM"
+            hot_flag=True
+        elif req['value']>=2:
+            status="HOT"
+            hot_flag=True
+        if hot_flag:
+            req_c=self.findParameter(platform_ID,room_ID,"Icl_clo")
+            req_w=self.findParameter(platform_ID,room_ID,"wind")
+            if req_c['value']>0.5:
+                suggestion=suggestion+"Your actual clothing may be not suitable " + "("+str(req_c['value'])+" clo)"+". Try lighter clothes!"
+            elif req_w['value']<1:
+                suggestion=suggestion+"Air flow speed is low " + "("+str(req_w['value'])+" Km/H)"+". Try opening windows!"
+            else:
+                suggestion=suggestion+"You should use your cooling system"
+                
+        if cold_flag:
+            req_c=self.findParameter(platform_ID,room_ID,"Icl_clo")
+            req_w=self.findParameter(platform_ID,room_ID,"wind")
+            req_h=self.findParameter(platform_ID,room_ID,"humidity")
+            if req_c['value']<1 and req_w['value']<3 :
+                suggestion=suggestion+"Your actual clothing may be not suitable " + "("+str(req_c['value'])+" clo)"+". try warmer clothes!"
+            elif req_w['value']>1.5:
+                suggestion=suggestion+"Air flow speed is high " + "("+str(req_w['value'])+" Km/H)"+". Check for air currents sources! "
+            elif req_h['value']>65:
+                 suggestion=suggestion+"Humidity level is high " + "("+str(req_h['value'])+"%)"+". Use a dehumidifier or open the window!"
+            else:
+                suggestion=suggestion+"You should use your heating system"
+                
+        return status,suggestion
+        
 
     def setRoomParameter(self,platform_ID,room_ID,parameter,parameter_value):
         i=self.findPos(platform_ID)

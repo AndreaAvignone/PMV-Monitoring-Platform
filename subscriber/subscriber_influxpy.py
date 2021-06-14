@@ -8,7 +8,7 @@ from influxdb import InfluxDBClient
 from urllib.parse import urlparse
 
 class DataCollector():
-    def __init__(self,configuration_filename,clientID="SubscriberClient"):
+    def __init__(self,configuration_filename,clientID="Subscriber"):
         self.clientID=clientID
         self.subContent=json.load(open(configuration_filename,"r"))
         self.serviceCatalogAddress=self.subContent['service_catalog']
@@ -101,6 +101,7 @@ class DataCollector():
                     except:
                         last_pend=0
                     if(p['value']<-0.5 or p['value']>0.5):
+                        
                         #print(p['value'])
                         if(time.time()-last_pend>=60*60):
                             warn_message="PMV is outside the optimal range"

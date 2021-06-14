@@ -246,6 +246,7 @@ class ResourcesServerREST(object):
         elif command=="warning":
             platform_ID=uri[1]
             room_ID=str(uri[2])
+            status,suggestion=self.serverCatalog.parse_warning(platform_ID,room_ID)
             requestProfiles=requests.get(server.serviceCatalogAddress+"/profiles_catalog").json()
             profilesURL=self.buildAddress(requestProfiles.get('IP_address'),requestProfiles.get('port'),requestProfiles.get('service'))
             
@@ -257,7 +258,8 @@ class ResourcesServerREST(object):
 
             json_body["platform_ID"]=platform_ID
             json_body["room_name"]=requests.get(profilesURL+'/'+platform_ID+"/preferences/"+room_ID).json().get('room_name')
-            json_body["message"]=json_body["message"]+" at "+time.strftime('%H:%M')
+            json_body["message"]=json_body["message"]+" ("+status+") " +"at "+time.strftime('%H:%M')
+            json_body["suggestion"]=suggestion
             publisher.myPublish(json.dumps(json_body))
             output="platform_ID\nroom_ID\n"+json.dumps(json_body)
             publisher.stop()

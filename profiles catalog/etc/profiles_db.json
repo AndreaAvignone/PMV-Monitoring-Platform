@@ -33,26 +33,26 @@
     "profiles": [
         {
             "platform_ID": "MP-A00003",
-            "platform_name": "Casa mia",
+            "platform_name": "My House",
             "inactive_time": "43200",
             "warning": true,
             "room_cnt": 5,
             "preferences": [
                 {
                     "room_ID": "room_X1",
-                    "room_name": "Bagno",
+                    "room_name": "Kitchen",
                     "connection_flag": true,
                     "devices": [],
                     "connection_timestamp": 1614682054.9977033
                 },
                 {
                     "room_ID": "room_X2",
-                    "room_name": "Camera",
+                    "room_name": "Bedroom",
                     "connection_flag": true,
                     "devices": [
                         {
                             "device_ID": "revC",
-                            "last_update": 1621425609.5146253,
+                            "last_update": 1623600671.9765842,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -62,7 +62,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1621425607.5081623,
+                            "last_update": 1623600684.2850008,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -80,7 +80,7 @@
                         },
                         {
                             "device_ID": "dht11",
-                            "last_update": 1621425624.5799398,
+                            "last_update": 1623600691.3699212,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -90,7 +90,7 @@
                         },
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1621425619.3148382,
+                            "last_update": 1623600685.1523633,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -214,7 +214,7 @@
                     "devices": [
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1621424529.352792,
+                            "last_update": 1623600534.1755285,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -224,7 +224,7 @@
                         },
                         {
                             "device_ID": "dht22",
-                            "last_update": 1621424517.1783738,
+                            "last_update": 1623600532.9009988,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -234,7 +234,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1621424512.227644,
+                            "last_update": 1623600507.1095207,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",
@@ -252,7 +252,7 @@
                         },
                         {
                             "device_ID": "revC",
-                            "last_update": 1621424531.993403,
+                            "last_update": 1623600511.3251383,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -281,7 +281,7 @@
                     "devices": [
                         {
                             "device_ID": "ds18b20",
-                            "last_update": 1621425461.8810794,
+                            "last_update": 1623082188.768292,
                             "parameters": [
                                 {
                                     "parameter": "temperature",
@@ -291,7 +291,7 @@
                         },
                         {
                             "device_ID": "dht22",
-                            "last_update": 1621425453.9580364,
+                            "last_update": 1623082183.894883,
                             "parameters": [
                                 {
                                     "parameter": "humidity",
@@ -301,7 +301,7 @@
                         },
                         {
                             "device_ID": "revC",
-                            "last_update": 1621425452.82209,
+                            "last_update": 1623082191.381439,
                             "parameters": [
                                 {
                                     "parameter": "wind",
@@ -311,7 +311,7 @@
                         },
                         {
                             "device_ID": "max76675",
-                            "last_update": 1621425444.0574362,
+                            "last_update": 1623082169.8598971,
                             "parameters": [
                                 {
                                     "parameter": "temperature_g",

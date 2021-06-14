@@ -39,12 +39,12 @@
                 {
                     "room_ID": "room_X2",
                     "uid": "MP-A00003room_X2",
-                    "title": "Camera"
+                    "title": "Bedroom"
                 },
                 {
                     "room_ID": "room_X1",
                     "uid": "MP-A00003room_X1",
-                    "title": "bagno"
+                    "title": "Kitchen"
                 }
             ]
         },

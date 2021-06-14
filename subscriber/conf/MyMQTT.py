@@ -3,8 +3,6 @@ import paho.mqtt.client as PahoMQTT
 class MyMQTT:
     def __init__(self, clientID, broker, port, notifier):
         self.broker = broker
-        print(self.broker)
-        print(port)
         self.port = port
         self.notifier = notifier
         self.clientID = clientID
