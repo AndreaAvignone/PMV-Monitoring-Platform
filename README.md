@@ -82,5 +82,6 @@ For the **sensor installation**, main.py script is used, independently on the se
 ## Links
 
 ## License
+[GPL-3.0](./LICENSE)
 
 
