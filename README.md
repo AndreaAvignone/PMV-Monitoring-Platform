@@ -20,6 +20,9 @@ The source code for the Android Application:
 
 > [https://github.com/AndreaAvignone/myComfort](url)
 
+## Architecture overview
+
+
 ## Getting Started
 The general architecture is based on the micro-services approach.\ Availabe services are stored into databases and exposed through REST protocol - e.g. broker, profile databases, server -. In particular, for each service, IP, port and basic path to start the service are provided (dictionary).
 
