@@ -31,6 +31,7 @@ Main required elements:
 * MQTT
 * InfluxDB
 * Grafana
+* ngrok
 
 To install the specific requirements:
 
@@ -59,6 +60,7 @@ python3 service_catalog.py etc/service_catalog.json
 
 
 ### MQTT 
+
 To enable tunneling, ngrok (https://ngrok.com) was exploited, with proper configuration.
 
 ### Main services
