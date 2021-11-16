@@ -1,4 +1,4 @@
-# Monitoring-Platform
+# Thermal Comfort Monitoring-Platform
 For each service, a folder called '/etc' exists, containing JSON-like configuration files.
 ## Main services
 ### Service catalog: 
