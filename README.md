@@ -21,8 +21,9 @@ The source code for the Android Application:
 > [https://github.com/AndreaAvignone/myComfort](url)
 
 ## Architecture overview
-
-<img src="https://github.com/AndreaAvignone/PMV-Monitoring-Platform/blob/main/pictures/software_layers.png" width="300">
+<p align="center">
+  <img src="https://github.com/AndreaAvignone/PMV-Monitoring-Platform/blob/main/pictures/software_layers.png" width="300">
+  </p>
 
 
 ## Getting Started
@@ -51,8 +52,9 @@ For each service, the JSON-like configuration file is present under the folder:
 Using this file, it is possible to edit the configuration of each back-end, like **IP address** and **Port number**. \
 Services present a similar structure. The basic path is */Monitoring-Platform + /specific_service* (e.g. http://127.0.0.1:8083/Monitoring-Platform/server, http://127.0.0.1:8081/Monitoring-Platform/profiles). \
 Given the educational reason behind the project, each service is expected to be individually launched. The expected command has been reported in each specific folder.
-
-<img src="https://github.com/AndreaAvignone/PMV-Monitoring-Platform/blob/main/pictures/services_diagram.png" width="500">
+<p align="center">
+  <img src="https://github.com/AndreaAvignone/PMV-Monitoring-Platform/blob/main/pictures/services_diagram.png" width="500">
+  </p>
 
 **Remark**\
 The *service catalog* is crucial to orchestrate the whole system, therefore it must be the first one to run. All the other services will both register to the *service catalog* and retrieve the required information about other entities.\
