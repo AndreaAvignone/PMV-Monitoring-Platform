@@ -14,11 +14,11 @@ The software is composed of three main parts:
 
 The repostiory for setup a new platform is retrievable here:
 
-> [https://github.com/AndreaAvignone/Monitoring-Platform-kit](url)
+> [https://github.com/AndreaAvignone/Monitoring-Platform-kit]
 
 The source code for the Android Application:
 
-> [https://github.com/AndreaAvignone/myComfort](url)
+> [https://github.com/AndreaAvignone/myComfort]
 
 ## Architecture overview
 
