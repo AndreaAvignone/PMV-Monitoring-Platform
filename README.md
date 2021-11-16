@@ -37,14 +37,16 @@ pip3 install -r requirements.txt
 The general architecture is based on the micro-services approach.\ Availabe services are stored into databases and exposed through REST protocol - e.g. broker, profile databases, server -. In particular, for each service, IP, port and basic path to start the service are provided (dictionary).
 
 For each service, the JSON-like configuration file is present under the folder:
-> /etc \
+> /etc 
+
 Using this file, it is possible to edit the configuration of each back-end, like **IP address** and **Port number**. \
-Services present a similar structure. The basic path is /Monitoring-Platform + /specific_service (e.g. *http://127.0.0.1:8083/Monitoring-Platform/server, http://127.0.0.1:8081/Monitoring-Platform/profiles*).\
+Services present a similar structure. The basic path is */Monitoring-Platform + /specific_service* (e.g. http://127.0.0.1:8083/Monitoring-Platform/server, http://127.0.0.1:8081/Monitoring-Platform/profiles). \
 Given the educational reason behind the project, each service is expected to be individually launched. The expected command has been reported in each specific folder.
 
 **Remark**\
-The *service catalog* is crucial to orchestrate the whole system, therefore it must be the first one to run. All the other services will both register to the *service catalog* and retrieve the required information about the other entities.\
+The *service catalog* is crucial to orchestrate the whole system, therefore it must be the first one to run. All the other services will both register to the *service catalog* and retrieve the required information about other entities.\
 All the services follow the same command structure. Starting from the *service catalog*:
+
 ``
 python3 service_catalog.py etc/service_catalog.json
 ``
