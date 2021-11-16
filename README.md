@@ -21,6 +21,10 @@ The source code for the Android Application:
 > [https://github.com/AndreaAvignone/myComfort](url)
 
 ## Architecture overview
+
+The following picture represents the project architecture. The system was designed to take into account all the distinct aspects to provide a stand-alone platform. Measurements are retrieved from the hardware platform and then processed by the back-end. The final goal was to provide to users an objective thermal comfort indicator (based on mathematical models) for supporting the knowledge related to environmental conditions. Moreover, the system includes the possibility to retrieve additional information from external API (e.g. weather information).
+
+
 <p align="center">
   <img src="https://github.com/AndreaAvignone/PMV-Monitoring-Platform/blob/main/pictures/software_layers.png" width="300">
   </p>
@@ -72,8 +76,6 @@ A similar approach is also employed by the *resource catalog* for notifications 
 
 ### ngrok
 To enable tunneling, ngrok (https://ngrok.com) was exploited, with proper configuration.
-
-## Features
 
 ## Configuration
 When all services are up, new platforms can be installed. Each platform is composed by a central HUB, locally exposed for the REST communication with present rooms. It actually ping the Server to be added to the catalog. Then, a room can be configured.\
