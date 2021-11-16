@@ -26,7 +26,7 @@ The general architecture is based on the micro-services approach.
 For each service, the JSON-like configuration file is present under the folder:
 > /etc
 
-To enable tunneling, [1^] ngrok was exploited, with proper configuration.
+To enable tunneling, ngrok[1^] was exploited, with proper configuration.
 
 ### Main services
 #### Service catalog: 
@@ -66,3 +66,4 @@ For the **sensor installation**, main.py script is used, independently on the se
 
 
 
+[1^]https://ngrok.com
