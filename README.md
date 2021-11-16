@@ -105,7 +105,7 @@ Again, the sensor requests configuration drivers from *central HUB* with a GET r
 
 Instructions for the hardware platform:
 
-> [https://github.com/AndreaAvignone/Monitoring-Platform-kit](url)
+>https://github.com/AndreaAvignone/Monitoring-Platform-kit
 
 ## License
 [GPL-3.0](./LICENSE)
