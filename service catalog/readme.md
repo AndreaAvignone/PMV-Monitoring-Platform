@@ -1,3 +1,6 @@
+#### Service catalog
+Main service for collecting information of registered services.
+
 Command:
 
 ``
