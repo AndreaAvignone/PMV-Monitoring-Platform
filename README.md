@@ -55,6 +55,8 @@ It simply stores in a JSON file all configuration inforamtion for sensors. Insid
 **Improvements:** Basic version can be enough, it should be tested for any errors.\
 **How to run:** python3 drivers_catalog.py etc/drivers_catalog.json
 
+## Features
+
 ## Description
 Each back-end service presents a similar structure. The basic path is /Monitoring-Platform + /specific_service (e.g. http://127.0.0.1:8083/Monitoring-Platform/server, http://127.0.0.1:8081/Monitoring-Platform/profiles). The crucial one is the **service catalog**. It is based on a json file storing also its own address (http://127.0.0.1:8080/Monitoring-Platform/services).\
 When **profiles catalog** is launched, it asks the service catalog about the proper address and the basic path to use. Also the list of information about rooms is present. Therefore the client sends requests to change name and parameters directly to this catalog.\
@@ -63,5 +65,9 @@ When **profiles catalog** is launched, it asks the service catalog about the pro
 When all services are up, new platforms can be installed. Each platform is composed by a central HUB, locally exposed for the REST communication with present rooms. It actually ping the Server to be added to the catalog. Then, a room can be configured.\
 **IMPORTANT**: the idea is that a virtual instance is created from the client (i.e. the mobile application), appended to the profiles catalog of the specific platform with a connection_flag=False. When the physical room is plugged, it retrieves information about service catalog from the central hub, then it sends a requests to profiles catalog (put insertRoom). In this way, the profiles server check if there is any room previously created, with the connection_flag equal to false and a  less than 1 minute timestamp. Association is therefore performed. Moreover, for each profile a room counter is set. In fact, room is "blind" also about itself, avoiding needs for any kind of a-priori identification. It just knows the IP address of the central HUB (expected to be always the same, so set by default) and the basic room_ID it is expected to assume (e.g. room_X). When the association is correclty performed, profiles service returns the complete configuration, including the ID based on counter (e.g. room_X2 if it is the second associated room) and name set by client. Room updates its own configuration file so that connected sensors can retrieve all information.\
 For the **sensor installation**, main.py script is used, independently on the sensor. In fact, when main script is run, it automatically imports the class according to sensor_ID. Sensor_ID is specified as argument, toghether with the room configuration file and the related pin (python3 main.py room_setup.json dht11 17). Again, the sensor requests configuration drivers from central HUB with a GET request. If central HUB has not already the drivers inside its own memory, it contacts the **drivers service** to download. Sensor can now be configured, publishing on the broker messages. Eventually, subscriber collects information among all sensors and continusoly updates stored information inside the server catalog.
+
+## Links
+
+## License
 
 
