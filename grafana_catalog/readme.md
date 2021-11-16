@@ -5,3 +5,4 @@ Command:
 ```
 python3 grafana_catalog.py etc/org_db.json
 ```
+![alt text](https://github.com/AndreaAvignone/PMV-Monitoring-Platform/blob/main/grafana_catalog/dashboard_sample.png)
