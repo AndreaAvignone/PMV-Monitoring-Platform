@@ -23,8 +23,9 @@ The source code for the Android Application:
 ## Getting Started
 The general architecture is based on the micro-services approach.
 
-For each service, the JSON-like configuration file is present.:
-> '/etc'
+For each service, the JSON-like configuration file is present under the folder:
+> /etc
+
 ### Main services
 #### Service catalog: 
 Availabe services are stored into databases and exposed through REST protocol - e.g. broker, profile databases, server -. In particular, for each service, IP, port and basic path to start the service are provided (dictionary).\
