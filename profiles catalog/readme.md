@@ -3,6 +3,6 @@ The server stores information about the profile of each user (also room configur
 
 Command:
 
-``
+```
 python3 profiles_catalog.py etc/profiles_db.json
-``
+```
