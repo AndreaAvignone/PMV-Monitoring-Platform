@@ -1,5 +1,5 @@
 ### Grafana catalog:
-Run the Grafana local API to handle dashboards requests, new users and additional platforms installed.
+Run the Grafana local API REST-based to handle dashboard requests, dashboard creation, new users and additional platforms installed.
 Command:
 
 ```
