@@ -5,7 +5,7 @@
 
 > **Interdisciplinary projects 2020-2021**
 
-Considering the high price solutions for indoor thermal comfort monitoring, this project proposes a low-cost IoT sensor network (exploiting Raspberry Pi and Arduino platforms) for collecting real-time data and evaluating specific thermal comfort indicators (PMV and PPD). The overall architecture was accordingly designed, implementing the hardware setup, the back-end and the Android user interface. Eventually, three distinct platforms were deployed for testing the general system and analyzing the obtained results in different places and seasons, based on collected data and users’ preferences.
+*Considering the high price solutions for indoor thermal comfort monitoring, this project proposes a low-cost IoT sensor network (exploiting Raspberry Pi and Arduino platforms) for collecting real-time data and evaluating specific thermal comfort indicators (PMV and PPD). The overall architecture was accordingly designed, implementing the hardware setup, the back-end and the Android user interface. Eventually, three distinct platforms were deployed for testing the general system and analyzing the obtained results in different places and seasons, based on collected data and users’ preferences.*
 
 The software is composed of three main parts:
 - Back-end
@@ -32,11 +32,25 @@ To install the specific requirements:
 pip3 install -r requirements.txt
 ``
 
+### REST Server
+
 The general architecture is based on the micro-services approach.\ Availabe services are stored into databases and exposed through REST protocol - e.g. broker, profile databases, server -. In particular, for each service, IP, port and basic path to start the service are provided (dictionary).
 
 For each service, the JSON-like configuration file is present under the folder:
-> /etc
+> /etc \
+Using this file, it is possible to edit the configuration of each back-end, like **IP address** and **Port number**. \
+Services present a similar structure. The basic path is /Monitoring-Platform + /specific_service (e.g. *http://127.0.0.1:8083/Monitoring-Platform/server, http://127.0.0.1:8081/Monitoring-Platform/profiles*).\
+Given the educational reason behind the project, each service is expected to be individually launched. The expected command has been reported in each specific folder.
 
+**Remark**\
+The *service catalog* is crucial to orchestrate the whole system, therefore it must be the first one to run. All the other services will both register to the *service catalog* and retrieve the required information about the other entities.\
+All the services follow the same command structure. Starting from the *service catalog*:
+``
+python3 service_catalog.py etc/service_catalog.json
+``
+
+
+### MQTT 
 To enable tunneling, ngrok (https://ngrok.com) was exploited, with proper configuration.
 
 ### Main services
