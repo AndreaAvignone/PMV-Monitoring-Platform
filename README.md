@@ -84,6 +84,10 @@ For the **sensor installation**, main.py script is used, independently on the se
 
 ## Links
 
+Instructions for the hardware platform:
+
+> [https://github.com/AndreaAvignone/Monitoring-Platform-kit](url)
+
 ## License
 [GPL-3.0](./LICENSE)
 
