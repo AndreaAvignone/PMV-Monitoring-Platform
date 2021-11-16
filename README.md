@@ -1,5 +1,6 @@
 # Thermal Comfort Monitoring-Platform
 ![](http://www.politocomunica.polito.it/var/politocomunica/storage/images/media/images/marchio_logotipo_politecnico/1371-1-ita-IT/marchio_logotipo_politecnico_large.jpg) 
+
 Master course in
 ICT FOR SMART SOCIETIES 2020-2021
 
