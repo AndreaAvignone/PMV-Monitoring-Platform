@@ -1,5 +1,5 @@
 ### Feedback catalog:
-This service stores the received feedback about thermal comfort condition from the final user (via app).
+This service stores the received feedback about thermal comfort condition from the final user (via app). \
 Command:
 
 ```
