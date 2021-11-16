@@ -1,5 +1,6 @@
 # Thermal Comfort Monitoring-Platform
 [https://github.com/AndreaAvignone/Monitoring-Platform-kit](url)
+
 For each service, a folder called '/etc' exists, containing JSON-like configuration files.
 ## Main services
 ### Service catalog: 
