@@ -26,7 +26,7 @@ The general architecture is based on the micro-services approach.
 For each service, the JSON-like configuration file is present under the folder:
 > /etc
 
-To enable tunneling, ngrok[^1] was exploited, with proper configuration.
+To enable tunneling, ngrok (https://ngrok.com) was exploited, with proper configuration.
 
 ### Main services
 #### Service catalog: 
@@ -65,5 +65,3 @@ When all services are up, new platforms can be installed. Each platform is compo
 For the **sensor installation**, main.py script is used, independently on the sensor. In fact, when main script is run, it automatically imports the class according to sensor_ID. Sensor_ID is specified as argument, toghether with the room configuration file and the related pin (python3 main.py room_setup.json dht11 17). Again, the sensor requests configuration drivers from central HUB with a GET request. If central HUB has not already the drivers inside its own memory, it contacts the **drivers service** to download. Sensor can now be configured, publishing on the broker messages. Eventually, subscriber collects information among all sensors and continusoly updates stored information inside the server catalog.
 
 
-
-[^1]https://ngrok.com
