@@ -1,5 +1,5 @@
 
-authtoken: 1pbbljkiQiOOlAEbYkCd0iQjA05_2pUjKby8JcHpzkAc489SM
+authtoken: your_token
 region: eu
 tunnels:
   service_catalog:
