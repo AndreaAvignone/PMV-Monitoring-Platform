@@ -26,6 +26,12 @@ The source code for the Android Application:
 ## Getting Started
 
 The project was mainly developed within a Python environment. In particular, the back-end was hosted by a Raspberry Pi 4.\
+Main required elements:
+* CherryPy
+* MQTT
+* InfluxDB
+* Grafana
+
 To install the specific requirements:
 
 ``
