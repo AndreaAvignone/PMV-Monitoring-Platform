@@ -5,9 +5,20 @@
 
 > **Interdisciplinary projects 2020-2021**
 
-[https://github.com/AndreaAvignone/Monitoring-Platform-kit](url)
+Considering the high price solutions for indoor thermal comfort monitoring, this project proposes a low-cost IoT sensor network (exploiting Raspberry Pi and Arduino platforms) for collecting real-time data and evaluating specific thermal comfort indicators (PMV and PPD). The overall architecture was accordingly designed, implementing the hardware setup, the back-end and the Android user interface. Eventually, three distinct platforms were deployed for testing the general system and analyzing the obtained results in different places and seasons, based on collected data and users’ preferences.
 
-[https://github.com/AndreaAvignone/myComfort](url)
+The software is composed of three main parts:
+- Back-end
+- Platform and sensor network
+- Android Application
+
+The repostiory for setup a new platform is retrievable here:
+
+> [https://github.com/AndreaAvignone/Monitoring-Platform-kit](url)
+
+The source code for the Android Application:
+
+> [https://github.com/AndreaAvignone/myComfort](url)
 
 For each service, a folder called '/etc' exists, containing JSON-like configuration files.
 ## Main services
