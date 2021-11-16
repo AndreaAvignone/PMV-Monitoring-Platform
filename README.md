@@ -1,4 +1,5 @@
 # Thermal Comfort Monitoring-Platform
+![](http://www.politocomunica.polito.it/var/politocomunica/storage/images/media/images/marchio_logotipo_politecnico/1371-1-ita-IT/marchio_logotipo_politecnico_medium.jpg)
 [https://github.com/AndreaAvignone/Monitoring-Platform-kit](url)
 
 [https://github.com/AndreaAvignone/myComfort](url)
