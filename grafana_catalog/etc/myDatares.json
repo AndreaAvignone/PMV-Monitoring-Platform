@@ -1,0 +1,8 @@
+{
+	"name":"test_data2",
+	"type":"influxdb",
+	"url":"http://192.168.1.130:8086",
+	"access":"proxy",
+	"database":"MP_A00001",
+	"basicAuth": false
+}

@@ -66,32 +66,28 @@ a {
   text-align: center;
 }
 
-h3 {
+h4 {
   color: red;
   text-decoration: underline;
 }
-
 </style>
 </head>
 <body>
 
-<form action="http://0.0.0.0:9990/reg_results", method="get">
+<form action="http://clients-mp.eu.ngrok.io/Monitoring-Platform/clients/reg_results", method="get">
   <div class="container">
-    <h1>Register to Leaf</h1>
-    <h2>Create an account for your house to start using Leaf</h2>
-    <h3>Error! User ID already in use</h3>
-    <h3>Please select a different one</h3>
+    <h1>Register to your Monitoring Platform</h1>
+    <h3>Create an account to access the app</h3>
+    <hr>
+    <h4>Error! User ID already in use</h4>
+    <h4>Please select a different one</h4>
     <hr>
 
     <label for="userID"><b>User ID</b></label>
-    <input type="text" placeholder="Enter userID" name="userID" id="userID" required>
-
-    
-    <label for="catalogID"><b>User ID</b></label>
-    <input type="text" placeholder="Enter your device ID" name="catalogID" id="catalogID" required>
+    <input type="text" placeholder="Create a new userID" name="userID" id="userID" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    <input type="password" placeholder="Create a new Password" name="psw" id="psw" required>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
@@ -101,11 +97,13 @@ h3 {
   </div>
 
   <div class="container signin">
-    <p>Already have an account? <a href="https://t.me/leaf1_bot">Sign in using the Telegram Bot</a>.</p>
+    <p>Already have an account? Sign in in the App</ </p>
   </div>
 
 </form>
 </body>
 </html>
+
+
 
 

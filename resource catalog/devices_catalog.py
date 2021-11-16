@@ -34,7 +34,8 @@ class DevicesCatalog():
         i=self.findPos(device_ID)
         for j in range(len(self.devices[i])):
             if self.devices[i]['parameters'][j].get('parameter')==device_valueDict['parameter']:
-                self.devices[i]['parameters'][j]=device_valueDict    
+                self.devices[i]['parameters'][j]=device_valueDict
+                self.devices[i]['timestamp']=device_valueDict['timestamp']
                 break
 
     """
@@ -60,20 +61,21 @@ class DevicesCatalog():
             output=False
         else:
             #otherwise create the device
+            device['timestamp']=self.timestamp
             self.devices.append(device)
             output=True
         return output
         
     def removeInactive(self,timeInactive):
+        output=False
         for device in self.devices:
             device_ID=device['device_ID']
             if self.timestamp - device['timestamp']>timeInactive:
                 self.devices.remove(device)
                 #self.devices['last_update']=self.actualTime
                 print(f'Device {device_ID} removed')
-                return True
-            else:
-                return False
+                output=True
+        return output
 
 
     def removeDevice(self,device_ID):

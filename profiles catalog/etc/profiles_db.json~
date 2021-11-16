@@ -1,0 +1,337 @@
+{
+    "description": "Welcome to the profiles database",
+    "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "weather_api": "https://api.openweathermap.org/data/2.5/weather",
+    "weather_key": "636b475c1fb0e1d78527fbb3edf59473",
+    "delta": 10800,
+    "IP_address": "192.168.1.130",
+    "port": 8081,
+    "profiles_list": [
+        "MP-A00003",
+        "MP-A00001",
+        "MP-A00000",
+        "MP-A00010",
+        "MP-A00013",
+        "MP-A00007"
+    ],
+    "produced_list": [
+        "MP-A00001",
+        "MP-A00000",
+        "MP-A00002",
+        "MP-A00003",
+        "MP-A00004",
+        "MP-A00005",
+        "MP-A00006",
+        "MP-A00007",
+        "MP-A00008",
+        "MP-A00009",
+        "MP-A00010",
+        "MP-A00013"
+    ],
+    "last_creation": 1607607430.684861,
+    "profiles": [
+        {
+            "platform_ID": "MP-A00003",
+            "platform_name": "Casa mia",
+            "inactive_time": "43200",
+            "warning": true,
+            "room_cnt": 5,
+            "preferences": [
+                {
+                    "room_ID": "room_X1",
+                    "room_name": "Bagno",
+                    "connection_flag": true,
+                    "devices": [],
+                    "connection_timestamp": 1614682054.9977033
+                },
+                {
+                    "room_ID": "room_X2",
+                    "room_name": "Camera",
+                    "connection_flag": true,
+                    "devices": [
+                        {
+                            "device_ID": "revC",
+                            "last_update": 1621381012.1999176,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "unit": "KmH"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "max76675",
+                            "last_update": 1621381005.9581563,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "unit": "C"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "unit": "mm"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "dht11",
+                            "last_update": 1621381012.2023475,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1621380992.4229093,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        }
+                    ],
+                    "connection_timestamp": 1614682176.856142
+                }
+            ],
+            "location": "Nichelino",
+            "last_update": "25/04/2021 15:41"
+        },
+        {
+            "platform_ID": "MP-A00001",
+            "platform_name": "Office",
+            "warning": true,
+            "room_cnt": 2,
+            "inactive_time": "1800",
+            "preferences": [
+                {
+                    "room_ID": "room_X2",
+                    "room_name": "Meeting",
+                    "connection_flag": true,
+                    "devices": [],
+                    "connection_timestamp": 1619714005.831694
+                }
+            ],
+            "location": "Milano",
+            "last_update": "29/04/2021 18:33"
+        },
+        {
+            "platform_ID": "MP-A00000",
+            "platform_name": "Villa",
+            "warning": true,
+            "room_cnt": 2,
+            "inactive_time": "1800",
+            "preferences": [],
+            "location": "Nichelino",
+            "last_update": "05/05/2021 20:04"
+        },
+        {
+            "platform_ID": "MP-A00010",
+            "platform_name": "Home",
+            "warning": true,
+            "room_cnt": 1,
+            "inactive_time": "1800",
+            "preferences": [
+                {
+                    "room_ID": "room_X1",
+                    "room_name": "Living",
+                    "connection_flag": true,
+                    "devices": [
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1620544475.7000613,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "dht22",
+                            "last_update": 1620544482.3790066,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "revC",
+                            "last_update": 1620544486.6619062,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "unit": "KmH"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "max76675",
+                            "last_update": 1620544479.6155207,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "unit": "C"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "unit": "mm"
+                                }
+                            ]
+                        }
+                    ],
+                    "connection_timestamp": 1620543816.1560025
+                }
+            ],
+            "location": "Torino",
+            "last_update": "09/05/2021 09:03"
+        },
+        {
+            "platform_ID": "MP-A00013",
+            "platform_name": "Home via Buffa",
+            "warning": true,
+            "room_cnt": 1,
+            "inactive_time": "1800",
+            "preferences": [
+                {
+                    "room_ID": "room_X1",
+                    "room_name": "Bedroom",
+                    "connection_flag": true,
+                    "devices": [
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1621375664.7404861,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "dht22",
+                            "last_update": 1621375648.632505,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "max76675",
+                            "last_update": 1621375640.6978312,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "unit": "C"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "unit": "mm"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "revC",
+                            "last_update": 1621375665.7546356,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "unit": "KmH"
+                                }
+                            ]
+                        }
+                    ],
+                    "connection_timestamp": 1620564203.459523
+                }
+            ],
+            "location": "Nichelino",
+            "last_update": "09/05/2021 14:43"
+        },
+        {
+            "platform_ID": "MP-A00007",
+            "platform_name": "Tester3",
+            "warning": true,
+            "room_cnt": 1,
+            "inactive_time": 1800,
+            "preferences": [
+                {
+                    "room_ID": "room_X1",
+                    "room_name": "Tester3",
+                    "connection_flag": true,
+                    "devices": [
+                        {
+                            "device_ID": "ds18b20",
+                            "last_update": 1621410304.9708014,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature",
+                                    "unit": "C"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "dht22",
+                            "last_update": 1621410303.526313,
+                            "parameters": [
+                                {
+                                    "parameter": "humidity",
+                                    "unit": "%"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "revC",
+                            "last_update": 1621410292.8105583,
+                            "parameters": [
+                                {
+                                    "parameter": "wind",
+                                    "unit": "KmH"
+                                }
+                            ]
+                        },
+                        {
+                            "device_ID": "max76675",
+                            "last_update": 1621410292.7873983,
+                            "parameters": [
+                                {
+                                    "parameter": "temperature_g",
+                                    "unit": "C"
+                                },
+                                {
+                                    "parameter": "emissivity",
+                                    "unit": null
+                                },
+                                {
+                                    "parameter": "diameter",
+                                    "unit": "mm"
+                                }
+                            ]
+                        }
+                    ],
+                    "connection_timestamp": 1621410028.9378974
+                }
+            ],
+            "location": "Torino",
+            "last_update": "19/05/2021 09:40"
+        }
+    ]
+}

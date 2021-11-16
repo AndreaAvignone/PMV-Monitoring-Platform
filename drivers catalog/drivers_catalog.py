@@ -5,43 +5,53 @@ import time
 import sys
 
 class DriversCatalogREST():
-	exposed=True
+    exposed=True
 
-	def __init__(self,db_filename):
-		#configure the service catalog according to information stored inside database
-		self.db_filename=db_filename
-		self.driversCatalog=json.load(open(self.db_filename,"r")) #store the database as a variable
-		self.serviceCatalogAddress=self.driversCatalog['service_catalog']
-		self.requestResult=requests.get(self.serviceCatalogAddress+"/drivers_catalog").json()
-		self.driversCatalogIP=self.requestResult[0].get('IP_address')
-		self.driversCatalogPort=self.requestResult[0].get('port')
-		self.service=self.requestResult[0].get('service')
-		
-	def GET(self,*uri):
-		if len(uri)==1:
-			try:
-				output=self.driversCatalog[uri[0]]
-			except:
-				raise cherrypy.HTTPError(404,"Information: Not found")
-		elif len(uri)==2:
-			try:
-				drivers_list=self.driversCatalog[uri[0]]
-	
-				notFound=1
-				for drivers in drivers_list:
-					if drivers['device_ID']==uri[1]:
-						output=drivers
-						notFound=0
-						break
-				if notFound==1:
-					raise cherrypy.HTTPError(404,"Drivers Not found")
-			except:
-				raise cherrypy.HTTPError(404,"Information: Not found")
+    def __init__(self,db_filename):
+        #configure the service catalog according to information stored inside database
+        self.db_filename=db_filename
+        self.driversCatalog=json.load(open(self.db_filename,"r")) #store the database as a variable
+        self.serviceCatalogAddress=self.driversCatalog['service_catalog']
+        self.driversCatalogIP=self.driversCatalog['IP_address']
+        self.driversCatalogPort=self.driversCatalog['port']
+        self.service=self.registerRequest()
 
-		else:
-			output=self.driversCatalog['description'] #if no resource is found, it return a general description about database
+    def registerRequest(self):
+        msg={"service":"drivers_catalog","IP_address":self.driversCatalogIP,"port":self.driversCatalogPort}
+        try:
+            service=requests.put(f'{self.serviceCatalogAddress}/register',json=msg).json()
+            return service
+        except:
+            print("Failure in registration.")
+            return False
+            
+        
+        
+    def GET(self,*uri):
+        if len(uri)==1:
+            try:
+                output=self.driversCatalog[uri[0]]
+            except:
+                raise cherrypy.HTTPError(404,"Information: Not found")
+        elif len(uri)==2:
+            try:
+                drivers_list=self.driversCatalog[uri[0]]
 
-		return json.dumps(output,indent=4) 
+                notFound=1
+                for drivers in drivers_list:
+                    if drivers['device_ID']==uri[1]:
+                        output=drivers
+                        notFound=0
+                        break
+                if notFound==1:
+                    raise cherrypy.HTTPError(404,"Drivers Not found")
+            except:
+                raise cherrypy.HTTPError(404,"Information: Not found")
+
+        else:
+            output=self.driversCatalog['description'] #if no resource is found, it return a general description about database
+
+        return json.dumps(output,indent=4) 
 
 if __name__ == '__main__':
     settings=sys.argv[1]

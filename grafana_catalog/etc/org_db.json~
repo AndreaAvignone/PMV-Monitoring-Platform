@@ -1,0 +1,54 @@
+{
+    "description": "Welcome to the organizations database",
+    "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "IP_address": "192.168.1.130",
+    "port": 8091,
+    "organizations_list": [
+        "Main Org.",
+        "MP-A00003",
+        "MP-A00001"
+    ],
+    "organizations": [
+        {
+            "org_name": "Main Org.",
+            "orgId": "1",
+            "key_name": "Grafana_api_key",
+            "keyId": 3,
+            "key": "eyJrIjoiNjQ2Q2F2cHltUkdyaHozcEFZNHJRVFI5THhzakZSdEkiLCJuIjoiR3JhZmFuYV9hcGlfa2V5IiwiaWQiOjF9",
+            "dashboards": [
+                {
+                    "room_ID": "room_X3",
+                    "uid": "Main Org.room_X3",
+                    "title": "Cameretta"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00003",
+            "orgId": "46",
+            "key_name": "MP-A00003_key",
+            "keyId": 38,
+            "key": "eyJrIjoiQmQ2bDRUSGtQWkt4NjY3N29nbnJOVU1EelpIaE5RVWQiLCJuIjoiTVAtQTAwMDAzX2tleSIsImlkIjo0Nn0=",
+            "dashboards": [
+                {
+                    "room_ID": "room_X2",
+                    "uid": "MP-A00003room_X2",
+                    "title": "Camera"
+                },
+                {
+                    "room_ID": "room_X1",
+                    "uid": "MP-A00003room_X1",
+                    "title": "bagno"
+                }
+            ]
+        },
+        {
+            "org_name": "MP-A00001",
+            "orgId": "50",
+            "key_name": "MP-A00001_key",
+            "keyId": 42,
+            "key": "eyJrIjoiVnNYYjZXSXNuSE90Z2N3cDFoczAzUmdjVjlsSWQzdEEiLCJuIjoiTVAtQTAwMDAxX2tleSIsImlkIjo1MH0=",
+            "dashboards": []
+        }
+    ]
+}

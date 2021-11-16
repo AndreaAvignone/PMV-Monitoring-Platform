@@ -1,0 +1,64 @@
+{
+    "description": "Welcome to the feedback service",
+    "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "IP_address": "192.168.1.130",
+    "port": 8090,
+    "delta": 7200,
+    "profiles": [
+        {
+            "platform_ID": "MP-A00004",
+            "rooms": [
+                {
+                    "room_ID": "room_X1",
+                    "feedback": "Hot",
+                    "last_update": 1617981061.7426634
+                }
+            ],
+            "last_update": "09/04/2021 17:11"
+        },
+        {
+            "platform_ID": "MP-A00003",
+            "rooms": [
+                {
+                    "room_ID": "room_X2",
+                    "feedback": "ok",
+                    "last_update": 1618518091.872301
+                }
+            ],
+            "last_update": "09/04/2021 18:43"
+        },
+        {
+            "platform_ID": "MP-A00013",
+            "rooms": [
+                {
+                    "room_ID": "room_X1",
+                    "feedback": "hot",
+                    "last_update": 1620572119.1631851
+                }
+            ],
+            "last_update": "09/05/2021 16:55"
+        },
+        {
+            "platform_ID": "MP-A00007",
+            "rooms": [
+                {
+                    "room_ID": "room_X1",
+                    "feedback": "cold",
+                    "last_update": 1621410527.1341174
+                }
+            ],
+            "last_update": "19/05/2021 09:48"
+        },
+        {
+            "platform_ID": "MP-A00014",
+            "rooms": [
+                {
+                    "room_ID": "room_X1",
+                    "feedback": "ok",
+                    "last_update": 1621418066.6859255
+                }
+            ],
+            "last_update": "19/05/2021 11:54"
+        }
+    ]
+}

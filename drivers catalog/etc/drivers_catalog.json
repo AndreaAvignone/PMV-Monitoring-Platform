@@ -1,17 +1,25 @@
 {
     "description":"Welcome to the drivers database",
-    "service_catalog":"http://192.168.1.19:8080/Monitoring-Platform/services",
+    "IP_address":"192.168.1.130",
+    "port":8084,
+    "service_catalog":"http://192.168.1.130:8080/Monitoring-Platform/services",
     "drivers_list": [
         {
             "device_ID": "dht11",
             "end_points": "MQTT/REST",
-            "time_sleep":5,
+            "time_sleep":30,
             "parameters": [{
-                "parameter": "temperature",
+                "parameter": "humidity",
                 "value": null,
-                "unit": "C",
+                "unit": "%",
                 "timestamp": null
-            }, {
+            }]
+        },
+        {
+            "device_ID": "dht22",
+            "end_points": "MQTT/REST",
+            "time_sleep":30,
+            "parameters": [{
                 "parameter": "humidity",
                 "value": null,
                 "unit": "%",
@@ -21,7 +29,7 @@
         {
             "device_ID": "revC",
             "end_points": "MQTT/REST",
-            "time_sleep":5,
+            "time_sleep":30,
             "parameters": [{
                 "parameter": "wind",
                 "value": null,
@@ -32,18 +40,29 @@
         {
             "device_ID": "max76675",
             "end_points": "MQTT/REST",
-            "time_sleep":5,
+            "time_sleep":30,
             "parameters": [{
                 "parameter": "temperature_g",
                 "value": null,
                 "unit": "C",
                 "timestamp": null
-            }]
+            },
+            {
+                "parameter":"emissivity",
+                "value": 0.9,
+                "unit":null
+            },
+            {
+                "parameter":"diameter",
+                "value": 38,
+                "unit":"mm"
+            }
+        ]
         },
         {
             "device_ID": "ds18b20",
             "end_points": "MQTT/REST",
-            "time_sleep":5,
+            "time_sleep":30,
             "parameters": [{
                 "parameter": "temperature",
                 "value": null,

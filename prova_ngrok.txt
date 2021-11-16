@@ -1,0 +1,51 @@
+
+authtoken: 1pbbljkiQiOOlAEbYkCd0iQjA05_2pUjKby8JcHpzkAc489SM
+region: eu
+tunnels:
+  service_catalog:
+    addr: 192.168.1.130:8080
+    proto: http
+    hostname: mp.eu.ngrok.io
+    subdomain: services
+  broker:
+    addr: 192.168.1.130:1883
+    proto: http
+    hostname: mp.eu.ngrok.io
+    subdomain: broker
+  profiles_catalog:
+    addr: 192.168.1.130:8081
+    proto: http
+    hostname: mp.eu.ngrok.io
+    subdomain: profiles
+  server_catalog:
+    addr: 192.168.1.130:8083
+    proto: http
+    hostname:mp.eu.ngrok.io
+    subdomain: server
+  clients_catalog:
+    addr: 192.168.1.130:8082
+    proto: http
+    hostname:mp.eu.ngrok.io
+    subdomain: clients
+  drivers_catalog:
+    addr: 192.168.1.130:8084
+    proto: http
+    hostname: mp.eu.ngrok.io
+    subdomain: drivers
+  feedback_catalog:
+    addr: 192.168.1.130:8090
+    proto: http
+    hostname: mp.eu.ngrok.io
+    subdomain: feedback
+  grafana_catalog:
+    addr: 192.168.1.130:8091
+    proto: http
+    hostname: mp.eu.ngrok.io
+    subdomain: grafana_catalog
+  grafana:
+    addr: 192.168.1.130:3000
+    proto: http
+    hostname: mp.eu.ngrok.io
+    subdomain: grafana
+
+

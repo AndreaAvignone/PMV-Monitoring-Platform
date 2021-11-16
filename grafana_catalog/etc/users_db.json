@@ -1,0 +1,64 @@
+{
+    "description": "Welcome to the users database",
+    "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
+    "users_list": [
+        "MP-A00003",
+        "MP-A00001",
+        "MP-A00007",
+        "MP-A00009",
+        "MP-A00000",
+        "MP-A00010",
+        "MP-A00013",
+        "MP-A00014"
+    ],
+    "users": [
+        {
+            "name": "MP-A00003",
+            "login": "MP-A00003",
+            "password": "MP-A00003",
+            "OrgId": 46
+        },
+        {
+            "name": "MP-A00001",
+            "login": "MP-A00001",
+            "password": "MP-A00001",
+            "OrgId": 51
+        },
+        {
+            "name": "MP-A00007",
+            "login": "MP-A00007",
+            "password": "MP-A00007",
+            "OrgId": 52
+        },
+        {
+            "name": "MP-A00009",
+            "login": "MP-A00009",
+            "password": "MP-A00009",
+            "OrgId": 54
+        },
+        {
+            "name": "MP-A00000",
+            "login": "MP-A00000",
+            "password": "MP-A00000",
+            "OrgId": 55
+        },
+        {
+            "name": "MP-A00010",
+            "login": "MP-A00010",
+            "password": "MP-A00010",
+            "OrgId": 56
+        },
+        {
+            "name": "MP-A00013",
+            "login": "MP-A00013",
+            "password": "MP-A00013",
+            "OrgId": 57
+        },
+        {
+            "name": "MP-A00014",
+            "login": "MP-A00014",
+            "password": "MP-A00014",
+            "OrgId": 58
+        }
+    ]
+}
