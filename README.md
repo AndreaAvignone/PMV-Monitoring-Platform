@@ -92,7 +92,14 @@ When the physical room is plugged, it retrieves information about *service catal
 In this way, the server check if there is any room previously created, with *connection_flag equal* to false and a timestamp less than 1 minute. Association is therefore performed. 
 
 Moreover, for each profile, a room counter is set. In fact, room is "blind" also about itself, avoiding needs for any kind of a-priori identification. It just knows the IP address of the central HUB, and the *basic room_ID* it is expected to assume (e.g. room_X). When the association is correclty performed, *profiles service* returns the complete configuration, including the ID based on counter (e.g. room_X2 if it is the second associated room) and name set by client. Room updates its own configuration file so that connected sensors can retrieve all information.\
-For the **sensor installation**, main.py script is used, independently on the sensor. In fact, when main script is run, it automatically imports the class according to sensor_ID. Sensor_ID is specified as argument, toghether with the room configuration file and the related pin (python3 main.py room_setup.json dht11 17). Again, the sensor requests configuration drivers from central HUB with a GET request. If central HUB has not already the drivers inside its own memory, it contacts the **drivers service** to download. Sensor can now be configured, publishing on the broker messages. Eventually, subscriber collects information among all sensors and continusoly updates stored information inside the server catalog.
+
+### Sensor network
+For the **sensor installation**, main.py script is used, independently on the sensor. In fact, when main script is run, it automatically imports the class according to sensor_ID. Sensor_ID is specified as argument, toghether with the room configuration file and the related pin:
+```
+python3 main.py room_setup.json dht11 17 
+```
+
+Again, the sensor requests configuration drivers from *central HUB* with a GET request. If central HUB has not already the drivers inside its own memory, it contacts the **drivers service** to download. Sensor can now be configured, publishing on the broker messages. Eventually, subscriber collects information among all sensors and continusoly updates stored information inside the *server catalog*.
 
 ## Links
 
