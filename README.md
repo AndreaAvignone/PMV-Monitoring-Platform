@@ -60,6 +60,9 @@ python3 service_catalog.py etc/service_catalog.json
 
 
 ### MQTT 
+The communication sensor-server is based on the MQTT protocol. In this implementation, the back-end is hosting also the broker. Each sensor publishes its own value and the server subscriber retrieves the information. In addition to the real-time values provided to the final user, measurements are stored in a specific historical database (*InfluxDB*).
+
+A similar approach is also employed by the *resource catalog* for notifications and warnings.
 
 ### ngrok
 To enable tunneling, ngrok (https://ngrok.com) was exploited, with proper configuration.
