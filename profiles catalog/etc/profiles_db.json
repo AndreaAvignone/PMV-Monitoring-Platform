@@ -2,7 +2,7 @@
     "description": "Welcome to the profiles database",
     "service_catalog": "http://192.168.1.130:8080/Monitoring-Platform/services",
     "weather_api": "https://api.openweathermap.org/data/2.5/weather",
-    "weather_key": "636b475c1fb0e1d78527fbb3edf59473",
+    "weather_key": "xxxxxxxxxxx",
     "delta": 10800,
     "IP_address": "192.168.1.130",
     "port": 8081,
