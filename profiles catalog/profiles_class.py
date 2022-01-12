@@ -219,12 +219,3 @@ class ProfilesCatalog():
     def save(self):
         with open(self.db_filename,'w') as file:
             json.dump(self.profilesContent,file, indent=4)
-
-
-
-
-
-
-
-
-
