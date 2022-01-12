@@ -9,7 +9,9 @@ class GrafanaCatalog():
         self.org_db_filename=org_db_filename #org_db.json
         self.orgContent=json.load(open(self.org_db_filename,"r"))
         self.usersContent=json.load(open("etc/users_db.json","r"))
-
+        
+        self.admin=self.orgContent['admin_username']
+        self.password=self.orgContent['password']
         self.serviceCatalogAddress=self.orgContent['service_catalog']
         
         self.requestResult=requests.get(self.serviceCatalogAddress+"/influx_db").json()
@@ -35,7 +37,7 @@ class GrafanaCatalog():
         #create org
         self.body={"name":platformID}
         self.url=self.server_url+"/api/orgs" #need admin authentication
-        r=requests.post(url=self.url, auth=('admin','menez30lode'),headers=self.headers, data=json.dumps(self.body), verify=False)
+        r=requests.post(url=self.url, auth=(self.admin,self.password),headers=self.headers, data=json.dumps(self.body), verify=False)
         print(r.json())
         #save org ID of new org
         self.orgID=str(r.json()["orgId"])
@@ -46,12 +48,12 @@ class GrafanaCatalog():
         #print(r2.json())
         #swith active org
         self.url3=self.server_url+"/api/user/using/"+self.orgID
-        r3=requests.post(url=self.url3, auth=('admin','menez30lode'),verify=False)
+        r3=requests.post(url=self.url3, auth=(self.admin,self.password),verify=False)
         #print(r3.json())
         #create api key
         self.body4={"name":platformID+"_key", "role":"Admin"}
         self.url4=self.server_url+"/api/auth/keys"
-        r4=requests.post(url=self.url4, auth=('admin','menez30lode'), headers=self.headers, data=json.dumps(self.body4), verify=False)
+        r4=requests.post(url=self.url4, auth=(self.admin,self.password), headers=self.headers, data=json.dumps(self.body4), verify=False)
         #print(r4.json())
         #add new organization to json file
         new_org={
@@ -312,7 +314,7 @@ class GrafanaCatalog():
         "Accept":"application/json"}
         self.url=self.server_url+"/api/admin/users"
         self.body={"name":platformID, "login":platformID, "password":platformID, "OrgId":orgID}
-        r=requests.post(url=self.url, auth=('admin','menez30lode'),headers=self.headers, data=json.dumps(self.body), verify=False)
+        r=requests.post(url=self.url, auth=(self.admin,self.password),headers=self.headers, data=json.dumps(self.body), verify=False)
         #print(r.json())
         return self.body
         
