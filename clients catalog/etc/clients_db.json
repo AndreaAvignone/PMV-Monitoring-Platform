@@ -7,7 +7,7 @@
         {
             "user_ID": "superuser",
             "catalog_list": [],
-            "password": "soComplicated"
+            "password": "xxxxx"
         },
         {
             "user_ID": "Avi",
@@ -16,14 +16,14 @@
                 "MP-A00001",
                 "MP-A00014"
             ],
-            "password": "prova11"
+            "password": "xxxxxx"
         },
         {
             "user_ID": "Silvia",
             "catalog_list": [
                 "MP-A00013"
             ],
-            "password": "lampone"
+            "password": "xxxxx"
         }
     ]
 }
